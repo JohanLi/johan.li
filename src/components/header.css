@@ -1,0 +1,152 @@
+.header {
+  flex-shrink: 0;
+  width: 100%;
+  height: 60px;
+  background: #eee;
+}
+
+.navbar {
+  background: #eee;
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.hamburgerMenu {
+  position: absolute;
+  height: 60px;
+  width: 68px;
+  padding: 20px 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  background: none;
+}
+
+.hamburgerMenu:hover,
+.hamburgerMenu:active {
+  outline: none;
+}
+
+.top,
+.mid,
+.bottom {
+  background: #333;
+  margin-bottom: 4px;
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  opacity: 1;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+  padding: 0 30px;
+  line-height: 60px;
+  display: inline-block;
+}
+
+.linkMenu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+  z-index: 1;
+  text-align: center;
+  transform: translateY(-100%);
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 80px 0 0 0;
+}
+
+.link a {
+  text-decoration: none;
+  color: #333;
+  padding: 30px 0;
+  display: block;
+  font-size: 16px;
+  transition: 0.2s color ease-in;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.active .top {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.active .mid {
+  opacity: 0;
+}
+
+.active .bottom {
+  transform: translateY(-8px) rotate(135deg);
+}
+
+.active .linkMenu {
+  transform: translateY(0);
+}
+
+.transition .top,
+.transition .mid,
+.transition .bottom {
+  transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+}
+
+.transition .linkMenu {
+  transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+}
+
+@media (min-width: 641px) {
+  .header {
+    display: flex;
+  }
+
+  .navbar {
+    position: static;
+    width: auto;
+  }
+
+  .hamburgerMenu {
+    display: none;
+  }
+
+  .linkMenu {
+    position: static;
+    transform: none;
+    transition: none;
+    line-height: 60px;
+  }
+
+  .links {
+    display: flex;
+    padding: 0;
+  }
+
+  .link a {
+    padding: 0 20px;
+    transition: box-shadow 0.3s;
+  }
+
+  .link a:hover,
+  .link a:focus {
+    box-shadow: inset 0 -4px 0 #e1e1e1;
+  }
+
+  .link a.active {
+    box-shadow: inset 0 -4px 0 #a675a2;
+  }
+}
