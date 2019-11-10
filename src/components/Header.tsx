@@ -1,24 +1,16 @@
-// from old website
-
 import React, { ReactElement, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-import styles from './header.css';
+import styles from './header.scss';
 
 const Header = (): ReactElement => {
   const [active, setActive] = useState(false);
   const [transition, setTransition] = useState(false);
 
-  const headerClass = classNames({
-    [styles.header]: true,
-    [styles.active]: active,
-    [styles.transition]: transition,
-  });
-
   const toggle = (): void => {
     setActive(!active);
-    setTransition(false);
+    setTransition(true);
   };
 
   const navigate = (): void => {
@@ -26,37 +18,41 @@ const Header = (): ReactElement => {
     setTransition(false);
   };
 
+  const header = classNames({
+    [styles.header]: true,
+    [styles.active]: active,
+    [styles.transition]: transition,
+  });
+
   return (
-    <header className={headerClass}>
+    <header className={header}>
       <div className={styles.navbar}>
-        <button className={styles.hamburgerMenu} onClick={() => toggle()}>
+        <button className={styles.hamburger} onClick={toggle}>
           <div className={styles.top} />
           <div className={styles.mid} />
           <div className={styles.bottom} />
         </button>
         <div className={styles.logo}>
-          <Link to="/" className={styles.logo}>
-            Johan.Li
-          </Link>
+          <Link to="/">Johan.Li</Link>
         </div>
       </div>
-      <nav className={styles.linkMenu}>
-        <ul className={styles.links}>
-          <li className={styles.link}>
+      <nav className={styles.menu}>
+        <ul className={styles.menuLinks}>
+          <li className={styles.menuLink}>
             <NavLink
               exact
               to="/"
-              activeClassName={styles.active}
-              onClick={() => navigate()}
+              activeClassName={styles.menuLinkActive}
+              onClick={navigate}
             >
               Home
             </NavLink>
           </li>
-          <li className={styles.link}>
+          <li className={styles.menuLink}>
             <NavLink
               to="/about"
-              activeClassName={styles.active}
-              onClick={() => navigate()}
+              activeClassName={styles.menuLinkActive}
+              onClick={navigate}
             >
               About
             </NavLink>

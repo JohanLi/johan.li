@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import styles from './about.css';
+import styles from './about.scss';
 
 const About = (): ReactElement => (
   <>

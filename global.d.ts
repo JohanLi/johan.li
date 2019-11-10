@@ -1,4 +1,4 @@
-declare module '*.css' {
+declare module '*.scss' {
   const classNames: {
     [className: string]: string;
   };
