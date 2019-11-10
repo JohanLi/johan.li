@@ -5,7 +5,7 @@ import Header from './Header';
 import Page1 from '../pages/cargo-culting-in-software';
 import About from './About';
 
-import styles from './main.css';
+import styles from './main.scss';
 
 const Main = (): ReactElement => (
   <Router>

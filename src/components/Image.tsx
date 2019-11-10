@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, ReactElement } from 'react';
 import classNames from 'classnames';
 
-import styles from './image.css';
+import styles from './image.scss';
 
 interface Props {
   src: string;
