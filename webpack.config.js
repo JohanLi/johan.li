@@ -66,7 +66,7 @@ module.exports = (env = {}) => {
           use: ['babel-loader'],
         },
         {
-          test: /\.css$/,
+          test: /\.scss$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -81,6 +81,9 @@ module.exports = (env = {}) => {
                   localIdentName: '[path][name]__[local]--[hash:base64:5]',
                 },
               },
+            },
+            {
+              loader: 'sass-loader',
             },
           ],
         },
