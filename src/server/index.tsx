@@ -5,6 +5,7 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
+import { HelmetProvider, FilledContext } from 'react-helmet-async';
 
 import Main from '../components/Main';
 
@@ -12,9 +13,13 @@ const readFileAsync = promisify(fs.readFile);
 const app = express();
 
 app.get(['/', '/about'], async (req, res) => {
+  const helmetContext = {} as FilledContext;
+
   const appHtml = ReactDOMServer.renderToString(
     <StaticRouter location={req.url}>
-      <Main />
+      <HelmetProvider context={helmetContext}>
+        <Main />
+      </HelmetProvider>
     </StaticRouter>,
   );
 
@@ -23,8 +28,12 @@ app.get(['/', '/about'], async (req, res) => {
     'utf8',
   );
 
+  const { helmet } = helmetContext;
+
   res.send(
-    html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`),
+    html
+      .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+      .replace('<title></title>', helmet.title.toString()),
   );
 });
 
