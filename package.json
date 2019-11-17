@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --env.development",
     "build": "rm -rf ./build && webpack --mode production",
+    "lint-staged": "lint-staged",
     "test": "tsc --skipLibCheck"
   },
   "author": "",
@@ -36,12 +37,12 @@
     "eslint-plugin-react-hooks": "^2.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^3.0.9",
     "imagemin-webp": "^5.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "lint-staged": "^9.4.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.19.1",
     "react-hot-loader": "^4.12.16",
     "sass-loader": "^8.0.0",
@@ -51,13 +52,10 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-node-externals": "^1.7.2"
   },
-  "husky": {
-    "hooks": {
-      "post-merge": "npm install",
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
-    }
-  },
+  "pre-commit": [
+    "lint-staged",
+    "test"
+  ],
   "lint-staged": {
     "*.{ts,tsx,js}": [
       "prettier --write",
