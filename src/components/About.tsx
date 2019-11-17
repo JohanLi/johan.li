@@ -1,9 +1,13 @@
 import React, { ReactElement } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import styles from './about.scss';
 
 const About = (): ReactElement => (
   <>
+    <Helmet>
+      <title>About - Johan.Li</title>
+    </Helmet>
     <h1>About</h1>
     <p>Hi! My name is Johan Li, and I’m a software developer.</p>
     <p>Owing to my childhood, a couple of things define me as a person:</p>
