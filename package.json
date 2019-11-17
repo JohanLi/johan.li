@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --hot --env.development",
+    "start:prod": "npm run build && node build/server/",
     "build": "rm -rf ./build && webpack --mode production",
     "lint-staged": "lint-staged",
     "test": "tsc --skipLibCheck"
