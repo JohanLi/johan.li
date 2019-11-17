@@ -1,5 +1,13 @@
 import React, { ReactElement } from 'react';
 
+import Image from '../../components/Image';
+
+import vanuatu from './vanuatu.jpg';
+import vanuatuLarge from './vanuatu-large.jpg';
+import microservices from './microservices.png';
+import agile from './agile.png';
+import agileLarge from './agile-large.png';
+
 const Index = (): ReactElement => (
   <div>
     <h1>Cargo Culting in Software</h1>
@@ -22,6 +30,13 @@ const Index = (): ReactElement => (
       the world is going on? All this technology. All these changes to the
       surroundings. Food and equipment, falling from the skies?
     </p>
+    <Image
+      src={vanuatu}
+      srcWidth={800}
+      srcHeight={531}
+      zoomSrc={vanuatuLarge}
+      caption="Vanuatu, an island country in the Pacific Ocean, has a cargo cult that survives to this day."
+    />
     <p>
       The troops abandoned the islands after the war. No more cargo dropped. But
       some natives, in an attempt to get cargo to drop again, tried to restore
@@ -62,6 +77,12 @@ const Index = (): ReactElement => (
       reasonable to assume that if you use microservices, you’ll be successful,
       too, right?
     </p>
+    <Image
+      src={microservices}
+      srcWidth={800}
+      srcHeight={240}
+      caption="A monolith split into microservices."
+    />
     <p>
       In reality, you’re making considerable tradeoffs. What if you need to work
       on a feature that spans multiple services? Do you still benefit much from
@@ -110,6 +131,13 @@ const Index = (): ReactElement => (
       different settings by different people, that every once in awhile, we have
       to look up what it is.
     </p>
+    <Image
+      src={agile}
+      srcWidth={800}
+      srcHeight={285}
+      zoomSrc={agileLarge}
+      caption="Colleagues gathering around a Scrum Board."
+    />
     <p>
       Agile was born in response to the ideas of Frederick Taylor. He was one of
       the most influential figures of the 20th century, having improved
