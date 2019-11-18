@@ -12,7 +12,7 @@ import Main from '../components/Main';
 const readFileAsync = promisify(fs.readFile);
 const app = express();
 
-app.get(['/', '/about'], async (req, res) => {
+app.get('*', async (req, res) => {
   const helmetContext = {} as FilledContext;
 
   const appHtml = ReactDOMServer.renderToString(
@@ -36,18 +36,6 @@ app.get(['/', '/about'], async (req, res) => {
       .replace('<title></title>', helmet.title.toString()),
   );
 });
-
-app.use(
-  express.static(path.join(__dirname, '../client'), {
-    setHeaders: res => {
-      res.set('cache-control', 'max-age=31557600, public');
-      res.set(
-        'strict-transport-security',
-        'max-age=31557600; includeSubDomains; preload',
-      );
-    },
-  }),
-);
 
 const port = 8080;
 
