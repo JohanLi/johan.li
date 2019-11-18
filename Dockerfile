@@ -11,5 +11,8 @@ RUN apt-get install -y nodejs
 
 RUN apt-get install -y rsync
 
+# needed for imagemin-webp (https://github.com/imagemin/imagemin-webp/issues/22)
+RUN apt-get install -y libglu1 libxi6 libgconf-2-4
+
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]

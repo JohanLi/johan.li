@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import Header from './Header';
-import Page1 from '../pages/cargo-culting-in-software';
+import Page1 from '../pages/cargo-culting-in-software/Index';
 import About from './About';
 
 import styles from './main.scss';
