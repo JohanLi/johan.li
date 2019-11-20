@@ -87,3 +87,15 @@
         src: ../build/
         dest: /home/johan-li/{{ domain }}/
         delete: yes
+
+    - name: create service
+      template:
+        src: ./systemd.service
+        dest: /etc/systemd/system/{{ domain }}.service
+
+    - name: restart service
+      systemd:
+        name: "{{ domain }}"
+        daemon_reload: true
+        enabled: yes
+        state: restarted
