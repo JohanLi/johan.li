@@ -1,0 +1,14 @@
+[Unit]
+Description={{ domain }}
+Documentation=https://github.com/JohanLi/johan.li
+After=network.target
+
+[Service]
+Type=simple
+User=johan-li
+WorkingDirectory=/home/johan-li/{{ domain }}/
+ExecStart=/usr/bin/node server/
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
