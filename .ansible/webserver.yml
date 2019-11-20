@@ -72,7 +72,18 @@
         enabled: yes
         state: restarted
 
+    - name: create group
+      group:
+        name: johan-li
+        state: present
+
+    - name: create user
+      user:
+        name: johan-li
+        group: johan-li
+
     - name: deploy build
       synchronize:
         src: ../build/
-        dest: /var/www/{{ domain }}/
+        dest: /home/johan-li/{{ domain }}/
+        delete: yes
