@@ -1,13 +1,13 @@
 [Unit]
 Description={{ domain }}
-Documentation=https://github.com/JohanLi/johan.li
+Documentation=https://github.com/JohanLi/{{ domain }}
 After=network.target
 
 [Service]
 Type=simple
-User=johan-li
-WorkingDirectory=/home/johan-li/{{ domain }}/
-ExecStart=/usr/bin/node server/
+User={{ user }}
+WorkingDirectory=/home/{{ user }}/{{ domain }}
+ExecStart=/usr/bin/node server
 Restart=on-failure
 
 [Install]
