@@ -1,0 +1,8 @@
+---
+- hosts: site
+  remote_user: root
+  vars:
+    domain: johan.li
+    user: johan-li
+  roles:
+    - common
