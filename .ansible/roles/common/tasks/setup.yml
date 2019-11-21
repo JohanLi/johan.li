@@ -1,3 +1,13 @@
+- name: create group
+  group:
+    name: "{{ user }}"
+    state: present
+
+- name: create user
+  user:
+    name: "{{ user }}"
+    group: "{{ user }}"
+
 # https://github.com/nodesource/distributions
 - name: add NodeSource package signing key
   apt_key:
@@ -41,45 +51,35 @@
       - certbot
 
 - name: setup let's encrypt certificate
-  command:
-    cmd: |
-      certbot certonly --standalone --noninteractive --agree-tos
-      --email johan@johanli.com -d {{ domain }}
-      --pre-hook "service nginx stop" --post-hook "service nginx start"
+  command: |
+    certbot certonly --standalone --noninteractive --agree-tos
+    --email johan@johanli.com -d {{ domain }}
+    --pre-hook "service nginx stop" --post-hook "service nginx start"
+  args:
     creates: /etc/letsencrypt/live/johan.li/privkey.pem
+  register: certificate
 
 - name: verify that renewal works
-  command:
-    cmd: certbot renew --dry-run
-    creates: .letsencrypt-renew.skip
+  command: certbot renew --dry-run
+  when: certificate.changed
 
 - name: delete default server block
   file:
     path: /etc/nginx/conf.d/default.conf
     state: absent
+  notify:
+    - restart nginx
 
 - name: add server block
   template:
     src: ./server-block.conf
     dest: /etc/nginx/conf.d/{{ domain }}.conf
-
-- name: restart nginx
-  service:
-    name: nginx
-    enabled: yes
-    state: restarted
-
-- name: create group
-  group:
-    name: "{{ user }}"
-    state: present
-
-- name: create user
-  user:
-    name: "{{ user }}"
-    group: "{{ user }}"
+  notify:
+    - restart nginx
 
 - name: create service
   template:
     src: ./systemd.service
     dest: /etc/systemd/system/{{ domain }}.service
+  notify:
+    - restart service

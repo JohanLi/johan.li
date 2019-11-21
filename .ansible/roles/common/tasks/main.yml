@@ -11,6 +11,8 @@
     src: ../build/
     dest: /home/{{ user }}/{{ domain }}/
     delete: yes
+  notify:
+    - restart service
 
 - name: set permissions on build
   file:
@@ -18,10 +20,3 @@
     recurse: yes
     owner: "{{ user }}"
     group: "{{ user }}"
-
-- name: restart service
-  systemd:
-    name: "{{ domain }}"
-    daemon_reload: true
-    enabled: yes
-    state: restarted
