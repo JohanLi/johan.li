@@ -1,0 +1,2 @@
+[site]
+178.62.252.132 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
