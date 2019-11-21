@@ -49,7 +49,7 @@
           certbot certonly --standalone --noninteractive --agree-tos
           --email johan@johanli.com -d {{ domain }}
           --pre-hook "service nginx stop" --post-hook "service nginx start"
-        creates: .letsencrypt-setup.skip
+        creates: /etc/letsencrypt/live/johan.li/privkey.pem
 
     - name: verify that renewal works
       command:
@@ -74,19 +74,26 @@
 
     - name: create group
       group:
-        name: johan-li
+        name: "{{ user }}"
         state: present
 
     - name: create user
       user:
-        name: johan-li
-        group: johan-li
+        name: "{{ user }}"
+        group: "{{ user }}"
 
     - name: deploy build
       synchronize:
         src: ../build/
-        dest: /home/johan-li/{{ domain }}/
+        dest: /home/{{ user }}/{{ domain }}/
         delete: yes
+
+    - name: set permissions on build
+      file:
+        dest: /home/{{ user }}/{{ domain }}/
+        recurse: yes
+        owner: "{{ user }}"
+        group: "{{ user }}"
 
     - name: create service
       template:
