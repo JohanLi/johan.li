@@ -1,2 +1,2 @@
 [webserver]
-178.62.252.132 ansible_user=root ansible_ssh_extra_args='-o StrictHostKeyChecking=no' domain=johan.li
+178.62.252.132 ansible_user=root ansible_ssh_extra_args='-o StrictHostKeyChecking=no' domain=johan.li user=johan-li
