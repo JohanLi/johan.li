@@ -1,16 +1,19 @@
-import fs from 'fs';
+import { promises as fs } from 'fs';
 import path from 'path';
-import { promisify } from 'util';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
 
+import inlineCss from './inlineCss';
+
 import Main from '../components/Main';
 
-const readFileAsync = promisify(fs.readFile);
 const app = express();
+
+app.use(cookieParser());
 
 app.get('*', async (req, res) => {
   const helmetContext = {} as FilledContext;
@@ -23,18 +26,21 @@ app.get('*', async (req, res) => {
     </StaticRouter>,
   );
 
-  const html = await readFileAsync(
+  let html = await fs.readFile(
     path.join(__dirname, '../client/index.html'),
     'utf8',
   );
 
   const { helmet } = helmetContext;
 
-  res.send(
-    html
-      .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
-      .replace('<title></title>', helmet.title.toString()),
+  html = html.replace('<title></title>', helmet.title.toString());
+  html = await inlineCss(req, res, html);
+  html = html.replace(
+    '<div id="root"></div>',
+    `<div id="root">${appHtml}</div>`,
   );
+
+  res.send(html);
 });
 
 const port = 8080;
