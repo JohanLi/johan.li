@@ -73,24 +73,29 @@ const Image = (props: Props): ReactElement => {
     [styles.hidden]: active,
   });
 
-  const image = (
-    <>
-      <img
-        src={props.src}
-        width={props.srcWidth}
-        height={props.srcHeight}
-        ref={imageElement}
-        className={imageClass}
-        onClick={() => {
-          if (!zoomImage) {
-            return;
-          }
+  const paddingBottom = `${(props.srcHeight / props.srcWidth) * 100}%`;
 
-          setActive(true);
-        }}
-      />
+  const image = (
+    <div className={styles.wrapper}>
+      <div
+        className={styles.responsiveContainer}
+        style={{ width: `${props.srcWidth}px`, paddingBottom }}
+      >
+        <img
+          src={props.src}
+          ref={imageElement}
+          className={imageClass}
+          onClick={() => {
+            if (!zoomImage) {
+              return;
+            }
+
+            setActive(true);
+          }}
+        />
+      </div>
       <div className={styles.caption}>{props.caption}</div>
-    </>
+    </div>
   );
 
   if (!zoomImage || !imageElement.current || !active) {
