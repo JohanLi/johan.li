@@ -1,14 +1,19 @@
 @import './variables';
+@import './fonts';
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.5;
   margin: 0;
+}
+
+.fontLoaded body {
+  font-family: Roboto, sans-serif;
 }
 
 h1 {
