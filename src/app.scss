@@ -1,5 +1,4 @@
 @import './variables';
-@import './fonts';
 
 * {
   box-sizing: border-box;
@@ -12,7 +11,7 @@ body {
   margin: 0;
 }
 
-.fontLoaded body {
+:global .fontLoaded body {
   font-family: Roboto, sans-serif;
 }
 
