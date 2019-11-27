@@ -40,16 +40,6 @@ const inlineCss = async (
     `
       <link href="/styles-${match[1]}.css" rel="stylesheet" media="none">
       <style>${css}</style>
-      <script>
-        if ('fonts' in document) {
-          document.fonts.load('Roboto')
-            .then(() => {
-              document.documentElement.classList.add('fontLoaded');
-            });
-        } else {
-          document.documentElement.classList.add('fontLoaded');
-        }
-      </script>
     `,
   );
 };
