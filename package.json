@@ -7,7 +7,8 @@
     "start:prod": "npm run build && node build/server/",
     "build": "rm -rf ./build && webpack --mode production",
     "lint-staged": "lint-staged",
-    "test": "tsc --skipLibCheck"
+    "test": "jest",
+    "test:tsc": "tsc --skipLibCheck"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "@types/classnames": "^2.2.9",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.23",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "@types/react-router-dom": "^5.1.2",
@@ -41,8 +43,10 @@
     "eslint-plugin-react-hooks": "^2.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "imagemin-webp": "^5.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
+    "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
@@ -50,6 +54,7 @@
     "prettier": "^1.19.1",
     "react-hot-loader": "^4.12.16",
     "sass-loader": "^8.0.0",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -58,7 +63,8 @@
   },
   "pre-commit": [
     "lint-staged",
-    "test"
+    "test",
+    "test:tsc"
   ],
   "lint-staged": {
     "*.{ts,tsx,js}": [
@@ -110,5 +116,11 @@
       "react-hot-loader/babel"
     ],
     "compact": false
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "moduleNameMapper": {
+      "\\.(jpg|png|scss)$": "identity-obj-proxy"
+    }
   }
 }
