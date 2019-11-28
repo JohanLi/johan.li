@@ -1,46 +1,36 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router';
-import { HelmetProvider, FilledContext } from 'react-helmet-async';
 
-import inlineCss from './inlineCss';
-
-import Main from '../components/Main';
+import {
+  titleAndApp,
+  getCss,
+  inlineCss,
+  webfontFirstRender,
+} from './updateHtml';
 
 const app = express();
 
 app.use(cookieParser());
 
-app.get('*', async (req, res) => {
-  const helmetContext = {} as FilledContext;
+app.get('*', async (req: Request, res: Response) => {
+  try {
+    let html = await fs.readFile(
+      path.join(__dirname, '../client/index.html'),
+      'utf8',
+    );
 
-  const appHtml = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url}>
-      <HelmetProvider context={helmetContext}>
-        <Main />
-      </HelmetProvider>
-    </StaticRouter>,
-  );
+    html = titleAndApp(html, req.url);
 
-  let html = await fs.readFile(
-    path.join(__dirname, '../client/index.html'),
-    'utf8',
-  );
+    const css = await getCss(html);
+    html = await inlineCss(html, css, req, res);
+    html = webfontFirstRender(html, css, req);
 
-  const { helmet } = helmetContext;
-
-  html = html.replace('<title></title>', helmet.title.toString());
-  html = await inlineCss(req, res, html);
-  html = html.replace(
-    '<div id="root"></div>',
-    `<div id="root">${appHtml}</div>`,
-  );
-
-  res.send(html);
+    res.send(html);
+  } catch (error) {
+    res.sendStatus(500);
+  }
 });
 
 const port = 8080;
