@@ -37,7 +37,7 @@ export const getCss = async (html: string): Promise<Css> => {
   const match = html.match(linkRegexp);
 
   if (!match) {
-    throw 'HTML doesn´t contain stylesheet with hash suffix!';
+    throw Error('HTML doesn´t contain stylesheet with hash suffix!');
   }
 
   const content = await fs.readFile(
@@ -71,10 +71,7 @@ export const inlineCss = (
 
   return html.replace(
     `<link href="/styles-${hash}.css" rel="stylesheet">`,
-    `
-      <link href="/styles-${hash}.css" rel="stylesheet" media="none">
-      <style>${content}</style>
-    `,
+    `<link href="/styles-${hash}.css" rel="stylesheet" media="none"><style>${content}</style>`,
   );
 };
 
