@@ -7,8 +7,8 @@ interface Props {
   src: string;
   srcWidth: number;
   srcHeight: number;
+  caption: string;
   zoomSrc?: string;
-  caption?: string;
 }
 
 /*
@@ -84,6 +84,7 @@ const Image = (props: Props): ReactElement => {
         <img
           src={props.src}
           ref={imageElement}
+          alt={props.caption}
           className={imageClass}
           onClick={() => {
             if (!zoomImage) {
