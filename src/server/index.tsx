@@ -23,6 +23,11 @@ app.get('*', async (req: Request, res: Response) => {
 
     html = titleAndApp(html, req.url);
 
+    if (!html) {
+      res.sendStatus(404);
+      return;
+    }
+
     const css = await getCss(html);
     html = await inlineCss(html, css, req, res);
     html = webfontFirstRender(html, css, req);
