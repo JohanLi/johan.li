@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
-
-import Main from '../components/Main';
 import { promises as fs } from 'fs';
 import { resolve } from 'path';
 import { Request, Response } from 'express';
+
+import Main from '../components/Main';
+import { StaticContext } from '../components/NotFound';
 
 interface Css {
   content: string;
@@ -14,20 +15,23 @@ interface Css {
 }
 
 export const titleAndApp = (html: string, url: string): string => {
+  const context = {} as StaticContext;
   const helmetContext = {} as FilledContext;
 
   const appHtml = ReactDOMServer.renderToString(
-    <StaticRouter location={url}>
+    <StaticRouter location={url} context={context}>
       <HelmetProvider context={helmetContext}>
         <Main />
       </HelmetProvider>
     </StaticRouter>,
   );
 
-  const { helmet } = helmetContext;
+  if (context.statusCode === 404) {
+    return '';
+  }
 
   return html
-    .replace('<title></title>', helmet.title.toString())
+    .replace('<title></title>', helmetContext.helmet.title.toString())
     .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
 };
 
