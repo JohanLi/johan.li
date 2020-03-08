@@ -1,0 +1,14 @@
+@import '../variables';
+
+.heading {
+  margin-bottom: $contentMargin * 2;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+.published {
+  font-size: 0.8em;
+  color: #999;
+}
