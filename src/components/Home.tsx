@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-import articles from '../articles';
+import articles from '../articles/articles';
 
 const Home = (): ReactElement => {
   const links = Object.keys(articles).map(slug => (

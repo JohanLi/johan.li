@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 import App from './components/App';
-import './app.scss';
+import './index.scss';
 
 const HotApp = hot(App);
 

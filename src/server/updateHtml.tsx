@@ -7,7 +7,7 @@ import { resolve } from 'path';
 import { Request, Response } from 'express';
 
 import App from '../components/App';
-import { StaticContext } from '../components/NotFound';
+import { StaticContext } from '../components/Article';
 
 interface Css {
   content: string;
