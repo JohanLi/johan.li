@@ -37,7 +37,6 @@ module.exports = (env = {}) => {
       watch: true,
       devServer: {
         hot: true,
-        open: true,
         historyApiFallback: true,
       },
     };
@@ -57,7 +56,7 @@ module.exports = (env = {}) => {
   plugins.push(new MiniCssExtractPlugin({ filename: cssFilename }));
 
   clientConfig = {
-    entry: ['@babel/polyfill', './src/app.tsx'],
+    entry: ['@babel/polyfill', './src'],
     module: {
       rules: [
         {

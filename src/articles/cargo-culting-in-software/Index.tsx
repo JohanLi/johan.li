@@ -8,9 +8,11 @@ import microservices from './microservices.png';
 import agile from './agile.png';
 import agileLarge from './agile-large.png';
 
+export const title = 'Cargo Culting in Software';
+
 const Index = (): ReactElement => (
   <div>
-    <h1>Cargo Culting in Software</h1>
+    <h1>{title}</h1>
     <p>
       In everyday life, we do certain things. Decide certain things. Not always
       because we understand why, but because people who are successful — people
