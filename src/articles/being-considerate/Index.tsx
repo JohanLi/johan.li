@@ -7,6 +7,9 @@ import { Metadata } from '../articles';
 
 export const metadata: Metadata = {
   title: 'Being Considerate',
+  teaser: `
+    A kid said something that taught me a lot about being considerate.
+  `,
   published: 1580515200,
   readingTime: 3,
 };
