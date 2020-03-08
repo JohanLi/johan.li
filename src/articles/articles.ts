@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 
 // Haven't found a way to obtain keys when using dynamic imports
-const imports = require.context('./articles/', true, /\.tsx$/);
+const imports = require.context('./', true, /\.tsx$/);
 
 const articles: {
   [slug: string]: {

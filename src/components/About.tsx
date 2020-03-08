@@ -5,9 +5,7 @@ import styles from './about.scss';
 
 const About = (): ReactElement => (
   <>
-    <Helmet>
-      <title>About - Johan.Li</title>
-    </Helmet>
+    <Helmet title="About" />
     <h1>About</h1>
     <p>Hi! My name is Johan Li, and I’m a software developer.</p>
     <p>Owing to my childhood, a couple of things define me as a person:</p>
