@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import articles from '../articles/articles';
 
+import styles from './article.scss';
+
 export interface StaticContext {
   statusCode: number;
 }
@@ -28,9 +30,9 @@ const Article = (props: Props): ReactElement | null => {
     return (
       <>
         <Helmet title={title} />
-        <div>
+        <div className={styles.heading}>
           <h1>{title}</h1>
-          <p>
+          <p className={styles.published}>
             {month}, {year} · {readingTime} min read
           </p>
         </div>

@@ -17,6 +17,7 @@ body {
 
 h1 {
   font-size: 1.6em;
+  font-weight: 900;
   margin: 0 0 $contentMargin / 2 0;
 }
 
@@ -26,7 +27,7 @@ h2 {
 }
 
 p {
-  margin: 0 0 $contentMargin 0;
+  margin: 0 0 $contentMargin * 1.5 0;
 }
 
 p:last-child {
@@ -39,12 +40,11 @@ p:last-child {
   }
 
   h1 {
-    font-size: 1.6em;
+    font-size: 2em;
     margin: 0 0 $contentMargin 0;
   }
 
   h2 {
-    font-size: 1.2em;
     margin: $contentMargin * 2 0 $contentMargin 0;
   }
 }
