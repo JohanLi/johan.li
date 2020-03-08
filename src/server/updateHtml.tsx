@@ -6,7 +6,7 @@ import { promises as fs } from 'fs';
 import { resolve } from 'path';
 import { Request, Response } from 'express';
 
-import Main from '../components/Main';
+import App from '../components/App';
 import { StaticContext } from '../components/NotFound';
 
 interface Css {
@@ -21,7 +21,7 @@ export const titleAndApp = (html: string, url: string): string => {
   const appHtml = ReactDOMServer.renderToString(
     <StaticRouter location={url} context={context}>
       <HelmetProvider context={helmetContext}>
-        <Main />
+        <App />
       </HelmetProvider>
     </StaticRouter>,
   );

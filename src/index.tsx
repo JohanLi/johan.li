@@ -4,15 +4,15 @@ import { hot } from 'react-hot-loader/root';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import Main from './components/Main';
+import App from './components/App';
 import './app.scss';
 
-const App = hot(Main);
+const HotApp = hot(App);
 
 render(
   <Router>
     <HelmetProvider>
-      <App />
+      <HotApp />
     </HelmetProvider>
   </Router>,
   document.getElementById('root'),
