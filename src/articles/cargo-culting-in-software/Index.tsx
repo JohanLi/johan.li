@@ -6,14 +6,16 @@ import vanuatuJohnFrumDay from './vanuatu-john-frum-day.jpg';
 import microservices from './microservices.png';
 import agile from './agile.png';
 import agileLarge from './agile-large.png';
-import { Helmet } from 'react-helmet-async';
+import { Metadata } from '../articles';
 
-export const title = 'Cargo Culting in Software';
+export const metadata: Metadata = {
+  title: 'Cargo Culting in Software',
+  published: 1575158400,
+  readingTime: 6,
+};
 
 const Index = (): ReactElement => (
   <div>
-    <Helmet title={title} />
-    <h1>{title}</h1>
     <p>
       In everyday life, we do certain things. Decide certain things. Not always
       because we understand why, but because people who are successful — people

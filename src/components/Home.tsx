@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import articles from '../articles/articles';
 
 const Home = (): ReactElement => {
-  const links = Object.keys(articles).map(slug => (
-    <li key={slug}>
-      <Link to={slug}>{articles[slug].title}</Link>
+  const links = articles.map(article => (
+    <li key={article.slug}>
+      <Link to={article.slug}>{article.title}</Link>
     </li>
   ));
 
