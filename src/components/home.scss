@@ -1,0 +1,24 @@
+@import '../variables';
+
+.articles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article {
+  margin-bottom: $contentMargin * 2;
+}
+
+.title {
+  font-size: 1.6em;
+  font-weight: 900;
+  color: inherit;
+  text-decoration: none;
+}
+
+.published {
+  font-size: 0.8em;
+  color: #999;
+  margin-bottom: $contentMargin / 2;
+}

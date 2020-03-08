@@ -10,6 +10,10 @@ import { Metadata } from '../articles';
 
 export const metadata: Metadata = {
   title: 'Cargo Culting in Software',
+  teaser: `
+    A discussion about this strange phenomenon, and how microservices and Agile
+    can sometimes be examples of it.
+  `,
   published: 1575158400,
   readingTime: 6,
 };
