@@ -7,11 +7,13 @@ import vanuatuLarge from './vanuatu-large.jpg';
 import microservices from './microservices.png';
 import agile from './agile.png';
 import agileLarge from './agile-large.png';
+import { Helmet } from 'react-helmet-async';
 
 export const title = 'Cargo Culting in Software';
 
 const Index = (): ReactElement => (
   <div>
+    <Helmet title={title} />
     <h1>{title}</h1>
     <p>
       In everyday life, we do certain things. Decide certain things. Not always
