@@ -34,6 +34,7 @@
 .absoluteImage {
   position: absolute;
   transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  z-index: 3;
 }
 
 .overlay {
@@ -45,6 +46,7 @@
   background: #fff;
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: 3;
 }
 
 .active {
