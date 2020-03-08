@@ -5,6 +5,7 @@ import { getCss, inlineCss, webfontFirstRender } from './updateHtml';
 
 jest.mock('fs');
 jest.mock('path');
+jest.mock('../articles');
 
 describe('getCss', () => {
   test('returns content and hash', async () => {
