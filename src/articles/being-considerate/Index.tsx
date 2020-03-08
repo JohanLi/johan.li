@@ -3,12 +3,16 @@ import React, { ReactElement } from 'react';
 import Image from '../../components/Image';
 import tBarLift from './t-bar-lift.jpg';
 import tBarLiftLarge from './t-bar-lift-large.jpg';
+import { Metadata } from '../articles';
 
-export const title = 'Being Considerate';
+export const metadata: Metadata = {
+  title: 'Being Considerate',
+  published: 1580515200,
+  readingTime: 3,
+};
 
 const Index = (): ReactElement => (
   <div>
-    <h1>{title}</h1>
     <p>
       Two unusual things happened. I was riding a ski lift. And my lift
       companion, a kid, said something that will stay with me for a long time.

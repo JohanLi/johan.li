@@ -14,13 +14,26 @@ interface Props {
 
 const Article = (props: Props): ReactElement | null => {
   const { slug } = useParams<{ slug: string }>();
+  const article = articles.find(article => article.slug === slug);
 
-  if (articles[slug]) {
-    const { title, component: Component } = articles[slug];
+  if (article) {
+    const { component: Component, title, published, readingTime } = article;
+
+    const date = new Date(published * 1000);
+    const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
+      date,
+    );
+    const year = date.getFullYear();
 
     return (
       <>
         <Helmet title={title} />
+        <div>
+          <h1>{title}</h1>
+          <p>
+            {month}, {year} · {readingTime} min read
+          </p>
+        </div>
         <Component />
       </>
     );
