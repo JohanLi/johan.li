@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
 import articles from '../articles/articles';
+import { unixTimestampToMonthYear } from '../articles/utils';
 
 import styles from './article.scss';
 
@@ -21,19 +22,13 @@ const Article = (props: Props): ReactElement | null => {
   if (article) {
     const { component: Component, title, published, readingTime } = article;
 
-    const date = new Date(published * 1000);
-    const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
-      date,
-    );
-    const year = date.getFullYear();
-
     return (
       <>
         <Helmet title={title} />
         <div className={styles.heading}>
           <h1>{title}</h1>
           <p className={styles.published}>
-            {month}, {year} · {readingTime} min read
+            {unixTimestampToMonthYear(published)} · {readingTime} min read
           </p>
         </div>
         <Component />
