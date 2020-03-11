@@ -32,7 +32,7 @@ const Index = (): ReactElement => (
     <p>
       As an adult, I’ve made a conscious effort to experience the things I
       missed. Picking up skiing as a hobby is a part of that. With snow arriving
-      early this winter, I traveled north to a ski resort.
+      early this winter, I traveled to a ski resort called Åre.
     </p>
     <h2>T-bar lifts</h2>
     <p>
@@ -43,7 +43,7 @@ const Index = (): ReactElement => (
     <Image
       src={tBarLift}
       srcWidth={800}
-      srcHeight={531}
+      srcHeight={450}
       zoomSrc={tBarLiftLarge}
       caption=""
     />
@@ -73,14 +73,13 @@ const Index = (): ReactElement => (
       I’m astonished. For one, I rarely encounter kids on lifts who interact.
       And perhaps it’s due to my lack of experience with them in general, but
       the degree of thoughtfulness she showed with just a few words surprised
-      me. Also, the fluency of which she spoke English, in a country where it’s
+      me. Plus, the fluency in which she spoke English, in a country where it’s
       not the primary language, reminded me of myself as a child.
     </p>
     <p>
-      Continuing up the hill, we manage to get a conversation going. I find out
-      she’s here to attend a training camp. Realizing I speak Swedish, she tells
-      me she spoke English at first as international tourists frequent the
-      resort.
+      Continuing up the hill, I find out she’s here to attend a training camp.
+      Realizing I speak Swedish, she tells me she spoke English at first as
+      international tourists frequent the resort.
     </p>
     <p>
       As we part ways, I tell her, “I like that you asked. That was very
