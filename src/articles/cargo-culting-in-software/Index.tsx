@@ -9,11 +9,7 @@ import agileLarge from './agile-large.png';
 import { Metadata } from '../articles';
 
 export const metadata: Metadata = {
-  title: 'Cargo Culting in Software',
-  teaser: `
-    A discussion about this strange phenomenon, and how microservices and Agile
-    can sometimes be examples of it.
-  `,
+  title: 'Cargo culting in software',
   published: 1575158400,
   readingTime: 6,
 };
@@ -57,7 +53,7 @@ const Index = (): ReactElement => (
       Having mistaken correlation for causation, they formed a cult — a cargo
       cult.
     </p>
-    <h2>In Software</h2>
+    <h2>In software</h2>
     <p>
       In software, cargo culting can come in many different shapes and forms.
       Sometimes, we copy-paste code snippets from Stack Overflow without
