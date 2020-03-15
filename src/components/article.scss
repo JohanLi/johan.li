@@ -1,7 +1,7 @@
 @import '../variables';
 
 .heading {
-  margin-bottom: $contentMargin * 2;
+  margin: $contentMargin * 2 0 $contentMargin 0;
 
   h1 {
     margin-bottom: 0;
@@ -10,5 +10,6 @@
 
 .published {
   font-size: 0.8em;
-  color: #999;
+  color: $grayText;
+  margin-top: $contentMargin / 2;
 }
