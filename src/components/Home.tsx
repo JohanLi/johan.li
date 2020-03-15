@@ -13,12 +13,11 @@ const Home = (): ReactElement => {
     return (
       <li key={article.slug} className={styles.article}>
         <Link to={article.slug} className={styles.title}>
-          {title}
+          <h2>{title}</h2>
         </Link>
         <p className={styles.published}>
           {unixTimestampToMonthYear(published)} · {readingTime} min read
         </p>
-        <p>{article.teaser}</p>
       </li>
     );
   });
