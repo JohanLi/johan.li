@@ -6,9 +6,11 @@
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
   margin: 0;
+  background: #fff;
+  color: #000;
 }
 
 :global .fontLoaded body {
@@ -18,11 +20,14 @@ body {
 h1 {
   font-size: 1.6em;
   font-weight: 900;
+  line-height: 1.1;
   margin: 0 0 $contentMargin / 2 0;
 }
 
 h2 {
   font-size: 1.2em;
+  font-weight: 900;
+  line-height: 1.1;
   margin: $contentMargin * 1.5 0 $contentMargin / 2 0;
 }
 
@@ -36,15 +41,16 @@ p:last-child {
 
 @media ($breakpointMd) {
   body {
-    font-size: 21px;
+    font-size: 18px;
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin: 0 0 $contentMargin 0;
   }
 
   h2 {
+    font-size: 1.5em;
     margin: $contentMargin * 2 0 $contentMargin 0;
   }
 }

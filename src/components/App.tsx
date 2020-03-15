@@ -5,9 +5,8 @@ import { Helmet } from 'react-helmet-async';
 import Header from './Header';
 import Home from './Home';
 import Article from './Article';
-import About from './About';
 
-import styles from './main.scss';
+import styles from './app.scss';
 
 const App = (): ReactElement => {
   return (
@@ -16,12 +15,11 @@ const App = (): ReactElement => {
         titleTemplate="%s - Johan Li"
         defaultTitle="Johan Li - A software developer’s thoughts"
       />
-      <Header />
-      <div className={styles.main}>
+      <div className={styles.app}>
         <div className={styles.content}>
+          <Header />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/about" exact component={About} />
             <Route path="/:slug" component={Article} />
           </Switch>
         </div>

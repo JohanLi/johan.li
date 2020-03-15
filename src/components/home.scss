@@ -7,18 +7,20 @@
 }
 
 .article {
-  margin-bottom: $contentMargin * 2;
+  margin: $contentMargin * 2 0;
 }
 
 .title {
-  font-size: 1.6em;
-  font-weight: 900;
   color: inherit;
   text-decoration: none;
+
+  h2 {
+    margin: 0;
+  }
 }
 
 .published {
   font-size: 0.8em;
-  color: #999;
-  margin-bottom: $contentMargin / 2;
+  color: $grayText;
+  margin-top: $contentMargin / 4;
 }
