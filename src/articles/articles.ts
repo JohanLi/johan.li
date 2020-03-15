@@ -5,7 +5,6 @@ const imports = require.context('./', true, /\.tsx$/);
 
 export interface Metadata {
   title: string;
-  teaser: string;
   published: number;
   readingTime: number;
 }

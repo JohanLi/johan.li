@@ -6,10 +6,7 @@ import tBarLiftLarge from './t-bar-lift-large.jpg';
 import { Metadata } from '../articles';
 
 export const metadata: Metadata = {
-  title: 'Being Considerate',
-  teaser: `
-    A kid said something that taught me a lot about being considerate.
-  `,
+  title: 'Being considerate',
   published: 1580515200,
   readingTime: 3,
 };
@@ -23,8 +20,8 @@ const Index = (): ReactElement => (
     <h2>Skiing and I</h2>
     <p>
       Despite growing up in Sweden, I never learned how to ski until last
-      winter. And I know it sounds strange, but skiing has a symbolic meaning to
-      me. Growing up, I felt different. I was different: a Chinese immigrant
+      winter. While it may sound strange, skiing has a symbolic meaning to me.
+      Growing up, I felt different. I was different: a Chinese immigrant
       speaking English, attending a Swedish school in an affluent neighborhood.
       Every winter, my classmates went skiing while I stayed home. And so,
       skiing came to represent the lack of belonging I experienced.
@@ -61,10 +58,10 @@ const Index = (): ReactElement => (
     <h2>The interaction</h2>
     <p>
       Day two, while queuing, I realize a little girl will be my next lift
-      companion. Judging by appearance, she hasn’t turned ten yet. We receive a
-      helping hand from the lift operator, as we lean on the T-bar. Knee-level
-      for me, right level for her. As the bar pushes us forward, she turns and
-      looks at me.
+      companion. Judging by her appearance, she hasn’t turned ten yet. We
+      receive a helping hand from the lift operator, as we lean on the T-bar.
+      Knee-level for me, right level for her. As the bar pushes us forward, she
+      turns and looks at me.
     </p>
     <p>
       <strong>“Would you like it a little higher?”</strong>
@@ -73,8 +70,8 @@ const Index = (): ReactElement => (
       I’m astonished. For one, I rarely encounter kids on lifts who interact.
       And perhaps it’s due to my lack of experience with them in general, but
       the degree of thoughtfulness she showed with just a few words surprised
-      me. Plus, the fluency in which she spoke English, in a country where it’s
-      not the primary language, reminded me of myself as a child.
+      me. Plus, the fluency in which she spoke English, reminded me of myself as
+      a child.
     </p>
     <p>
       Continuing up the hill, I find out she’s here to attend a training camp.
