@@ -1,0 +1,19 @@
+name: 'Deploy'
+on: ['deployment']
+
+jobs:
+  deploy:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v2'
+      - name: 'Add deploy key'
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      - name: 'Build'
+        run: |
+          npm ci
+          npm run build
+      - name: 'Deploy'
+        run: cd .ansible && ansible-playbook -i production site.yml
