@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 
-// Haven't found a way to obtain keys when using dynamic imports
-const imports = require.context('./', true, /\.tsx$/);
+import imports from './imports';
 
 export interface Metadata {
   title: string;
