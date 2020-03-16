@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logo is not an h1 element outside the homepage 1`] = `
+<header>
+  <a
+    className="logo"
+    href="/"
+    onClick={[Function]}
+  >
+    Johan Li
+  </a>
+</header>
+`;
+
+exports[`logo on the homepage contains an h1 element 1`] = `
+<header>
+  <a
+    className="logo"
+    href="/"
+    onClick={[Function]}
+  >
+    <h1>
+      Johan Li
+    </h1>
+  </a>
+</header>
+`;
