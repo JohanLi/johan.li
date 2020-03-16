@@ -28,8 +28,8 @@ const Index = (): ReactElement => (
     </p>
     <p>
       As an adult, I’ve made a conscious effort to experience the things I
-      missed. Picking up skiing as a hobby is a part of that. With snow arriving
-      early this winter, I traveled to a ski resort called Åre.
+      missed. Picking up skiing as a hobby is a part of that. After a heavy
+      snowfall in November, I traveled to a ski resort called Åre.
     </p>
     <h2>T-bar lifts</h2>
     <p>
@@ -96,7 +96,7 @@ const Index = (): ReactElement => (
       say.
     </p>
     <p>
-      This winter, I’ll be skiing more. I want to get better. Someday, when I
+      I’ll be skiing more this winter. I want to get better. Someday, when I
       have kids, I’ll teach them how to ski so they won’t feel as different
       growing up. And as they grow up, I hope I’ll be able to raise them as well
       as the parents of this girl have.
