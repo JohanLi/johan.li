@@ -40,7 +40,7 @@ const Index = (): ReactElement => (
     <Image
       src={tBarLift}
       srcWidth={800}
-      srcHeight={450}
+      srcHeight={600}
       zoomSrc={tBarLiftLarge}
       caption=""
     />
