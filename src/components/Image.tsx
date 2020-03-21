@@ -78,22 +78,24 @@ const Image = (props: Props): ReactElement => {
   const image = (
     <div className={styles.wrapper}>
       <div
+        style={{ width: `${props.srcWidth}px` }}
         className={styles.responsiveContainer}
-        style={{ width: `${props.srcWidth}px`, paddingBottom }}
       >
-        <img
-          src={props.src}
-          ref={imageElement}
-          alt={props.caption}
-          className={imageClass}
-          onClick={() => {
-            if (!zoomImage) {
-              return;
-            }
+        <div style={{ paddingBottom }}>
+          <img
+            src={props.src}
+            ref={imageElement}
+            alt={props.caption}
+            className={imageClass}
+            onClick={() => {
+              if (!zoomImage) {
+                return;
+              }
 
-            setActive(true);
-          }}
-        />
+              setActive(true);
+            }}
+          />
+        </div>
       </div>
       <div className={styles.caption}>{props.caption}</div>
     </div>
