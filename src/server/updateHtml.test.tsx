@@ -50,16 +50,14 @@ describe('inlineCss', () => {
   `;
 
   const req = {
-    cookies: {
-      'css-loaded': hash,
-    },
+    cookies: {},
   } as any;
 
   const res = {
     cookie: jest.fn(),
   } as any;
 
-  test('appends raw css and sets cookie on first visit', () => {
+  test('inlines css and sets cookie on first visit', () => {
     expect(inlineCss(html, css, req, res)).toEqual(`
     <html lang="en">
     <head>
@@ -70,12 +68,14 @@ describe('inlineCss', () => {
     expect(res.cookie).toBeCalledWith('css-loaded', hash, expect.anything());
   });
 
-  test('leaves HTML untouched on subsequent visits', () => {
+  test('omits inlined css on subsequent visits', () => {
     const req = {
-      cookies: {},
+      cookies: {
+        'css-loaded': hash,
+      },
     } as any;
 
-    expect(webfontFirstRender(html, css, req)).toEqual(html);
+    expect(inlineCss(html, css, req, res)).toEqual(html);
   });
 });
 
@@ -94,24 +94,24 @@ describe('webfontFirstRender', () => {
   };
 
   const req = {
-    cookies: {
-      'css-loaded': hash,
-    },
-  };
+    cookies: {},
+  } as any;
 
-  test('returns HTML with "fontLoaded" appended', () => {
+  test('leaves HTML untouched on first visit', () => {
+    expect(webfontFirstRender(html, css, req as any)).toEqual(html);
+  });
+
+  test('returns HTML with "fontLoaded" appended on subsequent visits', () => {
+    const req = {
+      cookies: {
+        'css-loaded': hash,
+      },
+    };
+
     expect(webfontFirstRender(html, css, req as any)).toEqual(`
     <html lang="en" class="fontLoaded">
     <head></head>
     <body></body>
   `);
-  });
-
-  test('leaves HTML untouched on first visit', () => {
-    const req = {
-      cookies: {},
-    };
-
-    expect(webfontFirstRender(html, css, req as any)).toEqual(html);
   });
 });

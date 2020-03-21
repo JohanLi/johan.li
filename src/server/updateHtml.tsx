@@ -63,7 +63,7 @@ export const inlineCss = (
 ): string => {
   const { content, hash } = css;
 
-  if (req.cookies['css-loaded'] !== hash) {
+  if (req.cookies['css-loaded'] === hash) {
     return html;
   }
 
