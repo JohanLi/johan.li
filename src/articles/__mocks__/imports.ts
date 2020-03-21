@@ -1,4 +1,12 @@
-const mockArticles: { [key: string]: any } = {
+interface MockArticle {
+  default: string;
+  metadata: {
+    title: string;
+    published: number;
+  };
+}
+
+const mockArticles: { [key: string]: MockArticle } = {
   './slug1/Index.tsx': {
     default: 'component1',
     metadata: {
@@ -22,7 +30,7 @@ const mockArticles: { [key: string]: any } = {
   },
 };
 
-const imports = (slug: string) => mockArticles[slug];
+const imports = (slug: string): MockArticle => mockArticles[slug];
 imports.keys = () => Object.keys(mockArticles);
 
 export default imports;
