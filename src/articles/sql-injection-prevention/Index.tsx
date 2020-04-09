@@ -121,7 +121,7 @@ const Index = (): ReactElement => (
     <Code
       language="javascript"
       code={parameterizedQueryJs}
-      caption="A parameterized query in Javascript, using node-postgres"
+      caption="A parameterized query in Javascript, using node-postgres."
     />
     <p>
       How a parameterized query keeps us safe from SQL injection varies from
@@ -232,7 +232,7 @@ const Index = (): ReactElement => (
     <Code
       language="javascript"
       code={reactSecureByDefault}
-      caption="React embracing secure by default"
+      caption="React embracing secure by default."
     />
     <p>
       Could a similar change happen for database drivers? Perhaps it’s the
