@@ -42,7 +42,7 @@ const Index = (): ReactElement => (
       srcWidth={800}
       srcHeight={600}
       zoomSrc={tBarLiftLarge}
-      caption=""
+      caption="A T-Bar lift in Åre."
     />
     <p>
       That day, I learned that T-bars work best if you ride with someone of
