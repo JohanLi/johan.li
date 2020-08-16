@@ -33,7 +33,7 @@ module.exports = (env = {}) => {
 
     additionalClientConfig = {
       mode: 'development',
-      devtool: 'source-map',
+      devtool: 'eval-cheap-module-source-map',
       watch: true,
       devServer: {
         hot: true,
@@ -83,6 +83,20 @@ module.exports = (env = {}) => {
             },
             {
               loader: 'sass-loader',
+            },
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: cssHmr,
+              },
+            },
+            {
+              loader: 'css-loader',
             },
           ],
         },
