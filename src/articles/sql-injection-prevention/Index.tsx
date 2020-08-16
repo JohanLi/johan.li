@@ -230,7 +230,7 @@ const Index = (): ReactElement => (
       API level.
     </p>
     <Code
-      language="javascript"
+      language="jsx"
       code={reactSecureByDefault}
       caption="React embracing secure by default."
     />
