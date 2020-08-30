@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  nginx:
+    build: .docker/nginx/
+    volumes:
+      - letsencrypt:/etc/letsencrypt/
+  node:
+    build: .docker/node/
+volumes:
+  letsencrypt:

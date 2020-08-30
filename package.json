@@ -4,12 +4,15 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --hot --env.development",
-    "start:prod": "npm run build && node build/server/",
-    "build": "rm -rf ./build && webpack --mode production",
     "lint-staged": "lint-staged",
     "test": "jest",
     "test:lint": "eslint ./src/**/*.{ts,tsx}",
-    "test:tsc": "tsc --skipLibCheck"
+    "test:tsc": "tsc --skipLibCheck",
+    "build": "rm -rf .docker/node/build/ && webpack --mode production",
+    "up": "docker-compose up --build",
+    "up:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "down": "docker-compose down -v",
+    "down:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v"
   },
   "author": "",
   "license": "ISC",
