@@ -14,7 +14,26 @@ const app = express();
 
 app.use(cookieParser());
 
+app.use(
+  express.static(path.join(__dirname, '../client'), {
+    index: false,
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'max-age=31536000');
+      res.setHeader(
+        'Strict-Transport-Security',
+        'max-age=31536000; includeSubDomains; preload',
+      );
+    },
+  }),
+);
+
 app.get('*', async (req: Request, res: Response) => {
+  res.setHeader(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains; preload',
+  );
+  res.setHeader('Cache-Control', 'no-cache');
+
   try {
     let html = await fs.readFile(
       path.join(__dirname, '../client/index.html'),
@@ -31,7 +50,6 @@ app.get('*', async (req: Request, res: Response) => {
     const css = await getCss(html);
     html = await inlineCss(html, css, req, res);
     html = webfontFirstRender(html, css, req);
-
     res.send(html);
   } catch (error) {
     res.sendStatus(500);

@@ -1,3 +1,5 @@
 .idea/
 node_modules/
 build/
+local.johan.li.crt
+local.johan.li.key
