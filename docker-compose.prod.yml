@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  nginx:
+    environment:
+      - SERVER_NAME=staging.johan.li
+    ports:
+      - 80:80
+      - 443:443

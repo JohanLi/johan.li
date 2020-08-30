@@ -119,7 +119,7 @@ module.exports = (env = {}) => {
     },
     output: {
       filename: 'bundle-[hash].js',
-      path: path.join(__dirname, 'build/client'),
+      path: path.join(__dirname, '.docker/node/build/client'),
       publicPath: '/',
     },
     plugins,
@@ -135,7 +135,7 @@ module.exports = (env = {}) => {
     entry: ['@babel/polyfill', './src/server'],
     output: {
       filename: 'index.js',
-      path: path.join(__dirname, 'build/server'),
+      path: path.join(__dirname, '.docker/node/build/server'),
     },
     target: 'node',
     node: {
