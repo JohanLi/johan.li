@@ -1,4 +1,7 @@
 # johan.li
+![](https://github.com/JohanLi/johan.li/workflows/Tests/badge.svg) ![](https://github.com/JohanLi/johan.li/workflows/Deployment/badge.svg)
+
+Personal website. React app with server-side rendering. Uses GitHub Actions and Docker for deployment.
 
 ## Development
 
