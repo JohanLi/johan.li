@@ -5,17 +5,50 @@ jobs:
   deploy:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v2'
+      - name: 'Checkout ${{ github.repository }}'
+        uses: 'actions/checkout@v2'
         with:
           lfs: true
+      - name: 'Build ${{ github.repository }}'
+        run: |
+          npm ci
+          npm run build
+      - name: 'Checkout JohanLi/uncharted-waters-2'
+        uses: 'actions/checkout@v2'
+        with:
+          repository: JohanLi/uncharted-waters-2
+          path: uncharted-waters-2
+          lfs: true
+      - name: 'Build JohanLi/uncharted-waters-2'
+        run: |
+          cd uncharted-waters-2
+          npm ci
+          npm run build
+          mv build/ ../.docker/nginx/uncharted-waters-2/
+      - name: 'Checkout JohanLi/fingerprint-scanner-simulator'
+        uses: 'actions/checkout@v2'
+        with:
+          repository: JohanLi/fingerprint-scanner-simulator
+          path: fingerprint-scanner-simulator
+          lfs: true
+      - name: 'Build JohanLi/fingerprint-scanner-simulator'
+        run: |
+          cd fingerprint-scanner-simulator
+          npm ci
+          npm run build
+          mv build/ ../.docker/nginx/fingerprint-scanner-simulator/
+      - name: 'Generate self-signed certificate for nginx'
+        run: |
+          openssl req -x509 -out .docker/nginx/local.johan.li.crt -keyout .docker/nginx/local.johan.li.key \
+            -newkey rsa:2048 -nodes -sha256 \
+            -subj '/CN=local.johan.li' -extensions EXT -config <( \
+             printf "[dn]\nCN=local.johan.li\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:local.johan.li\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
       - name: 'Add deploy key'
         run: |
           mkdir ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-      - name: 'Build'
-        run: |
-          npm ci
-          npm run build
       - name: 'Deploy'
-        run: cd .ansible && ansible-playbook -i production site.yml
+        run: npm run up:prod
+        env:
+          DOCKER_HOST: "${{ secrets.DOCKER_HOST }}"
