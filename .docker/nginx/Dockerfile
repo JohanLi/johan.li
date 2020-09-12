@@ -10,3 +10,7 @@ COPY default.conf.template /etc/nginx/templates/
 
 # see https://github.com/nginxinc/docker-nginx/tree/master/stable/alpine
 COPY ssl-certificate.sh /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/ssl-certificate.sh
+
+COPY fingerprint-scanner-simulator/ /usr/src/fingerprint-scanner-simulator/
+COPY uncharted-waters-2/ /usr/src/uncharted-waters-2/

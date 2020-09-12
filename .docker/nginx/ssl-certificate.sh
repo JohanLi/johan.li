@@ -11,9 +11,9 @@ echo "Setting up the self-signed certificate"
 
 mkdir -p /var/www/certbot
 mkdir -p $DIR
-cp /tmp/local.johan.li.crt ${DIR}chain.pem
-mv /tmp/local.johan.li.crt ${DIR}fullchain.pem
-mv /tmp/local.johan.li.key ${DIR}privkey.pem
+cp /tmp/local.johan.li.crt "${DIR}chain.pem"
+mv /tmp/local.johan.li.crt "${DIR}fullchain.pem"
+mv /tmp/local.johan.li.key "${DIR}privkey.pem"
 
 if [ "$SERVER_NAME" = "local.johan.li" ]; then
   echo "Skipping Let's Encrypt for local development"
