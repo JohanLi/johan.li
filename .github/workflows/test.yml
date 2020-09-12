@@ -5,7 +5,8 @@ jobs:
   test:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v2'
+      - name: 'Checkout ${{ github.repository }}'
+        uses: 'actions/checkout@v2'
       - name: Run tests
         run: |
           npm ci
