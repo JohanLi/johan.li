@@ -73,7 +73,7 @@ function updateMessages(html) {
 const javascript1 = `
 function addMessage(html) {
   const messagesElement = document.querySelector('.messages');
-  messagesElement.innerHTML = messagesElement.innerHTML + html;
+  messagesElement.insertAdjacentHTML('beforeend', html);
 
   const messages = document.querySelectorAll('.message');
 
@@ -82,7 +82,7 @@ function addMessage(html) {
 
   if (
     previousMessage?.getAttribute('data-author-id') ===
-      addedMessage.getAttribute('data-author-id')
+    addedMessage.getAttribute('data-author-id')
   ) {
     addedMessage.querySelector('.author-name').remove();
   }
@@ -96,7 +96,7 @@ function addMessage(html) {
       newOldestMessage.getAttribute('data-author-id')
     ) {
       const authorElement = oldestMessage.querySelector('.author-name').outerHTML;
-      newOldestMessage.innerHTML = authorElement + newOldestMessage.innerHTML;
+      newOldestMessage.insertAdjacentHTML('afterbegin', authorElement);
     }
 
     oldestMessage.remove();
@@ -154,10 +154,8 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    /*
-      on initial messages and new messages
-      setMessages(messages.concat(newMessage).slice(-20));
-     */
+    // on initial messages and new messages
+    // setMessages(messages.concat(newMessage).slice(-20));
   }, []);
 
   return <Messages messages={messages} />
@@ -185,15 +183,14 @@ const Messages = ({ messages }) => (
 );
 `;
 
-// TODO create a Posts function for the React example
-
 const Index = (): ReactElement => (
   <div>
     <p>
-      Google released Angular in 2010. It marked the start of a revolution in
-      web development, giving a rapid rise to the popularity of JavaScript
-      frameworks. In addition to Angular, React, released by Facebook, and Vue,
-      together dominate this space.
+      Google released <strong>Angular</strong> in 2010. It marked the start of a
+      revolution in web development, giving a rapid rise to the popularity of
+      JavaScript frameworks. In addition to Angular, <strong>React</strong>,
+      released by Facebook, and <strong>Vue</strong>, together dominate this
+      space.
     </p>
     <Image
       src={angularReactVueTrends}
@@ -225,8 +222,11 @@ const Index = (): ReactElement => (
       putting unnecessary strain on the server.
     </p>
     <p>
-      Browser vendors began working towards a solution, arriving at the
-      XMLHttpRequest API.
+      Browser vendors began working towards a solution, arriving at the{' '}
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">
+        XMLHttpRequest API
+      </a>
+      .
     </p>
     <p>
       One of the first websites to roll out a cross-browser implementation of it
