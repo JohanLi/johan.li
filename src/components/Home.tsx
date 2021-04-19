@@ -1,28 +1,37 @@
-import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-import articles from '../articles/articles';
-import { unixTimestampToMonthYear } from '../articles/utils';
+import { Link } from './Link';
+import { unixTimestampToMonthYear } from '../utils';
+import { Layout } from './Layout';
 
-import styles from './home.scss';
+interface Article {
+  title: string;
+  published: number;
+  readingTime: number;
+  slug: string;
+}
 
-const Home = (): ReactElement => {
-  const links = articles.map(article => {
-    const { title, published, readingTime } = article;
+interface Props {
+  articles: Article[];
+}
 
-    return (
-      <li key={article.slug} className={styles.article}>
-        <Link to={article.slug} className={styles.title}>
-          <h2>{title}</h2>
-        </Link>
-        <p className={styles.published}>
-          {unixTimestampToMonthYear(published)} · {readingTime} min read
-        </p>
-      </li>
-    );
-  });
-
-  return <ul className={styles.articles}>{links}</ul>;
+export const Home = (props: Props): JSX.Element => {
+  return (
+    <Layout isHomePage>
+      <div className="pt-12 space-y-8">
+        {props.articles.map((article) => (
+          <div key={article.slug}>
+            <Link href={`/${article.slug}`} className="">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-lg">
+                {article.title}
+              </h2>
+            </Link>
+            <div className="text-sm text-gray-400 mt-1">
+              {unixTimestampToMonthYear(article.published)} · {article.readingTime} min read
+            </div>
+          </div>
+        ))}
+      </div>
+    </Layout>
+  );
 };
-
-export default Home;

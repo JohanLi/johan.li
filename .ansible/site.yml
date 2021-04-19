@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: root
+  roles:
+    - common
+  vars:
+    DOMAIN: "{{ lookup('env', 'DOMAIN') }}"
+    USER: "{{ lookup('env', 'USER') }}"
+    EMAIL: "{{ lookup('env', 'EMAIL') }}"
+    ansible_ssh_extra_args: -o StrictHostKeyChecking=no

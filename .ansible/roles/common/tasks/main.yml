@@ -1,0 +1,22 @@
+- name: check if server has been set up
+  stat:
+    path: /etc/systemd/system/{{ DOMAIN }}.service
+  register: result
+
+- import_tasks: setup.yml
+  when: result.stat.exists == false
+
+- name: deploy build
+  synchronize:
+    src: "{{ playbook_dir }}/../"
+    dest: /home/{{ USER }}/{{ DOMAIN }}/
+    delete: yes
+  notify:
+    - restart service
+
+- name: set permissions on build
+  file:
+    dest: /home/{{ USER }}/{{ DOMAIN }}/
+    recurse: yes
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
