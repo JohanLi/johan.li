@@ -1,0 +1,15 @@
+[Unit]
+Description={{ DOMAIN }}
+Documentation=https://github.com/JohanLi/johan.li
+After=network.target
+
+[Service]
+Type=simple
+User={{ USER }}
+WorkingDirectory=/home/{{ USER }}/{{ DOMAIN }}
+ExecStart=/usr/bin/npm run start:prod
+Restart=on-failure
+Environment="NODE_ENV=production"
+
+[Install]
+WantedBy=multi-user.target

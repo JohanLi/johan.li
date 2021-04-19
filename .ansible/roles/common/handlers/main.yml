@@ -1,0 +1,12 @@
+- name: restart nginx
+  service:
+    name: nginx
+    enabled: yes
+    state: restarted
+
+- name: restart service
+  systemd:
+    name: "{{ DOMAIN }}"
+    daemon_reload: true
+    enabled: yes
+    state: restarted
