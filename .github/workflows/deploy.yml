@@ -1,0 +1,76 @@
+name: 'Deploy'
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'prod'
+
+jobs:
+  deploy:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+        with:
+          lfs: true
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create robots.txt for dev
+        run: 'echo -e "User-agent: *\nDisallow: /" > public/robots.txt'
+        if: ${{ github.event.inputs.environment != 'prod' }}
+
+      - name: Build
+        run: npm run build
+
+      - name: Add deploy key
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: 'Checkout JohanLi/uncharted-waters-2'
+        uses: 'actions/checkout@v2'
+        with:
+          repository: JohanLi/uncharted-waters-2
+          path: uncharted-waters-2
+          lfs: true
+
+      - name: 'Build JohanLi/uncharted-waters-2'
+        run: |
+          cd uncharted-waters-2
+          npm install
+          npm run build
+
+      - name: 'Checkout JohanLi/fingerprint-scanner-simulator'
+        uses: 'actions/checkout@v2'
+        with:
+          repository: JohanLi/fingerprint-scanner-simulator
+          path: fingerprint-scanner-simulator
+          lfs: true
+
+      - name: 'Build JohanLi/fingerprint-scanner-simulator'
+        run: |
+          cd fingerprint-scanner-simulator
+          npm install
+          npm run build
+
+      - name: Create .env for dev
+        run: echo "${{ secrets.ENV_DEV }}" > .env
+        if: ${{ github.event.inputs.environment != 'prod' }}
+
+      - name: Create .env for prod
+        run: echo "${{ secrets.ENV_PROD }}" > .env
+        if: ${{ github.event.inputs.environment == 'prod' }}
+
+      - name: Deploy
+        run: |
+          set -o allexport
+          source .env
+          set +o allexport
+          cd .ansible
+          ansible-playbook -i ${IP_ADDRESS}, site.yml
