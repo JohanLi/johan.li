@@ -10,11 +10,39 @@
   synchronize:
     src: "{{ playbook_dir }}/../"
     dest: /home/{{ USER }}/{{ DOMAIN }}/
-    delete: yes
+    rsync_opts:
+      - "--include=/public/"
+      - "--include=/public/**"
+      - "--include=/.next/"
+      - "--include=/.next/**"
+      - "--include=/.next.config.js"
+      - "--include=/node_modules/"
+      - "--include=/node_modules/**"
+      - "--include=/package.json"
+      - "--exclude=*"
+      - "--delete-excluded"
   notify:
     - restart service
 
-- name: set permissions on build
+- name: deploy fingerprint-scanner-simulator
+  synchronize:
+    src: "{{ playbook_dir }}/../fingerprint-scanner-simulator/build/"
+    dest: /home/{{ USER }}/fingerprint-scanner-simulator/
+    rsync_opts:
+      - "--delete"
+  notify:
+    - restart service
+
+- name: deploy uncharted-waters-2
+  synchronize:
+    src: "{{ playbook_dir }}/../uncharted-waters-2/build/"
+    dest: /home/{{ USER }}/uncharted-waters-2/
+    rsync_opts:
+      - "--delete"
+  notify:
+    - restart service
+
+- name: set permissions
   file:
     dest: /home/{{ USER }}/{{ DOMAIN }}/
     recurse: yes
