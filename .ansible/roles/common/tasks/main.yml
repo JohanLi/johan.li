@@ -6,6 +6,8 @@
 - import_tasks: setup.yml
   when: result.stat.exists == false
 
+# https://nextjs.org/docs/deployment#docker-image
+# https://github.com/vercel/next.js/issues/5512
 - name: deploy build
   synchronize:
     src: "{{ playbook_dir }}/../"
