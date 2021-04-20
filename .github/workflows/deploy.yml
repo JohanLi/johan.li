@@ -17,8 +17,17 @@ jobs:
         with:
           lfs: true
 
+      # https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
+      # Next.js build is not cached on purpose – there seems to be an issue with new Tailwind classes not being added
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Create robots.txt for dev
         run: 'echo -e "User-agent: *\nDisallow: /" > public/robots.txt'
@@ -33,30 +42,30 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-      - name: 'Checkout JohanLi/uncharted-waters-2'
-        uses: 'actions/checkout@v2'
+      - name: Checkout uncharted-waters-2
+        uses: actions/checkout@v2
         with:
           repository: JohanLi/uncharted-waters-2
           path: uncharted-waters-2
           lfs: true
 
-      - name: 'Build JohanLi/uncharted-waters-2'
+      - name: Build uncharted-waters-2
         run: |
           cd uncharted-waters-2
-          npm install
+          npm ci
           npm run build
 
-      - name: 'Checkout JohanLi/fingerprint-scanner-simulator'
-        uses: 'actions/checkout@v2'
+      - name: Checkout fingerprint-scanner-simulator
+        uses: actions/checkout@v2
         with:
           repository: JohanLi/fingerprint-scanner-simulator
           path: fingerprint-scanner-simulator
           lfs: true
 
-      - name: 'Build JohanLi/fingerprint-scanner-simulator'
+      - name: Build fingerprint-scanner-simulator
         run: |
           cd fingerprint-scanner-simulator
-          npm install
+          npm ci
           npm run build
 
       - name: Create .env for dev
