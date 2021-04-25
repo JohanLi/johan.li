@@ -30,6 +30,14 @@ export const Image = (props: Props): JSX.Element => {
     setTransitionActive(false);
   };
 
+  const revertTransitionOnEscape = (e: KeyboardEvent) => {
+    if (e.key !== 'Escape') {
+      return;
+    }
+
+    revertTransition();
+  };
+
   useEffect(() => {
     if (!props.zoomSrc) {
       return;
@@ -55,17 +63,19 @@ export const Image = (props: Props): JSX.Element => {
 
     window.addEventListener('scroll', revertTransition);
     window.addEventListener('resize', revertTransition);
+    window.addEventListener('keyup', revertTransitionOnEscape);
 
     return () => {
       window.removeEventListener('scroll', revertTransition);
       window.removeEventListener('resize', revertTransition);
+      window.removeEventListener('keyup', revertTransitionOnEscape);
     };
   }, [transitionActive]);
 
   let imageClass = 'absolute inset-0';
 
   if (zoomImage) {
-    imageClass += ' cursor-pointer';
+    imageClass += ' cursor-zoom-in';
   }
 
   if (zoomActive) {
@@ -133,12 +143,13 @@ export const Image = (props: Props): JSX.Element => {
   };
 
   const imageTransition = (
-    <div onClick={revertTransition}>
+    <div>
       <div className={`fixed inset-0 z-10 bg-white transition-opacity duration-300 ${transitionActive ? 'opacity-80' : 'opacity-0'}`} />
       <img
         src={zoomImage.src}
         style={style}
-        className="absolute z-20 transition-transform duration-300"
+        className="absolute z-20 transition-transform duration-300 cursor-zoom-out"
+        onClick={revertTransition}
         onTransitionEnd={() => {
           if (transitionActive) {
             return;
