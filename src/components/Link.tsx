@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import NextLink from 'next/link';
 
-const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900';
+const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 break-words';
 
 interface Props {
   href: string;
@@ -18,7 +18,7 @@ export const Link = (props: Props): JSX.Element => {
   if (external) {
     return (
       <a href={href} className={linkClass}>
-        {children}
+        {children || href}
       </a>
     );
   }
@@ -26,7 +26,7 @@ export const Link = (props: Props): JSX.Element => {
   return (
     <NextLink href={href}>
       <a className={linkClass}>
-        {children}
+        {children || href}
       </a>
     </NextLink>
   );
