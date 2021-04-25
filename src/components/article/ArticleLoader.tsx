@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii';
 import * as theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks';
 import * as sqlInjectionPrevention from '../../articles/sql-injection-prevention';
 import * as beingConsiderate from '../../articles/being-considerate';
@@ -13,6 +14,7 @@ export const articles: {
     metadata: ArticleMetadata;
   };
 } = {
+  'the-gold-exploit-of-diablo-iii': { ...theGoldExploitOfDiabloIII },
   'the-rise-of-javascript-frameworks': { ...theRiseOfJavascriptFrameworks },
   'sql-injection-prevention': { ...sqlInjectionPrevention },
   'being-considerate': { ...beingConsiderate },
