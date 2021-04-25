@@ -10,7 +10,7 @@ Prism.manual = true;
 Prism.plugins.customClass.prefix('prism-'); // .block interferes with Tailwind's .block
 
 interface Props {
-  language: 'javascript' | 'jsx' | 'python' | 'html' | 'handlebars';
+  language: 'javascript' | 'jsx' | 'python' | 'cpp' | 'html' | 'handlebars';
   code: string;
   caption: string;
 }
