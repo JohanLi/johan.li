@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Image } from '../../components/article/Image';
 import { ArticleLayout } from '../../components/article/ArticleLayout';
-import { H2, P } from '../../components/article/Common';
+import { H2, H3, P, Ul } from '../../components/article/Common';
 import { ArticleMetadata } from '../../components/article/articleTypes';
 
 import vanuatuJohnFrumDay from './vanuatu-john-frum-day.jpg';
 import microservices from './microservices.png';
 import agile from './agile.png';
 import agileLarge from './agile-large.png';
+import { Link } from '../../components/Link';
 
 export const metadata: ArticleMetadata = {
   title: 'Cargo culting in software',
@@ -215,5 +216,29 @@ export const Article = (): JSX.Element => (
       our lives, and our software. It lies in failing to realize and admit that
       we have, and in our unwillingness to gain a deeper understanding.
     </P>
+    <H3>References</H3>
+    <div className="text-sm">
+      <P>
+        "The Death of Microservice Madness in 2018", and its discussion on Hacker News:
+      </P>
+    </div>
+    <Ul>
+      <li>
+        <Link href="https://dwmkerr.com/the-death-of-microservice-madness-in-2018/" external />
+      </li>
+      <li>
+        <Link href="https://news.ycombinator.com/item?id=16200007" external />
+      </li>
+    </Ul>
+    <div className="text-sm">
+      <P>
+        Martin Fowler, one of the creators of The Agile Manifesto, comments on the state of agile in 2018:
+      </P>
+    </div>
+    <Ul>
+      <li>
+        <Link href="https://martinfowler.com/articles/agile-aus-2018.html" external />
+      </li>
+    </Ul>
   </ArticleLayout>
 );
