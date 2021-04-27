@@ -18,7 +18,7 @@ interface Props {
 export const Home = (props: Props): JSX.Element => {
   return (
     <Layout isHomePage>
-      <div className="grid sm:grid-cols-12 gap-6 sm:gap-12 py-6 sm:py-12">
+      <div className="grid sm:grid-cols-12 gap-12 py-6 sm:py-12">
         <div className="sm:col-span-4 lg:col-span-3">
           <img
             src={johanLi}
@@ -41,7 +41,8 @@ export const Home = (props: Props): JSX.Element => {
             <p className="text-xl text-gray-500 mt-6">
               In 2021, I took a leap of faith, solo-founding my own company in Sweden to create a
               software as a service application. While we all enjoy new challenges and a change of scenery,
-              I’m trying to ask myself an important question: Am I just a developer?
+              I’m trying to ask myself an important question: Am I <i>just</i> a developer, or can I run a
+              small-scale business as well?
             </p>
           </div>
         </div>
