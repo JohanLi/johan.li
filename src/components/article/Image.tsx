@@ -16,6 +16,8 @@ interface Props {
 }
 
 export const Image = (props: Props): JSX.Element => {
+  const { src, width, height, caption, zoomSrc } = props;
+
   const [zoomActive, setZoomActive] = useState(false);
   const [transitionActive, setTransitionActive] = useState(false);
   const [zoomImage, setZoomImage] = useState<HTMLImageElement>();
@@ -39,12 +41,12 @@ export const Image = (props: Props): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!props.zoomSrc) {
+    if (!zoomSrc) {
       return;
     }
 
     const image = document.createElement('img');
-    image.src = props.zoomSrc;
+    image.src = zoomSrc;
     image.onload = () => setZoomImage(image);
   }, []);
 
@@ -82,27 +84,27 @@ export const Image = (props: Props): JSX.Element => {
     imageClass += ' invisible';
   }
 
-  const paddingBottom = `${(props.height / props.width) * 100}%`;
+  const paddingBottom = `${(height / width) * 100}%`;
 
   const image = (
     <div className="-mx-4 md:mx-0 lg:-mx-8 my-12">
       <div
-        style={{ width: `${props.width}px` }}
+        style={{ width: `${width}px` }}
         className="relative max-w-full mx-auto"
       >
         <div style={{ paddingBottom }}>
           <img
-            src={props.src}
-            width={props.width}
-            height={props.height}
-            alt={props.caption}
+            src={src}
+            width={width}
+            height={height}
+            alt={caption}
             className={`${imageClass} md:hidden`}
           />
           <img
-            src={props.src}
-            width={props.width}
-            height={props.height}
-            alt={props.caption}
+            src={src}
+            width={width}
+            height={height}
+            alt={caption}
             className={`${imageClass} hidden md:block`}
             ref={imageElement}
             onClick={() => {
@@ -115,6 +117,9 @@ export const Image = (props: Props): JSX.Element => {
           />
         </div>
       </div>
+      <div className="text-sm text-gray-400 text-center mt-6 mx-4">
+        {caption}
+      </div>
     </div>
   );
 
@@ -126,19 +131,19 @@ export const Image = (props: Props): JSX.Element => {
   const top = imageElementClientRect.top + document.documentElement.scrollTop;
   const left = imageElementClientRect.left + document.documentElement.scrollLeft;
 
-  const scaleX = Math.min(zoomImage.width, document.documentElement.clientWidth) / props.width;
-  const scaleY = Math.min(zoomImage.height, document.documentElement.clientHeight) / props.height;
+  const scaleX = Math.min(zoomImage.width, document.documentElement.clientWidth) / width;
+  const scaleY = Math.min(zoomImage.height, document.documentElement.clientHeight) / height;
   const scale = Math.min(scaleX, scaleY);
 
-  const translateX = ((document.documentElement.clientWidth - props.width) / 2 - imageElementClientRect.left) / scale;
-  const translateY = ((document.documentElement.clientHeight - props.height) / 2 - imageElementClientRect.top) / scale;
+  const translateX = ((document.documentElement.clientWidth - width) / 2 - imageElementClientRect.left) / scale;
+  const translateY = ((document.documentElement.clientHeight - height) / 2 - imageElementClientRect.top) / scale;
 
   const style = {
     top,
     left,
     transform: transitionActive ? `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)` : 'none',
-    width: props.width,
-    height: props.height,
+    width,
+    height,
     transitionTimingFunction: 'cubic-bezier(0.2, 0, 0.2, 1)',
   };
 
