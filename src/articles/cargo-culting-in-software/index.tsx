@@ -12,6 +12,8 @@ import agileLarge from './agile-large.png';
 import { Link } from '../../components/Link';
 
 export const metadata: ArticleMetadata = {
+  image: vanuatuJohnFrumDay,
+  teaser: 'The dangers of copying successful people and companies, in the hopes of achieving the same success.',
   title: 'Cargo culting in software',
   published: 1575158400,
   readingTime: 6,
