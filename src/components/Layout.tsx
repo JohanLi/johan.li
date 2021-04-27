@@ -26,7 +26,7 @@ export const Layout = (props: Props) => {
         {Boolean(props.metaContent) && <meta name="description" content={props.metaContent} />}
       </Head>
       <nav className="pt-12">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <Link href="/">
             {Boolean(props.isHomePage) && (
               <h1
@@ -48,7 +48,7 @@ export const Layout = (props: Props) => {
         </div>
       </nav>
       <div className="mb-auto">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           {props.children}
         </div>
       </div>

@@ -14,16 +14,18 @@ export const ArticleLayout = (props: Props): JSX.Element => {
 
   return (
     <Layout title={`${title} - Johan Li`}>
-      <div className="pt-12 pb-6">
-        <h1 className="text-3xl md:text-5xl tracking-tight font-extrabold">
-          {title}
-        </h1>
-        <p className="text-sm text-gray-400 mt-3">
-          {unixTimestampToMonthYear(published)} · {readingTime} min read
-        </p>
-      </div>
-      <div className="-mt-6 pb-24 md:text-lg">
-        {props.children}
+      <div className="max-w-3xl">
+        <div className="pt-12 pb-6">
+          <h1 className="text-3xl md:text-5xl tracking-tight font-extrabold">
+            {title}
+          </h1>
+          <p className="text-sm text-gray-400 mt-3">
+            {unixTimestampToMonthYear(published)} · {readingTime} min read
+          </p>
+        </div>
+        <div className="-mt-6 pb-24 md:text-lg">
+          {props.children}
+        </div>
       </div>
     </Layout>
   );

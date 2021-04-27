@@ -9,6 +9,11 @@ import tBarLift from './t-bar-lift.jpg';
 import tBarLiftLarge from './t-bar-lift-large.jpg';
 
 export const metadata: ArticleMetadata = {
+  image: tBarLift,
+  teaser: `
+    Empathy is an important quality that I find lacking in software development.
+    Here’s what a kid taught me, in the unlikeliest of circumstances.
+  `,
   title: 'Being considerate',
   published: 1580515200,
   readingTime: 3,
