@@ -310,7 +310,7 @@ export const Article = (): JSX.Element => (
     <Code
       language="javascript"
       code={js1}
-      caption="(First version) A straightforward way to prevent having to refresh the browser"
+      caption="(First version) A straightforward way to prevent having to refresh the browser."
     />
     <P>
       Although trivial to implement, we’ve only eliminated the drawback of
@@ -326,7 +326,7 @@ export const Article = (): JSX.Element => (
     <Code
       language="html"
       code={html2}
-      caption="(Second version) The initial HTML output by the server, containing author IDs"
+      caption="(Second version) The initial HTML output by the server, containing author IDs."
     />
     <P>
       For subsequent messages, the client will add and keep them to 20 at most,
@@ -335,7 +335,7 @@ export const Article = (): JSX.Element => (
     <Code
       language="javascript"
       code={javascript1}
-      caption="(Second version) The code on the client that adds a message from the server"
+      caption="(Second version) The code on the client that adds a message from the server."
     />
     <P>
       By adding some code, we’ve minimized the amount of re-rendering needed for
@@ -378,7 +378,7 @@ export const Article = (): JSX.Element => (
     <Code
       language="jsx"
       code={javascript2}
-      caption="Parts of the chat implemented in React. Notice how we’re not transforming any HTML"
+      caption="Parts of the chat implemented in React. Notice how we’re not transforming any HTML."
     />
     <P>
       What stands out is that we no longer have code that describes how to
