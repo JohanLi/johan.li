@@ -2,8 +2,8 @@ import React from 'react';
 import Prism from 'prismjs';
 
 /*
-  If manual is not turned on, a hydration error will appear during development. It appears to be due to Prism.js,
-  on the client side, inserting a leading space before 'language-' so it becomes ' language-'.
+  If manual is not turned on, a hydration error will appear during development. It appears to be due to Prism.js
+  inserting a leading space before 'language-' on the client side. Thus, the server and client html do not match.
  */
 // @ts-ignore
 Prism.manual = true;
@@ -17,6 +17,7 @@ interface Props {
 
 export const Code = (props: Props): JSX.Element => {
   const { language, code, caption } = props;
+
   const html = Prism.highlight(
     code.trim(),
     Prism.languages[language],
