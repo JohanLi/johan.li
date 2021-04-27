@@ -6,10 +6,15 @@ import { Image } from '../../components/article/Image';
 import { Code } from '../../components/article/Code';
 import { ArticleMetadata } from '../../components/article/articleTypes';
 
-import barebonesMessagingApp from './barebones-messaging-app.png';
 import angularReactVueTrends from './angular-react-vue-trends.png';
+import barebonesMessagingApp from './barebones-messaging-app.png';
 
 export const metadata: ArticleMetadata = {
+  image: angularReactVueTrends,
+  teaser: `
+    When starting a web application, we tend to — without second thought — pick from one of three frameworks.
+    But what fundamental problems are these popular frameworks solving?
+  `,
   title: 'The rise of JavaScript frameworks',
   published: 1597562075,
   readingTime: 8,

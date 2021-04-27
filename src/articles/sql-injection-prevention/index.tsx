@@ -3,12 +3,14 @@ import React from 'react';
 import { Image } from '../../components/article/Image';
 import { Code } from '../../components/article/Code';
 import { ArticleMetadata } from '../../components/article/articleTypes';
-
-import postgresqlDataInsertion from './postgresql-data-insertion.png';
 import { ArticleLayout } from '../../components/article/ArticleLayout';
 import { H2, P } from '../../components/article/Common';
 
+import postgresqlDataInsertion from './postgresql-data-insertion.png';
+
 export const metadata: ArticleMetadata = {
+  image: postgresqlDataInsertion,
+  teaser: 'Methods to prevent SQL injections have existed for decades. Why are they not extinct by now?',
   title: 'How SQL injection prevention works, and why it’s still relevant',
   published: 1584812119,
   readingTime: 6,
