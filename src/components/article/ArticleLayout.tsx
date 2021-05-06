@@ -13,7 +13,7 @@ export const ArticleLayout = (props: Props): JSX.Element => {
   const { title, published, readingTime } = props.metadata;
 
   return (
-    <Layout title={`${title} - Johan Li`}>
+    <Layout title={title}>
       <div className="max-w-3xl">
         <div className="pt-12 pb-6">
           <h1 className="text-3xl md:text-5xl tracking-tight font-extrabold">
