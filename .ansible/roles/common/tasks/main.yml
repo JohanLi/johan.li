@@ -1,10 +1,4 @@
-- name: check if server has been set up
-  stat:
-    path: /etc/systemd/system/{{ DOMAIN }}.service
-  register: result
-
 - import_tasks: setup.yml
-  when: result.stat.exists == false
 
 # https://nextjs.org/docs/deployment#docker-image
 # https://github.com/vercel/next.js/issues/5512

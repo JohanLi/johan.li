@@ -7,6 +7,10 @@ on:
         description: 'Environment'
         required: true
         default: 'prod'
+      setup:
+        description: 'Run setup'
+        required: true
+        type: boolean
 
 jobs:
   deploy:
@@ -83,3 +87,13 @@ jobs:
           set +o allexport
           cd .ansible
           ansible-playbook -i ${IP_ADDRESS}, site.yml
+        if: ${{ github.event.inputs.setup == 'false' }} # https://github.com/actions/runner/issues/1483
+
+      - name: Setup and deploy
+        run: |
+          set -o allexport
+          source .env
+          set +o allexport
+          cd .ansible
+          ansible-playbook -i ${IP_ADDRESS}, site.yml --extra-vars "setup=true"
+        if: ${{ github.event.inputs.setup == 'true' }}
