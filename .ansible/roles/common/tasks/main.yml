@@ -22,7 +22,7 @@
 
 - name: deploy fingerprint-scanner-simulator
   synchronize:
-    src: "{{ playbook_dir }}/../fingerprint-scanner-simulator/build/"
+    src: "{{ playbook_dir }}/../fingerprint-scanner-simulator/out/"
     dest: /home/{{ USER }}/fingerprint-scanner-simulator/
     rsync_opts:
       - "--delete"
