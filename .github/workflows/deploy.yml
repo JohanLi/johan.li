@@ -46,19 +46,6 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-      - name: Checkout uncharted-waters-2
-        uses: actions/checkout@v2
-        with:
-          repository: JohanLi/uncharted-waters-2
-          path: uncharted-waters-2
-          lfs: true
-
-      - name: Build uncharted-waters-2
-        run: |
-          cd uncharted-waters-2
-          npm ci
-          npm run build
-
       - name: Checkout fingerprint-scanner-simulator
         uses: actions/checkout@v2
         with:
