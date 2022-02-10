@@ -1,11 +1,16 @@
 - import_tasks: setup.yml
 
+- name: create directory
+  file:
+    path: /home/{{ USER }}/{{ DOMAIN }}/
+    state: directory
+
 # https://nextjs.org/docs/deployment#docker-image
 # https://github.com/vercel/next.js/issues/5512
 - name: deploy build
   synchronize:
     src: "{{ playbook_dir }}/../"
-    dest: /home/{{ USER }}/{{ DOMAIN }}/
+    dest: /home/{{ USER }}/{{ DOMAIN }}/{{ DOMAIN }}/
     rsync_opts:
       - "--include=/public/"
       - "--include=/public/**"
@@ -23,16 +28,7 @@
 - name: deploy fingerprint-scanner-simulator
   synchronize:
     src: "{{ playbook_dir }}/../fingerprint-scanner-simulator/out/"
-    dest: /home/{{ USER }}/fingerprint-scanner-simulator/
-    rsync_opts:
-      - "--delete"
-  notify:
-    - restart service
-
-- name: deploy uncharted-waters-2
-  synchronize:
-    src: "{{ playbook_dir }}/../uncharted-waters-2/build/"
-    dest: /home/{{ USER }}/uncharted-waters-2/
+    dest: /home/{{ USER }}/{{ DOMAIN }}/fingerprint-scanner-simulator/
     rsync_opts:
       - "--delete"
   notify:
