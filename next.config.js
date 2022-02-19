@@ -1,7 +1,18 @@
-const withImages = require('next-images');
-
-module.exports = withImages({
-  future: {
-    webpack5: true, // TODO remove once Webpack 5 is used by default
+module.exports = {
+  reactStrictMode: true,
+  /*
+   This disables next/image. A reason for doing this is that I'd already built an Image component,
+   and with a zoom feature.
+   */
+  images: {
+    disableStaticImages: true,
   },
-});
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(png|jpg)$/,
+      type: 'asset/resource',
+    });
+
+    return config
+  },
+};
