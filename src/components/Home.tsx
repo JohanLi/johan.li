@@ -18,35 +18,6 @@ interface Props {
 export const Home = (props: Props): JSX.Element => {
   return (
     <Layout isHomePage>
-      <div className="grid sm:grid-cols-12 gap-12 py-6 sm:py-12">
-        <div className="sm:col-span-4 lg:col-span-3">
-          <img
-            src={johanLi}
-            width={728}
-            height={728}
-            alt="Johan Li"
-            className="w-full shadow-lg rounded-lg"
-          />
-        </div>
-        <div className="sm:col-span-8 lg:col-span-9">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Hi there!
-            </h2>
-            <p className="text-xl text-gray-500 mt-6">
-              My name’s Johan. I began my career in software development building modest campaign sites.
-              Ten years later, having climbed the corporate ladder, I became a tech lead, rolling out integrations
-              for enterprise clients.
-            </p>
-            <p className="text-xl text-gray-500 mt-6">
-              In 2021, I took a leap of faith, solo-founding my own company in Sweden to create a
-              software as a service application. While we all enjoy new challenges and a change of scenery,
-              I’m trying to ask myself an important question: Am I <i>just</i> a developer, or can I run a
-              small-scale business as well?
-            </p>
-          </div>
-        </div>
-      </div>
       <div className="pt-6 sm:pt-12 pb-12 sm:pb-24">
         <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
           Articles
