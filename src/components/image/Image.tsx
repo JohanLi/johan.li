@@ -26,22 +26,6 @@ export const Image = (props: Props): JSX.Element => {
 
   const imageElement = useRef<HTMLImageElement>(null);
 
-  const revertTransition = (): void => {
-    if (!transitionActive) {
-      return;
-    }
-
-    setTransitionActive(false);
-  };
-
-  const revertTransitionOnEscape = (e: KeyboardEvent) => {
-    if (e.key !== 'Escape') {
-      return;
-    }
-
-    revertTransition();
-  };
-
   useEffect(() => {
     if (!zoomSrc) {
       return;
@@ -50,6 +34,9 @@ export const Image = (props: Props): JSX.Element => {
     const image = document.createElement('img');
     image.src = zoomSrc;
     image.onload = () => setZoomImage(image);
+    image.onerror = () => {
+      throw Error('Failed to load zoomImage');
+    };
   }, [zoomSrc]);
 
   useEffect(() => {
@@ -65,14 +52,27 @@ export const Image = (props: Props): JSX.Element => {
       return;
     }
 
+    const revertTransition = () => {
+      setTransitionActive(false);
+    };
+
+    const revertTransitionOnEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        revertTransition();
+      }
+    };
+
     window.addEventListener('scroll', revertTransition);
     window.addEventListener('resize', revertTransition);
-    window.addEventListener('keyup', revertTransitionOnEscape);
+
+    window.addEventListener('keydown', revertTransitionOnEscape);
 
     return () => {
       window.removeEventListener('scroll', revertTransition);
       window.removeEventListener('resize', revertTransition);
-      window.removeEventListener('keyup', revertTransitionOnEscape);
+
+      window.removeEventListener('keydown', revertTransitionOnEscape);
     };
   }, [transitionActive]);
 
@@ -153,7 +153,7 @@ export const Image = (props: Props): JSX.Element => {
         alt={alt}
         style={style}
         className="absolute z-20 transition-transform ease-in-out duration-300 cursor-zoom-out"
-        onClick={revertTransition}
+        onClick={() => setTransitionActive(false)}
         onTransitionEnd={() => {
           if (transitionActive) {
             return;
