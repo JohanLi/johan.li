@@ -1,15 +1,16 @@
 # johan.li
+
 ![](https://github.com/JohanLi/johan.li/workflows/Deployment/badge.svg)
 
 Personal website.
 
 ## About the stack
 
-* Next.js
-* Tailwind
-* Prism.js
-* GitHub actions
-* Ansible
+- Next.js
+- Tailwind
+- Prism.js
+- GitHub actions
+- Ansible
 
 Docker is used during local development to serve the website through HTTPS.
 
@@ -20,10 +21,9 @@ Docker is used during local development to serve the website through HTTPS.
 3. Pick a domain and map it to localhost (e.g., 127.0.0.1 local.johan.li)
 4. Generate an SSL certificate for that domain using [mkcert](https://github.com/FiloSottile/mkcert).
    Move the key pair inside the /data/nginx/cert/ directory (where nginx will read from).
-5.
-     docker-compose up -d
-     npm install
-     npm start
+5. docker-compose up -d
+   npm install
+   npm start
 
 If successful, you should be able to visit your chosen domain through HTTPS. (e.g., https://local.johan.li)
 

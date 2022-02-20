@@ -6,24 +6,32 @@ import { Link } from './Link';
 
 const logoColor = '#a675a2';
 
-type Props = {
-  title: string;
-  isHomePage?: false;
-  metaContent?: string;
-  children: ReactNode;
-} | {
-  title?: never;
-  isHomePage: true;
-  metaContent?: string;
-  children: ReactNode;
-};
+type Props =
+  | {
+      title: string;
+      isHomePage?: false;
+      metaContent?: string;
+      children: ReactNode;
+    }
+  | {
+      title?: never;
+      isHomePage: true;
+      metaContent?: string;
+      children: ReactNode;
+    };
 
 export const Layout = (props: Props) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
-        <title>{props.isHomePage ? `Johan Li - A software developer’s thoughts` : `${props.title} - Johan Li`}</title>
-        {Boolean(props.metaContent) && <meta name="description" content={props.metaContent} />}
+        <title>
+          {props.isHomePage
+            ? `Johan Li - A software developer’s thoughts`
+            : `${props.title} - Johan Li`}
+        </title>
+        {Boolean(props.metaContent) && (
+          <meta name="description" content={props.metaContent} />
+        )}
       </Head>
       <nav className="pt-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -48,12 +56,9 @@ export const Layout = (props: Props) => {
         </div>
       </nav>
       <div className="mb-auto">
-        <div className="max-w-7xl mx-auto px-4">
-          {props.children}
-        </div>
+        <div className="max-w-7xl mx-auto px-4">{props.children}</div>
       </div>
-      <footer>
-      </footer>
+      <footer></footer>
     </div>
   );
-}
+};

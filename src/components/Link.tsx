@@ -25,9 +25,7 @@ export const Link = (props: Props): JSX.Element => {
 
   return (
     <NextLink href={href}>
-      <a className={linkClass}>
-        {children || href}
-      </a>
+      <a className={linkClass}>{children || href}</a>
     </NextLink>
   );
-}
+};

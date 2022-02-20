@@ -10,7 +10,8 @@ import postgresqlDataInsertion from './postgresql-data-insertion.png';
 
 export const metadata: ArticleMetadata = {
   image: postgresqlDataInsertion,
-  teaser: 'Methods to prevent SQL injections have existed for decades. Why are they not extinct by now?',
+  teaser:
+    'Methods to prevent SQL injections have existed for decades. Why are they not extinct by now?',
   title: 'How SQL injection prevention works, and why it’s still relevant',
   published: 1584812119,
   readingTime: 6,
@@ -112,7 +113,7 @@ export const Article = (): JSX.Element => (
       src={postgresqlDataInsertion}
       width={480}
       height={360}
-      caption="PostgreSQL data insertion. (Using an ORM introduces a step between 1 and 2.)"
+      alt="PostgreSQL data insertion. (Using an ORM introduces a step between 1 and 2.)"
     />
     <H2>Parameterized queries and prepared statements</H2>
     <P>

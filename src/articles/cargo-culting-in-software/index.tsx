@@ -13,7 +13,8 @@ import { Link } from '../../components/Link';
 
 export const metadata: ArticleMetadata = {
   image: vanuatuJohnFrumDay,
-  teaser: 'The dangers of copying successful people and companies, in the hopes of achieving the same success.',
+  teaser:
+    'The dangers of copying successful people and companies, in the hopes of achieving the same success.',
   title: 'Cargo culting in software',
   published: 1575158400,
   readingTime: 6,
@@ -45,7 +46,7 @@ export const Article = (): JSX.Element => (
       src={vanuatuJohnFrumDay}
       width={800}
       height={600}
-      caption="Vanuatu, an island country in the Pacific Ocean, has a cargo cult that survives to this day."
+      alt="Vanuatu, an island country in the Pacific Ocean, has a cargo cult that survives to this day."
     />
     <P>
       The troops abandoned the islands after the war. No more cargo dropped. But
@@ -91,7 +92,7 @@ export const Article = (): JSX.Element => (
       src={microservices}
       width={800}
       height={240}
-      caption="A monolith split into microservices."
+      alt="A monolith split into microservices."
     />
     <P>
       In reality, we’re making considerable tradeoffs. What if we need to work
@@ -141,7 +142,7 @@ export const Article = (): JSX.Element => (
       width={800}
       height={285}
       zoomSrc={agileLarge}
-      caption="Colleagues gathering around a Scrum Board."
+      alt="Colleagues gathering around a Scrum Board."
     />
     <P>
       Agile was born in response to the ideas of Frederick Taylor. He was one of
@@ -221,12 +222,16 @@ export const Article = (): JSX.Element => (
     <H3>References</H3>
     <div className="text-sm">
       <P>
-        "The Death of Microservice Madness in 2018", and its discussion on Hacker News:
+        {'"The Death of Microservice Madness in 2018"'}, and its discussion on
+        Hacker News:
       </P>
     </div>
     <Ul>
       <li>
-        <Link href="https://dwmkerr.com/the-death-of-microservice-madness-in-2018/" external />
+        <Link
+          href="https://dwmkerr.com/the-death-of-microservice-madness-in-2018/"
+          external
+        />
       </li>
       <li>
         <Link href="https://news.ycombinator.com/item?id=16200007" external />
@@ -234,12 +239,16 @@ export const Article = (): JSX.Element => (
     </Ul>
     <div className="text-sm">
       <P>
-        Martin Fowler, one of the creators of The Agile Manifesto, comments on the state of agile in 2018:
+        Martin Fowler, one of the creators of The Agile Manifesto, comments on
+        the state of agile in 2018:
       </P>
     </div>
     <Ul>
       <li>
-        <Link href="https://martinfowler.com/articles/agile-aus-2018.html" external />
+        <Link
+          href="https://martinfowler.com/articles/agile-aus-2018.html"
+          external
+        />
       </li>
     </Ul>
   </ArticleLayout>

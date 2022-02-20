@@ -203,7 +203,7 @@ export const Article = (): JSX.Element => (
       src={angularReactVueTrends}
       width={800}
       height={230}
-      caption="Google Trends for the search terms “angular js”, “react js” and “vue js”."
+      alt="Google Trends for the search terms “angular js”, “react js” and “vue js”."
     />
     <P>
       While having the backing of Google and Facebook certainly helps, what
@@ -285,7 +285,7 @@ export const Article = (): JSX.Element => (
       src={barebonesMessagingApp}
       width={410}
       height={310}
-      caption="A bare-bones chat application."
+      alt="A bare-bones chat application."
     />
     <P>
       Imagine we’re creating a chat application, showing the last 20 messages.

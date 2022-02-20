@@ -6,7 +6,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: {
     slug: params.slug,
   },
-})
+});
 
 export const getStaticPaths = async () => ({
   paths: Object.keys(articles).map((slug) => ({ params: { slug } })),

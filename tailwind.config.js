@@ -1,9 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: [
-    './src/**/*.{tsx,ts}',
-  ],
+  content: ['./src/**/*.{tsx,ts}'],
   theme: {
     cursor: {
       pointer: 'pointer',
@@ -14,4 +12,4 @@ module.exports = {
       sans: ['Roboto', ...defaultTheme.fontFamily.sans],
     },
   },
-}
+};
