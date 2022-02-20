@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ArticleLayout } from '../../components/article/ArticleLayout';
 import { H2, P } from '../../components/article/Common';
-import { Image } from '../../components/article/Image';
+import { Image } from '../../components/image/Image';
 import { ArticleMetadata } from '../../components/article/articleTypes';
 
 import tBarLift from './t-bar-lift.jpg';
