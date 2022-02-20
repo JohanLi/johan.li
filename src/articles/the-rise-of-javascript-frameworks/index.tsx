@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ArticleLayout } from '../../components/article/ArticleLayout';
 import { H2, P } from '../../components/article/Common';
-import { Image } from '../../components/article/Image';
+import { Image } from '../../components/image/Image';
 import { Code } from '../../components/article/Code';
 import { ArticleMetadata } from '../../components/article/articleTypes';
 

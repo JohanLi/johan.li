@@ -8,6 +8,8 @@
 
 /data/nginx/cert/
 
+/tsconfig.tsbuildinfo
+
 .env.prod
 .env.dev
 .env.local

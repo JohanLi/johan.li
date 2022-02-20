@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Image } from '../../components/article/Image';
+import { Image } from '../../components/image/Image';
 import { ArticleLayout } from '../../components/article/ArticleLayout';
 import { H2, H3, P, Ul } from '../../components/article/Common';
 import { ArticleMetadata } from '../../components/article/articleTypes';

@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
+import calculateZoom from './calculateZoom';
+import { classNames } from '../../utils';
 
 /*
   If zoomSrc is provided:
@@ -74,16 +76,6 @@ export const Image = (props: Props): JSX.Element => {
     };
   }, [transitionActive]);
 
-  let imageClass = 'absolute inset-0';
-
-  if (zoomImage) {
-    imageClass += ' cursor-zoom-in';
-  }
-
-  if (zoomActive) {
-    imageClass += ' invisible';
-  }
-
   const paddingBottom = `${(height / width) * 100}%`;
 
   const image = (
@@ -98,14 +90,22 @@ export const Image = (props: Props): JSX.Element => {
             width={width}
             height={height}
             alt={alt}
-            className={`${imageClass} md:hidden`}
+            className={classNames(
+              'absolute inset-0 md:hidden',
+              zoomImage ? 'cursor-zoom-in' : '',
+              zoomActive ? 'invisible' : '',
+            )}
           />
           <img
             src={src}
             width={width}
             height={height}
             alt={alt}
-            className={`${imageClass} hidden md:block`}
+            className={classNames(
+              'absolute inset-0 hidden md:block',
+              zoomImage ? 'cursor-zoom-in' : '',
+              zoomActive ? 'invisible' : '',
+            )}
             ref={imageElement}
             onClick={() => {
               if (!zoomImage) {
@@ -125,25 +125,10 @@ export const Image = (props: Props): JSX.Element => {
     return image;
   }
 
-  const imageElementClientRect = imageElement.current.getBoundingClientRect();
-  const top = imageElementClientRect.top + document.documentElement.scrollTop;
-  const left =
-    imageElementClientRect.left + document.documentElement.scrollLeft;
-
-  const scaleX =
-    Math.min(zoomImage.width, document.documentElement.clientWidth) / width;
-  const scaleY =
-    Math.min(zoomImage.height, document.documentElement.clientHeight) / height;
-  const scale = Math.min(scaleX, scaleY);
-
-  const translateX =
-    ((document.documentElement.clientWidth - width) / 2 -
-      imageElementClientRect.left) /
-    scale;
-  const translateY =
-    ((document.documentElement.clientHeight - height) / 2 -
-      imageElementClientRect.top) /
-    scale;
+  const { top, left, scale, translateX, translateY } = calculateZoom(
+    imageElement.current,
+    zoomImage,
+  );
 
   const style = {
     top,
@@ -153,21 +138,21 @@ export const Image = (props: Props): JSX.Element => {
       : 'none',
     width,
     height,
-    transitionTimingFunction: 'cubic-bezier(0.2, 0, 0.2, 1)',
   };
 
   const imageTransition = (
     <div>
       <div
-        className={`fixed inset-0 z-10 bg-white transition-opacity duration-300 ${
-          transitionActive ? 'opacity-80' : 'opacity-0'
-        }`}
+        className={classNames(
+          'fixed inset-0 z-10 bg-white transition-opacity ease-in-out duration-300',
+          transitionActive ? 'opacity-80' : 'opacity-0',
+        )}
       />
       <img
         src={zoomImage.src}
         alt={alt}
         style={style}
-        className="absolute z-20 transition-transform duration-300 cursor-zoom-out"
+        className="absolute z-20 transition-transform ease-in-out duration-300 cursor-zoom-out"
         onClick={revertTransition}
         onTransitionEnd={() => {
           if (transitionActive) {
