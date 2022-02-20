@@ -50,7 +50,7 @@ export const Article = (): JSX.Element => (
       width={800}
       height={600}
       zoomSrc={tBarLiftLarge}
-      caption="A T-Bar lift in Åre."
+      alt="A T-Bar lift in Åre."
     />
     <P>
       That day, I learned that T-bars work best if you ride with someone of

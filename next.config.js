@@ -13,6 +13,6 @@ module.exports = {
       type: 'asset/resource',
     });
 
-    return config
+    return config;
   },
 };

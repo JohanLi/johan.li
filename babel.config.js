@@ -1,21 +1,12 @@
 module.exports = {
-  "presets": ["next/babel"],
-  "plugins": [
+  presets: ['next/babel'],
+  plugins: [
     [
-      "prismjs",
+      'prismjs',
       {
-        "languages": [
-          "javascript",
-          "jsx",
-          "python",
-          "cpp",
-          "html",
-          "handlebars"
-        ],
-        "plugins": [
-          "custom-class"
-        ]
-      }
-    ]
-  ]
-}
+        languages: ['javascript', 'jsx', 'python', 'cpp', 'html', 'handlebars'],
+        plugins: ['custom-class'],
+      },
+    ],
+  ],
+};
