@@ -3,16 +3,19 @@ import NextLink from 'next/link';
 
 const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 break-words';
 
-interface Props {
+type Props = {
   href: string;
   className?: string;
   external?: boolean;
   children?: ReactNode;
-}
+};
 
-export const Link = (props: Props): JSX.Element => {
-  const { href, className, external = false, children } = props;
-
+export default function Link({
+  href,
+  className,
+  external = false,
+  children,
+}: Props) {
   const linkClass = className !== undefined ? className : defaultLinkClass;
 
   if (external) {
@@ -28,4 +31,4 @@ export const Link = (props: Props): JSX.Element => {
       <a className={linkClass}>{children || href}</a>
     </NextLink>
   );
-};
+}

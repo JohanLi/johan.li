@@ -1,16 +1,16 @@
 import React, { ReactNode } from 'react';
 
-import { Layout } from '../Layout';
+import Layout from '../Layout';
 import { unixTimestampToMonthYear } from '../../utils';
 import { ArticleMetadata } from './articleTypes';
 
-interface Props {
+type Props = {
   metadata: ArticleMetadata;
   children: ReactNode;
-}
+};
 
-export const ArticleLayout = (props: Props): JSX.Element => {
-  const { title, published, readingTime } = props.metadata;
+export default function ArticleLayout({ metadata, children }: Props) {
+  const { title, published, readingTime } = metadata;
 
   return (
     <Layout title={title}>
@@ -23,8 +23,8 @@ export const ArticleLayout = (props: Props): JSX.Element => {
             {unixTimestampToMonthYear(published)} · {readingTime} min read
           </p>
         </div>
-        <div className="-mt-6 pb-24 md:text-lg">{props.children}</div>
+        <div className="-mt-6 pb-24 md:text-lg">{children}</div>
       </div>
     </Layout>
   );
-};
+}

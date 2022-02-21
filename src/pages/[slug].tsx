@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 
-import { ArticleLoader, articles } from '../components/article/ArticleLoader';
+import ArticleLoader, { articles } from '../components/article/ArticleLoader';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: {

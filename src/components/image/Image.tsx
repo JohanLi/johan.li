@@ -9,17 +9,15 @@ import { classNames } from '../../utils';
     its position as well as scale changes as it enlarges to fit the full screen.
  */
 
-interface Props {
+type Props = {
   src: string;
   width: number;
   height: number;
   alt: string;
   zoomSrc?: string;
-}
+};
 
-export const Image = (props: Props): JSX.Element => {
-  const { src, width, height, alt, zoomSrc } = props;
-
+export default function Image({ src, width, height, alt, zoomSrc }: Props) {
   const [zoomActive, setZoomActive] = useState(false);
   const [transitionActive, setTransitionActive] = useState(false);
   const [zoomImage, setZoomImage] = useState<HTMLImageElement>();
@@ -171,4 +169,4 @@ export const Image = (props: Props): JSX.Element => {
       {imageTransition}
     </>
   );
-};
+}

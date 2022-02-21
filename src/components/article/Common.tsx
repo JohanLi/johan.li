@@ -1,19 +1,29 @@
 import { ReactNode } from 'react';
 
-export const H2 = (props: { children: string }): JSX.Element => (
-  <h2 className="mt-12 mb-6 text-xl md:text-2xl font-bold">{props.children}</h2>
-);
+type PropsString = {
+  children: string;
+};
 
-export const H3 = (props: { children: string }): JSX.Element => (
-  <h3 className="mt-12 mb-6 text-base md:text-lg font-bold">
-    {props.children}
-  </h3>
-);
+type PropsNode = {
+  children: ReactNode;
+};
 
-export const P = (props: { children: ReactNode }): JSX.Element => (
-  <p className="mt-6">{props.children}</p>
-);
+export function H2({ children }: PropsString) {
+  return (
+    <h2 className="mt-12 mb-6 text-xl md:text-2xl font-bold">{children}</h2>
+  );
+}
 
-export const Ul = (props: { children: ReactNode }): JSX.Element => (
-  <ul className="mt-4 list-disc pl-6 space-y-2 text-xs">{props.children}</ul>
-);
+export function H3({ children }: PropsString) {
+  return (
+    <h3 className="mt-12 mb-6 text-base md:text-lg font-bold">{children}</h3>
+  );
+}
+
+export function P({ children }: PropsNode) {
+  return <p className="mt-6">{children}</p>;
+}
+
+export function Ul({ children }: PropsNode) {
+  return <ul className="mt-4 list-disc pl-6 space-y-2 text-xs">{children}</ul>;
+}

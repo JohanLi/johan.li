@@ -2,10 +2,10 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import 'tailwindcss/tailwind.css';
+import './globals.css';
 import './prism.css';
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -15,6 +15,4 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       <Component {...pageProps} />
     </>
   );
-};
-
-export default MyApp;
+}
