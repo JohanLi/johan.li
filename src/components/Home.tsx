@@ -1,21 +1,21 @@
 import React from 'react';
 
-import { Link } from './Link';
+import Link from './Link';
 import { unixTimestampToMonthYear } from '../utils';
-import { Layout } from './Layout';
+import Layout from './Layout';
 import { ArticleMetadata } from './article/articleTypes';
 
 import johanLi from '../../public/johan-li.jpg';
 
-interface Article extends ArticleMetadata {
+type Article = {
   slug: string;
-}
+} & ArticleMetadata;
 
-interface Props {
+type Props = {
   articles: Article[];
-}
+};
 
-export const Home = (props: Props): JSX.Element => {
+export default function Home({ articles }: Props) {
   return (
     <Layout isHomePage>
       <div className="pt-6 sm:pt-12 pb-12 sm:pb-24">
@@ -23,7 +23,7 @@ export const Home = (props: Props): JSX.Element => {
           Articles
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-6 sm:mt-12">
-          {props.articles.map((article) => (
+          {articles.map((article) => (
             <Link
               href={`/${article.slug}`}
               className="flex flex-col rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105"
@@ -52,4 +52,4 @@ export const Home = (props: Props): JSX.Element => {
       </div>
     </Layout>
   );
-};
+}

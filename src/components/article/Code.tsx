@@ -9,15 +9,13 @@ import Prism from 'prismjs';
 Prism.manual = true;
 Prism.plugins.customClass.prefix('prism-'); // .block interferes with Tailwind's .block
 
-interface Props {
+type Props = {
   language: 'javascript' | 'jsx' | 'python' | 'cpp' | 'html' | 'handlebars';
   code: string;
   caption: string;
-}
+};
 
-export const Code = (props: Props): JSX.Element => {
-  const { language, code, caption } = props;
-
+export default function Code({ language, code, caption }: Props) {
   const html = Prism.highlight(
     code.trim(),
     Prism.languages[language],
@@ -34,4 +32,4 @@ export const Code = (props: Props): JSX.Element => {
       </div>
     </div>
   );
-};
+}

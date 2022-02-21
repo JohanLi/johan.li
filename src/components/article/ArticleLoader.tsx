@@ -10,7 +10,7 @@ import { ArticleMetadata } from './articleTypes';
 
 export const articles: {
   [key in string]: {
-    Article: () => JSX.Element;
+    default: () => JSX.Element;
     metadata: ArticleMetadata;
   };
 } = {
@@ -21,11 +21,11 @@ export const articles: {
   'cargo-culting-in-software': { ...cargoCultingInSoftware },
 };
 
-interface Props {
+type Props = {
   slug: string;
-}
-
-export const ArticleLoader = (props: Props): JSX.Element => {
-  const { Article } = articles[props.slug];
-  return <Article />;
 };
+
+export default function ArticleLoader({ slug }: Props) {
+  const { default: Article } = articles[slug];
+  return <Article />;
+}
