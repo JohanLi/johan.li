@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant';
 import * as theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii';
 import * as theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks';
 import * as sqlInjectionPrevention from '../../articles/sql-injection-prevention';
@@ -14,6 +15,7 @@ export const articles: {
     metadata: ArticleMetadata;
   };
 } = {
+  'becoming-an-independent-consultant': { ...becomingAnIndependentConsultant },
   'the-gold-exploit-of-diablo-iii': { ...theGoldExploitOfDiabloIII },
   'the-rise-of-javascript-frameworks': { ...theRiseOfJavascriptFrameworks },
   'sql-injection-prevention': { ...sqlInjectionPrevention },

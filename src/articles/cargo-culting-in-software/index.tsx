@@ -2,7 +2,7 @@ import React from 'react';
 
 import Image from '../../components/image/Image';
 import ArticleLayout from '../../components/article/ArticleLayout';
-import { H2, H3, P, Ul } from '../../components/article/Common';
+import { H2, H3, P, UlReferences } from '../../components/article/Common';
 import Link from '../../components/Link';
 import { ArticleMetadata } from '../../components/article/articleTypes';
 
@@ -229,7 +229,7 @@ export default function Article() {
           Hacker News:
         </P>
       </div>
-      <Ul>
+      <UlReferences>
         <li>
           <Link
             href="https://dwmkerr.com/the-death-of-microservice-madness-in-2018/"
@@ -239,21 +239,21 @@ export default function Article() {
         <li>
           <Link href="https://news.ycombinator.com/item?id=16200007" external />
         </li>
-      </Ul>
+      </UlReferences>
       <div className="text-sm">
         <P>
           Martin Fowler, one of the creators of The Agile Manifesto, comments on
           the state of agile in 2018:
         </P>
       </div>
-      <Ul>
+      <UlReferences>
         <li>
           <Link
             href="https://martinfowler.com/articles/agile-aus-2018.html"
             external
           />
         </li>
-      </Ul>
+      </UlReferences>
     </ArticleLayout>
   );
 }
