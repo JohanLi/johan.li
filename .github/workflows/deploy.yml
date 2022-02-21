@@ -84,7 +84,7 @@ jobs:
           set +o allexport
           cd .ansible
           ansible-playbook -i ${IP_ADDRESS}, site.yml
-        if: ${{ github.event.inputs.setup == 'false' }} # https://github.com/actions/runner/issues/1483
+        if: ${{ github.event.inputs.setup != 'true' }} # https://github.com/actions/runner/issues/1483
 
       - name: Setup and deploy
         run: |
