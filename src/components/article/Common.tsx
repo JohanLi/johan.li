@@ -25,5 +25,9 @@ export function P({ children }: PropsNode) {
 }
 
 export function Ul({ children }: PropsNode) {
+  return <ul className="mt-6 list-disc pl-8 space-y-4">{children}</ul>;
+}
+
+export function UlReferences({ children }: PropsNode) {
   return <ul className="mt-4 list-disc pl-6 space-y-2 text-xs">{children}</ul>;
 }
