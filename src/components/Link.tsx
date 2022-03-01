@@ -6,14 +6,14 @@ const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 break-words';
 type Props = {
   href: string;
   className?: string;
-  external?: boolean;
+  external?: true;
   children?: ReactNode;
 };
 
 export default function Link({
   href,
   className,
-  external = false,
+  external,
   children,
 }: Props) {
   const linkClass = className !== undefined ? className : defaultLinkClass;

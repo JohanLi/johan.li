@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as howNotToDesignAnSDK from '../../articles/how-not-to-design-an-sdk';
 import * as becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant';
 import * as theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii';
 import * as theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks';
@@ -15,6 +16,7 @@ export const articles: {
     metadata: ArticleMetadata;
   };
 } = {
+  'how-not-to-design-an-sdk': { ...howNotToDesignAnSDK },
   'becoming-an-independent-consultant': { ...becomingAnIndependentConsultant },
   'the-gold-exploit-of-diablo-iii': { ...theGoldExploitOfDiabloIII },
   'the-rise-of-javascript-frameworks': { ...theRiseOfJavascriptFrameworks },

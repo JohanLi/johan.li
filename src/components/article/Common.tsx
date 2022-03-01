@@ -31,3 +31,19 @@ export function Ul({ children }: PropsNode) {
 export function UlReferences({ children }: PropsNode) {
   return <ul className="mt-4 list-disc pl-6 space-y-2 text-xs">{children}</ul>;
 }
+
+export function CodeInline({ children }: PropsString) {
+  return <span className="bg-[#f5f2f0] p-0.5">{children}</span>;
+}
+
+export function Title({ children }: PropsString) {
+  return <span className="font-bold italics">{children}</span>;
+}
+
+export function Quote({ children }: PropsNode) {
+  return (
+    <div className="my-12 -ml-4 pl-4 border-l-4 border-black italic">
+      {children}
+    </div>
+  );
+}
