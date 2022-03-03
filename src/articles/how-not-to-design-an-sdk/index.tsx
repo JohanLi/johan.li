@@ -23,6 +23,15 @@ import objectOrientedProgrammer from './object-oriented-programmer.png';
 import objectOrientedProgrammerSmall from './object-oriented-programmer-small.png';
 import ImageFloat from '../../components/image/ImageFloat';
 
+const headings = [
+  'Azure Blob Storage',
+  'Is it about JavaScript or the actual SDK?',
+  '"Object-oriented" programming',
+  'A good SDK',
+  'Opinions about the Java SDK',
+  'In closing',
+];
+
 export const metadata: ArticleMetadata = {
   image: objectOrientedProgrammerSmall,
   title: 'How not to design an SDK',
@@ -30,6 +39,7 @@ export const metadata: ArticleMetadata = {
     'The JavaScript SDK for Azure Blob Storage contains poor documentation and "object-oriented" programming.',
   published: 1646125841,
   readingTime: 5,
+  headings,
 };
 
 const js1 = `
@@ -129,7 +139,7 @@ export default function Article() {
         documentation doesn’t seem intended for developers, and its API is a
         textbook example of poor object-oriented programming.
       </P>
-      <H2>Azure Blob Storage</H2>
+      <H2>{headings[0]}</H2>
       <P>
         Blob Storage, like Amazon S3, is a service used for serving static
         websites and storing media, backups, and raw data in general. Objects
@@ -140,7 +150,7 @@ export default function Article() {
         underlying REST API. Every SDK comes with a Quickstart, serving as
         documentation.
       </P>
-      <H2>Is it about JavaScript or the actual SDK?</H2>
+      <H2>{headings[1]}</H2>
       <P>
         Browsing the JavaScript SDK’s Quickstart, you need to scroll 50% through
         it before any real action happens.
@@ -177,7 +187,7 @@ export default function Article() {
         alt="v12’s Quickstart contains even more information that feels excessive."
         zoomSrc={excessiveInformationLarge}
       />
-      <H2>{`"Object-oriented" programming`}</H2>
+      <H2>{headings[2]}</H2>
       <P>
         Here’s a task for you: design an SDK for the Blob Storage. What is your
         ideal API for it? Remember, you want to be able to create Containers.
@@ -237,7 +247,7 @@ export default function Article() {
         the SDK still this unpolished after being allowed so many incompatible
         API changes?
       </P>
-      <H2>A good SDK</H2>
+      <H2>{headings[3]}</H2>
       <P>
         Let’s check out a good SDK for comparison’s sake. Chances are, it’s
         similar to your design. Here’s the minimal code, using Amazon Web
@@ -253,7 +263,7 @@ export default function Article() {
         smokeSignal going on here. You don’t stitch together URLs, and
         everything is sensibly named. Object-oriented programming done right.
       </P>
-      <H2>Opinions about the Java SDK</H2>
+      <H2>{headings[4]}</H2>
       <P>
         Now, I’m not sure this counts as a data point — a certain profession
         claims it’s all the same — but someone criticized the Java version of
@@ -340,7 +350,7 @@ export default function Article() {
         it’s acceptable. But for a run-of-the-mill SDK of a proprietary service,
         I’d expect better.
       </P>
-      <H2>In closing</H2>
+      <H2>{headings[5]}</H2>
       <P>
         When creating an SDK, start with the user experience. Why are people
         using it and the service, and who are they? What would a good API be?

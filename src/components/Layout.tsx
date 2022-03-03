@@ -39,7 +39,7 @@ export default function Layout({
         )}
       </Head>
       <nav className="pt-12">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl px-4 lg:px-8 mx-auto">
           <Link href="/">
             {Boolean(isHomePage) && (
               <h1
@@ -60,10 +60,10 @@ export default function Layout({
           </Link>
         </div>
       </nav>
-      <div className="mb-auto">
-        <div className="max-w-7xl mx-auto px-4">{children}</div>
+      <div>
+        {children}
       </div>
-      <footer></footer>
+      <footer className="mb-auto" />
     </div>
   );
 }

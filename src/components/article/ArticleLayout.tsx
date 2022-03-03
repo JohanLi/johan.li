@@ -3,6 +3,8 @@ import React, { ReactNode } from 'react';
 import Layout from '../Layout';
 import { unixTimestampToMonthYear } from '../../utils';
 import { ArticleMetadata } from './articleTypes';
+import InPageNavigation from './InPageNavigation';
+import { H1 } from './Common';
 
 type Props = {
   metadata: ArticleMetadata;
@@ -10,21 +12,24 @@ type Props = {
 };
 
 export default function ArticleLayout({ metadata, children }: Props) {
-  const { title, published, readingTime } = metadata;
+  const { title, published, readingTime, headings } = metadata;
 
   return (
     <Layout title={title}>
-      <div className="max-w-3xl">
-        <div className="pt-12 pb-6">
-          <h1 className="text-3xl md:text-5xl tracking-tight font-extrabold">
-            {title}
-          </h1>
-          <p className="text-sm text-gray-400 mt-3">
-            {unixTimestampToMonthYear(published)} · {readingTime} min read
-          </p>
+      <article className="max-w-7xl px-4 lg:px-8 lg:flex w-full justify-between mx-auto">
+        <div className="max-w-2xl xl:max-w-3xl">
+          <div className="pt-12 pb-6">
+            <H1>
+              {title}
+            </H1>
+            <p className="text-sm text-gray-400 mt-3">
+              {unixTimestampToMonthYear(published)} · {readingTime} min read
+            </p>
+          </div>
+          <div className="-mt-6 pb-24 md:text-lg">{children}</div>
         </div>
-        <div className="-mt-6 pb-24 md:text-lg">{children}</div>
-      </div>
+        <InPageNavigation title={title} headings={headings} />
+      </article>
     </Layout>
   );
 }

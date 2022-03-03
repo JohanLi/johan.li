@@ -9,6 +9,14 @@ import { ArticleMetadata } from '../../components/article/articleTypes';
 import angularReactVueTrends from './angular-react-vue-trends.png';
 import barebonesMessagingApp from './barebones-messaging-app.png';
 
+const headings = [
+  'From pages to applications',
+  'What’s different about an application?',
+  'A bare-bones messaging app',
+  'Amount of code vs. amount of re-rendering',
+  'The powerful abstraction of Angular, React, and Vue',
+];
+
 export const metadata: ArticleMetadata = {
   image: angularReactVueTrends,
   teaser: `
@@ -18,6 +26,7 @@ export const metadata: ArticleMetadata = {
   title: 'The rise of JavaScript frameworks',
   published: 1597562075,
   readingTime: 8,
+  headings,
 };
 
 const html1 = `
@@ -211,7 +220,7 @@ export default function Article() {
         sparked it? Is there something fundamentally different about the web
         today? What types of problems are these JavaScript frameworks solving?
       </P>
-      <H2>From pages to applications</H2>
+      <H2>{headings[0]}</H2>
       <P>
         When Tim Berners-Lee invented the World Wide Web in 1989, he envisioned
         websites serving documents in the form of HTML pages. Documents,
@@ -256,7 +265,7 @@ export default function Article() {
         picture? As it turns out, building applications involve a set of
         challenges.
       </P>
-      <H2>What’s different about an application?</H2>
+      <H2>{headings[1]}</H2>
       <P>
         The first difference between a page and an application lies in the
         necessity of keeping track of <strong>state</strong>. When visiting a
@@ -283,7 +292,7 @@ export default function Article() {
         only on the essential parts, we’ll go through different approaches and
         discuss their challenges.
       </P>
-      <H2>A bare-bones messaging app</H2>
+      <H2>{headings[2]}</H2>
       <Image
         src={barebonesMessagingApp}
         width={410}
@@ -350,7 +359,7 @@ export default function Article() {
         for each new message. Although the server still sends redundant data, we
         can move the templating logic to the client with relative ease.
       </P>
-      <H2>Amount of code vs. amount of re-rendering</H2>
+      <H2>{headings[3]}</H2>
       <P>
         The chat application we’ve created is indeed bare-bones – it has no
         support for edits, deletions, emojis, rich text, reactions, and replying
@@ -372,7 +381,7 @@ export default function Article() {
         re-renders and keeping the codebase maintainable, is challenging as it
         grows in complexity.
       </P>
-      <H2>The powerful abstraction of Angular, React, and Vue</H2>
+      <H2>{headings[4]}</H2>
       <P>
         What JavaScript frameworks solve is allowing us to express HTML
         transformations in a <strong>declarative</strong> way. Instead of

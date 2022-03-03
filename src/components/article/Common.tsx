@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { getSlug } from '../../utils';
 
 type PropsString = {
   children: string;
@@ -8,9 +9,25 @@ type PropsNode = {
   children: ReactNode;
 };
 
+export function H1({ children }: PropsString) {
+  return (
+    <h1
+      className="text-3xl md:text-5xl tracking-tight font-extrabold"
+      id={getSlug(children)}
+    >
+      {children}
+    </h1>
+  );
+}
+
 export function H2({ children }: PropsString) {
   return (
-    <h2 className="mt-12 mb-6 text-xl md:text-2xl font-bold">{children}</h2>
+    <h2
+      className="pt-12 mb-6 text-xl md:text-2xl font-bold"
+      id={getSlug(children)}
+    >
+      {children}
+    </h2>
   );
 }
 

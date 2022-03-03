@@ -9,6 +9,16 @@ import { ArticleMetadata } from '../../components/article/articleTypes';
 import independent from './independent.jpg';
 import consultantVsContractors from './consultant-vs-contractors.jpg';
 
+const headings = [
+  'Consulting is lucrative in Sweden',
+  'Freelancing, contracting, and consulting. Is there a difference?',
+  'Two categories of work',
+  'Pitfall: becoming independent too early',
+  'Additional caveats',
+  'Where do I see myself?',
+  'How should I stand out to do category 2 work?',
+];
+
 export const metadata: ArticleMetadata = {
   image: independent,
   title: 'Becoming an independent consultant',
@@ -16,6 +26,7 @@ export const metadata: ArticleMetadata = {
     'Why do people take this path in Sweden? What are the general pitfalls and caveats?',
   published: 1645438733,
   readingTime: 5,
+  headings,
 };
 
 export default function Article() {
@@ -48,7 +59,7 @@ export default function Article() {
         distinction between freelancing, contracting, and consulting? Caveats
         and pitfalls? Finally, where do I see myself in all of this?
       </P>
-      <H2>Consulting is lucrative in Sweden</H2>
+      <H2>{headings[0]}</H2>
       <P>
         Having a regular job comes with a ton of benefits. There’s stability
         and, besides giving your employer your bank details, not much else you
@@ -76,7 +87,7 @@ export default function Article() {
         some for rainy days.
       </P>
       <P>Sounds too good to be true, right? Let’s explore some caveats.</P>
-      <H2>Freelancing, contracting, and consulting. Is there a difference?</H2>
+      <H2>{headings[1]}</H2>
       <P>
         Like in programming, certain words are often used interchangeably and
         have overlap. Where the terms generally differ has to do with factors
@@ -94,7 +105,7 @@ export default function Article() {
         members. But there’s a subtle yet significant difference between a
         contractor and a consultant.
       </P>
-      <H2>Two categories of work</H2>
+      <H2>{headings[2]}</H2>
       <P>
         When you boil it down, companies hire you for two reasons: either to do
         work that someone doesn’t want to do or to do work that someone can’t.
@@ -127,7 +138,7 @@ export default function Article() {
         objectives.
       </P>
       <P>How do we avoid getting into category 1?</P>
-      <H2>Pitfall: becoming independent too early</H2>
+      <H2>{headings[3]}</H2>
       <P>
         Early in your career, you offer little in doing work that someone can’t.
         If you do, the place you’re working at lacks depth.
@@ -148,7 +159,7 @@ export default function Article() {
         disillusioned in a few years and proclaim that{' '}
         <span className="italic">everything</span> is wrong with the industry.
       </P>
-      <H2>Additional caveats</H2>
+      <H2>{headings[4]}</H2>
       <P>As employers can fire you on a whim, you have to perform.</P>
       <P>
         Anyone who’s worked long enough has seen a broad spectrum of developers.
@@ -169,7 +180,7 @@ export default function Article() {
         And whether you like it or not, you have to explore shiny things from
         time to time.
       </P>
-      <H2>Where do I see myself?</H2>
+      <H2>{headings[5]}</H2>
       <P>
         I’ve got some experience under my belt now and have managed to reach a
         senior level in my last two employments.
@@ -194,7 +205,7 @@ export default function Article() {
         Every new hire matters more at that stage, so they’ll hopefully devote
         more time screening people.
       </P>
-      <H2>How should I stand out to do category 2 work?</H2>
+      <H2>{headings[6]}</H2>
       <P>
         Currently, my strength lies in having a broad skill set. I can do
         backend work, set up continuous integration, and not feel lost staring
