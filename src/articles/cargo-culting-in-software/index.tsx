@@ -11,6 +11,14 @@ import microservices from './microservices.png';
 import agile from './agile.png';
 import agileLarge from './agile-large.png';
 
+const headings = [
+  'Origin',
+  'In software',
+  'Microservices',
+  'Agile',
+  'Thoughts',
+];
+
 export const metadata: ArticleMetadata = {
   image: vanuatuJohnFrumDay,
   teaser:
@@ -18,6 +26,7 @@ export const metadata: ArticleMetadata = {
   title: 'Cargo culting in software',
   published: 1575158400,
   readingTime: 6,
+  headings,
 };
 
 export default function Article() {
@@ -35,7 +44,7 @@ export default function Article() {
         developers embrace a certain mindset? And is cargo culting necessarily a
         bad thing?
       </P>
-      <H2>Origin</H2>
+      <H2>{headings[0]}</H2>
       <P>
         The term has its roots in World War II. The Allies deployed troops to
         islands in the Pacific Ocean, establishing airbases. Planes regularly
@@ -60,7 +69,7 @@ export default function Article() {
         Having mistaken correlation for causation, they formed a cult — a cargo
         cult.
       </P>
-      <H2>In software</H2>
+      <H2>{headings[1]}</H2>
       <P>
         In software, cargo culting can come in many different shapes and forms.
         Sometimes, we copy-paste code snippets from Stack Overflow without
@@ -73,7 +82,7 @@ export default function Article() {
         applications and even organizations at large. Two such examples are
         microservices and Agile.
       </P>
-      <H2>Microservices</H2>
+      <H2>{headings[2]}</H2>
       <P>
         A piece of software starts small. As time goes on, features get added.
         More use cases need to be supported, and the codebase gets larger. To
@@ -131,7 +140,7 @@ export default function Article() {
         a product that’s still in a state of flux. Too busy dealing with
         self-imposed problems, to be delivering value to end users.
       </P>
-      <H2>Agile</H2>
+      <H2>{headings[3]}</H2>
       <P>
         Creating software requires coordination and collaboration. A term that
         gets brought up in this context is Agile: we’re an Agile organization,
@@ -197,7 +206,7 @@ export default function Article() {
         importantly, we mustn’t underestimate the value of actually talking to
         our people — including our “average workers” — as part of the process.
       </P>
-      <H2>Thoughts</H2>
+      <H2>{headings[4]}</H2>
       <P>
         We cargo cult in our everyday lives, as well as in the software
         industry.

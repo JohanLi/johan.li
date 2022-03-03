@@ -22,8 +22,8 @@ export default function ImageFloat({
     <div
       className={classNames(
         '-mx-4 md:mx-0 lg:-mx-8 my-6',
-        left ? 'lg:float-left lg:mr-12 lg:-ml-24' : '',
-        right ? 'lg:float-right lg:ml-12 lg:-mr-24' : '',
+        left ? 'lg:float-left lg:mr-12' : '',
+        right ? 'lg:float-right lg:ml-12' : '',
       )}
     >
       <img src={src} width={width} height={height} alt={alt} className="mx-auto" />

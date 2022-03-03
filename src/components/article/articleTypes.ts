@@ -4,4 +4,5 @@ export type ArticleMetadata = {
   teaser: string;
   published: number;
   readingTime: number;
+  headings: string[];
 };

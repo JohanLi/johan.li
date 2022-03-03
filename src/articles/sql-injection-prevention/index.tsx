@@ -8,6 +8,15 @@ import { H2, P } from '../../components/article/Common';
 
 import postgresqlDataInsertion from './postgresql-data-insertion.png';
 
+const headings = [
+  'How is data moved from an application to a database?',
+  'Parameterized queries and prepared statements',
+  'Are prepared statements better?',
+  'What about the rest of the SQL statement?',
+  'Why is SQL injection still relevant?',
+  'So, what can we do?',
+];
+
 export const metadata: ArticleMetadata = {
   image: postgresqlDataInsertion,
   teaser:
@@ -15,6 +24,7 @@ export const metadata: ArticleMetadata = {
   title: 'How SQL injection prevention works, and why it’s still relevant',
   published: 1584812119,
   readingTime: 6,
+  headings,
 };
 
 const parameterizedQueryJs = `
@@ -98,7 +108,7 @@ export default function Article() {
         Two decades later, it’s remarkable how SQL injection is still relevant.
         Why is this the case? Is there something we can do about it?
       </P>
-      <H2>How is data moved from an application to a database?</H2>
+      <H2>{headings[0]}</H2>
       <P>
         First, let’s remind ourselves how data gets inserted into and fetched
         from a database.
@@ -116,7 +126,7 @@ export default function Article() {
         height={360}
         alt="PostgreSQL data insertion. (Using an ORM introduces a step between 1 and 2.)"
       />
-      <H2>Parameterized queries and prepared statements</H2>
+      <H2>{headings[1]}</H2>
       <P>
         If we look at most database drivers’ query() or execute() methods, they
         also support a second argument. If we pass the values of our SQL
@@ -167,7 +177,7 @@ export default function Article() {
         injection – whether it accomplishes that through escaping or prepared
         statements depends on the driver.
       </P>
-      <H2>Are prepared statements better?</H2>
+      <H2>{headings[2]}</H2>
       <P>
         One could argue that prepared statements are more foolproof than
         escaping, even though they both prevent SQL injection. When escaping,
@@ -181,7 +191,7 @@ export default function Article() {
         cases, it’s not something we need to factor in. If it is, it’s a sign we
         have other problems to solve first.
       </P>
-      <H2>What about the rest of the SQL statement?</H2>
+      <H2>{headings[3]}</H2>
       <P>
         Neither parameterized queries nor prepared statements allow us to use
         placeholders for the rest of the SQL statement.
@@ -192,7 +202,7 @@ export default function Article() {
         solution is to have a list of entire statements. Our code then derives
         which item in the list to pick from user input.
       </P>
-      <H2>Why is SQL injection still relevant?</H2>
+      <H2>{headings[4]}</H2>
       <P>
         There are great tools at our disposal, so why is SQL injection still a
         top threat? While we can discuss from a broader perspective – security
@@ -220,7 +230,7 @@ export default function Article() {
         further, we build on top of those snippets and introduce vulnerable
         code.
       </P>
-      <H2>So, what can we do?</H2>
+      <H2>{headings[5]}</H2>
       <P>
         For starters, maintainers of SQL tutorials, particularly the ones
         ranking highly on Google, should consider changing their examples to

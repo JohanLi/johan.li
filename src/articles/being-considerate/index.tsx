@@ -8,6 +8,13 @@ import { ArticleMetadata } from '../../components/article/articleTypes';
 import tBarLift from './t-bar-lift.jpg';
 import tBarLiftLarge from './t-bar-lift-large.jpg';
 
+const headings = [
+  'Skiing and I',
+  'T-bar lifts',
+  'The interaction',
+  'The ride home',
+];
+
 export const metadata: ArticleMetadata = {
   image: tBarLift,
   teaser: `
@@ -17,6 +24,7 @@ export const metadata: ArticleMetadata = {
   title: 'Being considerate',
   published: 1580515200,
   readingTime: 3,
+  headings,
 };
 
 export default function Article() {
@@ -26,7 +34,7 @@ export default function Article() {
         Two unusual things happened. I was riding a ski lift. And my lift
         companion, a kid, said something that will stay with me for a long time.
       </P>
-      <H2>Skiing and I</H2>
+      <H2>{headings[0]}</H2>
       <P>
         Despite growing up in Sweden, I never learned how to ski until last
         winter. While it may sound strange, skiing has a symbolic meaning to me.
@@ -41,7 +49,7 @@ export default function Article() {
         missed. Picking up skiing as a hobby is a part of that. After a heavy
         snowfall in November, I traveled to a ski resort called Åre.
       </P>
-      <H2>T-bar lifts</H2>
+      <H2>{headings[1]}</H2>
       <P>
         Due to strong winds, the chairlift I intended to ride was
         non-operational. I headed towards a different area. Here, they operated
@@ -66,7 +74,7 @@ export default function Article() {
         minutes, you stand side-by-side with a stranger. Peaceful nature
         surrounds you, and it’s impractical to fiddle with your phone.
       </P>
-      <H2>The interaction</H2>
+      <H2>{headings[2]}</H2>
       <P>
         Day two, while queuing, I realize a little girl will be my next lift
         companion. Judging by her appearance, she hasn’t turned ten yet. We
@@ -94,7 +102,7 @@ export default function Article() {
         considerate of you!”.
       </P>
       <P>“Thanks!”</P>
-      <H2>The ride home</H2>
+      <H2>{headings[3]}</H2>
       <P>
         A few days later, on the train back home, I thought about my progress as
         a skier. I thought about all the proud parents who had sent their kids
