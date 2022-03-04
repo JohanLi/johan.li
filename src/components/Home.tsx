@@ -3,16 +3,10 @@ import React from 'react';
 import Link from './Link';
 import { unixTimestampToMonthYear } from '../utils';
 import Layout from './Layout';
-import { ArticleMetadata } from './article/articleTypes';
-
-import johanLi from '../../public/johan-li.jpg';
-
-type Article = {
-  slug: string;
-} & ArticleMetadata;
+import { Article, Slug } from './article/articleTypes';
 
 type Props = {
-  articles: Article[];
+  articles: (Article & Slug)[];
 };
 
 export default function Home({ articles }: Props) {
@@ -31,7 +25,7 @@ export default function Home({ articles }: Props) {
                 key={article.slug}
               >
                 <img
-                  src={article.image}
+                  src={article.thumbnail}
                   alt={article.title}
                   className="h-48 w-full object-cover"
                 />

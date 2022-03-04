@@ -9,7 +9,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 });
 
 export const getStaticPaths = async () => ({
-  paths: Object.keys(articles).map((slug) => ({ params: { slug } })),
+  paths: articles.map(({ slug }) => ({ params: { slug } })),
   fallback: false,
 });
 
