@@ -2,17 +2,17 @@ import React, { ReactNode } from 'react';
 
 import Layout from '../Layout';
 import { unixTimestampToMonthYear } from '../../utils';
-import { ArticleMetadata } from './articleTypes';
+import { Article } from './articleTypes';
 import InPageNavigation from './InPageNavigation';
 import { H1 } from './Common';
 
 type Props = {
-  metadata: ArticleMetadata;
+  article: Article;
   children: ReactNode;
 };
 
-export default function ArticleLayout({ metadata, children }: Props) {
-  const { title, published, readingTime, headings } = metadata;
+export default function ArticleLayout({ article, children }: Props) {
+  const { title, published, readingTime, headings } = article;
 
   return (
     <Layout title={title}>

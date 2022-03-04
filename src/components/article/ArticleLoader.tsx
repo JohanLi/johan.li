@@ -1,35 +1,39 @@
 import React from 'react';
 
-import * as howNotToDesignAnSDK from '../../articles/how-not-to-design-an-sdk';
-import * as becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant';
-import * as theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii';
-import * as theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks';
-import * as sqlInjectionPrevention from '../../articles/sql-injection-prevention';
-import * as beingConsiderate from '../../articles/being-considerate';
-import * as cargoCultingInSoftware from '../../articles/cargo-culting-in-software';
+import howNotToDesignAnSDK from '../../articles/how-not-to-design-an-sdk';
+import becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant';
+import theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii';
+import theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks';
+import sqlInjectionPrevention from '../../articles/sql-injection-prevention';
+import beingConsiderate from '../../articles/being-considerate';
+import cargoCultingInSoftware from '../../articles/cargo-culting-in-software';
 
-import { ArticleMetadata } from './articleTypes';
+import { Article, Slug } from './articleTypes';
+import { getSlug } from '../../utils';
+import ArticleLayout from './ArticleLayout';
 
-export const articles: {
-  [key in string]: {
-    default: () => JSX.Element;
-    metadata: ArticleMetadata;
-  };
-} = {
-  'how-not-to-design-an-sdk': { ...howNotToDesignAnSDK },
-  'becoming-an-independent-consultant': { ...becomingAnIndependentConsultant },
-  'the-gold-exploit-of-diablo-iii': { ...theGoldExploitOfDiabloIII },
-  'the-rise-of-javascript-frameworks': { ...theRiseOfJavascriptFrameworks },
-  'sql-injection-prevention': { ...sqlInjectionPrevention },
-  'being-considerate': { ...beingConsiderate },
-  'cargo-culting-in-software': { ...cargoCultingInSoftware },
-};
+export const articles: (Article & Slug)[] = [
+  howNotToDesignAnSDK,
+  becomingAnIndependentConsultant,
+  theGoldExploitOfDiabloIII,
+  theRiseOfJavascriptFrameworks,
+  sqlInjectionPrevention,
+  beingConsiderate,
+  cargoCultingInSoftware,
+]
+  .map((article) => ({
+    ...article,
+    slug: getSlug(article.title),
+  }))
+  .sort((a, b) => b.published - a.published);
 
-type Props = {
-  slug: string;
-};
+export default function ArticleLoader({ slug }: Slug) {
+  const article = articles.find((article) => article.slug === slug);
+  const Body = article.body;
 
-export default function ArticleLoader({ slug }: Props) {
-  const { default: Article } = articles[slug];
-  return <Article />;
+  return (
+    <ArticleLayout article={article}>
+      <Body />
+    </ArticleLayout>
+  );
 }
