@@ -13,3 +13,5 @@ export type Article = {
 export type Slug = {
   slug: string;
 }
+
+export type ArticleWithSlug = Article & Slug;
