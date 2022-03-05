@@ -8,11 +8,11 @@ import sqlInjectionPrevention from '../../articles/sql-injection-prevention';
 import beingConsiderate from '../../articles/being-considerate';
 import cargoCultingInSoftware from '../../articles/cargo-culting-in-software';
 
-import { Article, Slug } from './articleTypes';
+import { ArticleWithSlug, Slug } from './articleTypes';
 import { getSlug } from '../../utils';
 import ArticleLayout from './ArticleLayout';
 
-export const articles: (Article & Slug)[] = [
+export const articles: ArticleWithSlug[] = [
   howNotToDesignAnSDK,
   becomingAnIndependentConsultant,
   theGoldExploitOfDiabloIII,
@@ -27,7 +27,9 @@ export const articles: (Article & Slug)[] = [
   }))
   .sort((a, b) => b.published - a.published);
 
-export default function ArticleLoader({ slug }: Slug) {
+export type ArticleLoaderProps = Slug;
+
+export default function ArticleLoader({ slug }: ArticleLoaderProps) {
   const article = articles.find((article) => article.slug === slug);
   const Body = article.body;
 

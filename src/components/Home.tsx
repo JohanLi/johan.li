@@ -3,13 +3,13 @@ import React from 'react';
 import Link from './Link';
 import { unixTimestampToMonthYear } from '../utils';
 import Layout from './Layout';
-import { Article, Slug } from './article/articleTypes';
+import { ArticleWithSlug } from './article/articleTypes';
 
-type Props = {
-  articles: (Article & Slug)[];
+export type HomeProps = {
+  articles: Omit<ArticleWithSlug, 'body'>[];
 };
 
-export default function Home({ articles }: Props) {
+export default function Home({ articles }: HomeProps) {
   return (
     <Layout isHomePage>
       <div className="max-w-7xl px-4 lg:px-8 mx-auto">
