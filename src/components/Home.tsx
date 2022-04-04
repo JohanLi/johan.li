@@ -14,7 +14,7 @@ export default function Home({ articles }: HomeProps) {
     <Layout isHomePage>
       <div className="max-w-7xl px-4 lg:px-8 mx-auto">
         <div className="pt-6 sm:pt-12 pb-12 sm:pb-24">
-          <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+          <h2 className="text-2xl md:text-3xl tracking-tight font-extrabold text-gray-900">
             Articles
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-6 sm:mt-12">

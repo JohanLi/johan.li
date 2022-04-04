@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from './Link';
-
-// footer with dynamic height fixed at bottom https://stackoverflow.com/a/59865099
+import Footer from './footer/Footer';
 
 const logoColor = '#a675a2';
 
@@ -63,7 +62,7 @@ export default function Layout({
       <div>
         {children}
       </div>
-      <footer className="mb-auto" />
+      <Footer />
     </div>
   );
 }
