@@ -9,7 +9,7 @@ import Link from '../Link';
   as opposed to always 0.
  */
 const SECTION_THRESHOLD = 1;
-const SECTION_DEBOUNCE = 100;
+const DEBOUNCE_MILLISECONDS = 100;
 
 type Props = {
   title: string;
@@ -17,15 +17,13 @@ type Props = {
 };
 
 export default function InPageNavigation({ title, headings }: Props) {
-  const [section, setSection] = useState(0);
-
-  let thumbY = 0;
-  let thumbHeight = 0;
-
   const [headingElements, setHeadingElements] = useState<HTMLHeadingElement[]>(
     [],
   );
   const [anchorElements, setAnchorElements] = useState<HTMLAnchorElement[]>([]);
+
+  const [section, setSection] = useState(0);
+  const [thumb, setThumb] = useState({ y: 0, height: 0 });
 
   useEffect(() => {
     const articleElement = document.querySelector('article');
@@ -40,44 +38,68 @@ export default function InPageNavigation({ title, headings }: Props) {
     );
   }, []);
 
-  if (headingElements.length && anchorElements.length) {
-    thumbY =
-      anchorElements[section].getBoundingClientRect().top -
-      anchorElements[0].getBoundingClientRect().top;
+  useEffect(() => {
+    const updateThumb = debounce(
+      () => {
+        if (!headingElements.length || !anchorElements.length) {
+          return;
+        }
 
-    thumbHeight = anchorElements[section].offsetHeight + 4;
-  }
+        setThumb({
+          y:
+            anchorElements[section].getBoundingClientRect().top -
+            anchorElements[0].getBoundingClientRect().top,
+          height: anchorElements[section].offsetHeight + 4,
+        });
+      },
+      DEBOUNCE_MILLISECONDS,
+      { maxWait: DEBOUNCE_MILLISECONDS },
+    );
+
+    updateThumb();
+
+    window.addEventListener('resize', updateThumb);
+
+    return () => {
+      window.removeEventListener('resize', updateThumb);
+    };
+  }, [section, headingElements, anchorElements]);
 
   useEffect(() => {
     if (!(headingElements.length && anchorElements.length)) {
       return undefined;
     }
 
-    const onScroll = debounce(() => {
-      let section = 0;
+    const onScroll = debounce(
+      () => {
+        let section = 0;
 
-      for (let i = 0; i < headingElements.length; i += 1) {
-        if (
-          headingElements[i].getBoundingClientRect().top <= SECTION_THRESHOLD &&
-          !(
-            headingElements[i + 1]?.getBoundingClientRect().top <=
-            SECTION_THRESHOLD
-          )
-        ) {
-          section = i;
-          break;
+        for (let i = 0; i < headingElements.length; i += 1) {
+          if (
+            headingElements[i].getBoundingClientRect().top <=
+              SECTION_THRESHOLD &&
+            !(
+              headingElements[i + 1]?.getBoundingClientRect().top <=
+              SECTION_THRESHOLD
+            )
+          ) {
+            section = i;
+            break;
+          }
         }
-      }
 
-      const atBottom =
-        window.scrollY + window.innerHeight >= document.body.scrollHeight;
+        const atBottom =
+          window.scrollY + window.innerHeight >= document.body.scrollHeight;
 
-      if (atBottom) {
-        setSection(headingElements.length - 1);
-      } else {
-        setSection(section);
-      }
-    }, SECTION_DEBOUNCE);
+        if (atBottom) {
+          setSection(headingElements.length - 1);
+        } else {
+          setSection(section);
+        }
+      },
+      DEBOUNCE_MILLISECONDS,
+      { maxWait: DEBOUNCE_MILLISECONDS },
+    );
 
     window.addEventListener('scroll', onScroll);
 
@@ -122,7 +144,7 @@ export default function InPageNavigation({ title, headings }: Props) {
             'bg-purple-800 w-0.5 h-px absolute top-0 -left-0.5 transition-transform duration-300 origin-top',
           )}
           style={{
-            transform: `translateY(${thumbY}px) scaleY(${thumbHeight})`,
+            transform: `translateY(${thumb.y}px) scaleY(${thumb.height})`,
           }}
         />
       </nav>
