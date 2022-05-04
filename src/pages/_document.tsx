@@ -1,6 +1,8 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
+import Fonts from '../components/Fonts';
+
 const CLOUDFLARE_WEB_ANALYTICS_TOKEN =
   process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN;
 
@@ -9,11 +11,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-          />
+          <Fonts />
         </Head>
         <body className="overflow-y-scroll">
           <Main />
