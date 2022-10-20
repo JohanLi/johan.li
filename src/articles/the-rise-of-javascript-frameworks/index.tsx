@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import { H2, P } from '../../components/article/Common';
-import Image from '../../components/image/Image';
-import Code from '../../components/article/Code';
-import { Article } from '../../components/article/articleTypes';
+import { H2, P } from '../../components/article/Common'
+import Image from '../../components/image/Image'
+import Code from '../../components/article/Code'
+import { Article } from '../../components/article/articleTypes'
 
-import angularReactVueTrends from './angular-react-vue-trends.png';
-import barebonesMessagingApp from './barebones-messaging-app.png';
+import angularReactVueTrends from './angular-react-vue-trends.png'
+import barebonesMessagingApp from './barebones-messaging-app.png'
 
 const headings = [
   'From pages to applications',
@@ -14,7 +14,7 @@ const headings = [
   'A bare-bones messaging app',
   'Amount of code vs. amount of re-rendering',
   'The powerful abstraction of Angular, React, and Vue',
-];
+]
 
 const html1 = `
 <div class="messages">
@@ -31,7 +31,7 @@ const html1 = `
     </div>
   {{/each}}
 </div>
-`;
+`
 
 const html2 = `
 <div class="messages">
@@ -65,13 +65,13 @@ const html2 = `
     </div>
   </div>
 </div>
-`;
+`
 
 const js1 = `
 function updateMessages(html) {
   document.querySelector('.messages').outerHTML = html;
 }
-`;
+`
 
 const javascript1 = `
 function addMessage(html) {
@@ -116,7 +116,7 @@ addMessage(\`
     </div>
   </div>
 \`);
-`;
+`
 
 const javascript2 = `
 const initialMessages = [
@@ -184,7 +184,7 @@ const Messages = ({ messages }) => (
     })}
   </div>
 );
-`;
+`
 
 const body = () => (
   <>
@@ -401,7 +401,7 @@ const body = () => (
       approach produces code that is easier to grok.
     </P>
   </>
-);
+)
 
 const article: Article = {
   thumbnail: angularReactVueTrends,
@@ -414,6 +414,6 @@ const article: Article = {
   readingTime: 8,
   headings,
   body,
-};
+}
 
-export default article;
+export default article

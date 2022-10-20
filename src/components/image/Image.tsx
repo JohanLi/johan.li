@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-import calculateZoom from './calculateZoom';
-import { classNames } from '../../utils';
+import React, { useEffect, useState, useRef } from 'react'
+import calculateZoom from './calculateZoom'
+import { classNames } from '../../utils'
 
 /*
   If zoomSrc is provided:
@@ -10,71 +10,71 @@ import { classNames } from '../../utils';
  */
 
 type Props = {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-  zoomSrc?: string;
-};
+  src: string
+  width: number
+  height: number
+  alt: string
+  zoomSrc?: string
+}
 
 export default function Image({ src, width, height, alt, zoomSrc }: Props) {
-  const [zoomActive, setZoomActive] = useState(false);
-  const [transitionActive, setTransitionActive] = useState(false);
-  const [zoomImage, setZoomImage] = useState<HTMLImageElement>();
+  const [zoomActive, setZoomActive] = useState(false)
+  const [transitionActive, setTransitionActive] = useState(false)
+  const [zoomImage, setZoomImage] = useState<HTMLImageElement>()
 
-  const imageElement = useRef<HTMLImageElement>(null);
+  const imageElement = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     if (!zoomSrc) {
-      return;
+      return
     }
 
-    const image = document.createElement('img');
-    image.src = zoomSrc;
-    image.onload = () => setZoomImage(image);
+    const image = document.createElement('img')
+    image.src = zoomSrc
+    image.onload = () => setZoomImage(image)
     image.onerror = () => {
-      throw Error('Failed to load zoomImage');
-    };
-  }, [zoomSrc]);
+      throw Error('Failed to load zoomImage')
+    }
+  }, [zoomSrc])
 
   useEffect(() => {
     if (!zoomActive) {
-      return;
+      return
     }
 
-    setTransitionActive(true);
-  }, [zoomActive]);
+    setTransitionActive(true)
+  }, [zoomActive])
 
   useEffect(() => {
     if (!transitionActive) {
-      return;
+      return
     }
 
     const revertTransition = () => {
-      setTransitionActive(false);
-    };
+      setTransitionActive(false)
+    }
 
     const revertTransitionOnEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        e.preventDefault();
-        revertTransition();
+        e.preventDefault()
+        revertTransition()
       }
-    };
+    }
 
-    window.addEventListener('scroll', revertTransition);
-    window.addEventListener('resize', revertTransition);
+    window.addEventListener('scroll', revertTransition)
+    window.addEventListener('resize', revertTransition)
 
-    window.addEventListener('keydown', revertTransitionOnEscape);
+    window.addEventListener('keydown', revertTransitionOnEscape)
 
     return () => {
-      window.removeEventListener('scroll', revertTransition);
-      window.removeEventListener('resize', revertTransition);
+      window.removeEventListener('scroll', revertTransition)
+      window.removeEventListener('resize', revertTransition)
 
-      window.removeEventListener('keydown', revertTransitionOnEscape);
-    };
-  }, [transitionActive]);
+      window.removeEventListener('keydown', revertTransitionOnEscape)
+    }
+  }, [transitionActive])
 
-  const paddingBottom = `${(height / width) * 100}%`;
+  const paddingBottom = `${(height / width) * 100}%`
 
   const image = (
     <div className="-mx-4 md:mx-0 lg:-mx-8 my-12">
@@ -107,26 +107,26 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
             ref={imageElement}
             onClick={() => {
               if (!zoomImage) {
-                return;
+                return
               }
 
-              setZoomActive(true);
+              setZoomActive(true)
             }}
           />
         </div>
       </div>
       <div className="text-sm text-gray-400 text-center mt-6 mx-4">{alt}</div>
     </div>
-  );
+  )
 
   if (!zoomImage || !imageElement.current || !zoomActive) {
-    return image;
+    return image
   }
 
   const { top, left, scale, translateX, translateY } = calculateZoom(
     imageElement.current,
     zoomImage,
-  );
+  )
 
   const style = {
     top,
@@ -136,7 +136,7 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
       : 'none',
     width,
     height,
-  };
+  }
 
   const imageTransition = (
     <div>
@@ -154,19 +154,19 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
         onClick={() => setTransitionActive(false)}
         onTransitionEnd={() => {
           if (transitionActive) {
-            return;
+            return
           }
 
-          setZoomActive(false);
+          setZoomActive(false)
         }}
       />
     </div>
-  );
+  )
 
   return (
     <>
       {image}
       {imageTransition}
     </>
-  );
+  )
 }

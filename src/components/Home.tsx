@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import Link from './Link';
-import { unixTimestampToMonthYear } from '../utils';
-import Layout from './Layout';
-import { ArticleWithSlug } from './article/articleTypes';
+import Link from './Link'
+import { unixTimestampToMonthYear } from '../utils'
+import Layout from './Layout'
+import { ArticleWithSlug } from './article/articleTypes'
 
 export type HomeProps = {
-  articles: Omit<ArticleWithSlug, 'body'>[];
-};
+  articles: Omit<ArticleWithSlug, 'body'>[]
+}
 
 export default function Home({ articles }: HomeProps) {
   return (
@@ -47,5 +47,5 @@ export default function Home({ articles }: HomeProps) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

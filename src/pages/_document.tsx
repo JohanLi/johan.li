@@ -1,10 +1,10 @@
-import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-import Fonts from '../components/Fonts';
+import Fonts from '../components/Fonts'
 
 const CLOUDFLARE_WEB_ANALYTICS_TOKEN =
-  process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN;
+  process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN
 
 export default class MyDocument extends Document {
   render() {
@@ -25,6 +25,6 @@ export default class MyDocument extends Document {
           )}
         </body>
       </Html>
-    );
+    )
   }
 }

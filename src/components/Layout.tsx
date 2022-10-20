@@ -1,23 +1,23 @@
-import React, { ReactNode } from 'react';
-import Head from 'next/head';
-import Link from './Link';
-import Footer from './footer/Footer';
+import React, { ReactNode } from 'react'
+import Head from 'next/head'
+import Link from './Link'
+import Footer from './footer/Footer'
 
-const logoColor = '#a675a2';
+const logoColor = '#a675a2'
 
 type Props =
   | {
-      title: string;
-      isHomePage?: false;
-      metaContent?: string;
-      children: ReactNode;
+      title: string
+      isHomePage?: false
+      metaContent?: string
+      children: ReactNode
     }
   | {
-      title?: never;
-      isHomePage: true;
-      metaContent?: string;
-      children: ReactNode;
-    };
+      title?: never
+      isHomePage: true
+      metaContent?: string
+      children: ReactNode
+    }
 
 export default function Layout({
   title,
@@ -59,10 +59,8 @@ export default function Layout({
           </Link>
         </div>
       </nav>
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
       <Footer />
     </div>
-  );
+  )
 }

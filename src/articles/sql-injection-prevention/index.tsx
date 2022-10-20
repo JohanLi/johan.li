@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Image from '../../components/image/Image';
-import Code from '../../components/article/Code';
-import { Article } from '../../components/article/articleTypes';
-import { H2, P } from '../../components/article/Common';
+import Image from '../../components/image/Image'
+import Code from '../../components/article/Code'
+import { Article } from '../../components/article/articleTypes'
+import { H2, P } from '../../components/article/Common'
 
-import postgresqlDataInsertion from './postgresql-data-insertion.png';
+import postgresqlDataInsertion from './postgresql-data-insertion.png'
 
 const headings = [
   'How is data moved from an application to a database?',
@@ -14,7 +14,7 @@ const headings = [
   'What about the rest of the SQL statement?',
   'Why is SQL injection still relevant?',
   'So, what can we do?',
-];
+]
 
 const parameterizedQueryJs = `
 const firstname = 'Michael';
@@ -24,7 +24,7 @@ database.query(\`
   INSERT INTO users (firstname, lastname)
   VALUES ($1, $2)
 \`, [firstname, lastname]);
-`;
+`
 
 const parameterizedQueryPython = `
 firstname = "Elliot"
@@ -37,7 +37,7 @@ cursor.execute("""
 
 # INSERT INTO users (firstname, lastname)
 # VALUES ('Elliot', 'Alderson''); DROP TABLE users;--')
-`;
+`
 
 const pythonVulnerableExamples = `
 cursor.execute("""
@@ -64,7 +64,7 @@ cursor.execute(f"""
   INSERT INTO users (firstname, lastname)
   VALUES ('{firstname}', '{lastname}')
 """)
-`;
+`
 
 const reactSecureByDefault = `
 const text = '<strong>Good morning!</strong>';
@@ -74,7 +74,7 @@ const safePost = <div>{text}</div>;
 
 // treated as HTML
 const unsafePost = <div dangerouslySetInnerHTML={__html: text} />;
-`;
+`
 
 const body = () => (
   <>
@@ -247,7 +247,7 @@ const body = () => (
       uglier API and breaking backward compatibility.
     </P>
   </>
-);
+)
 
 const article: Article = {
   thumbnail: postgresqlDataInsertion,
@@ -258,6 +258,6 @@ const article: Article = {
   readingTime: 6,
   headings,
   body,
-};
+}
 
-export default article;
+export default article

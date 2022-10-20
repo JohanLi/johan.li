@@ -3,7 +3,7 @@
   https://sia.codes/posts/making-google-fonts-faster/
  */
 
-import React from 'react';
+import React from 'react'
 
 const fonts = [
   {
@@ -22,9 +22,11 @@ const fonts = [
     weight: 900,
     url: '/fonts/roboto-v29-latin-900.woff2',
   },
-];
+]
 
-const fontFaceStyle = fonts.map(({ weight, url }) => `
+const fontFaceStyle = fonts
+  .map(
+    ({ weight, url }) => `
   @font-face {
     font-family: 'Roboto';
     font-style: normal;
@@ -32,7 +34,9 @@ const fontFaceStyle = fonts.map(({ weight, url }) => `
     font-display: optional;
     src: url('${url}') format('woff2');
   }
-`).join('');
+`,
+  )
+  .join('')
 
 export default function Fonts() {
   return (
@@ -49,5 +53,5 @@ export default function Fonts() {
       ))}
       <style dangerouslySetInnerHTML={{ __html: fontFaceStyle }} />
     </>
-  );
+  )
 }
