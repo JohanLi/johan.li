@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import Image from '../../components/image/Image';
+import Image from '../../components/image/Image'
 import {
   CodeInline,
   H2,
@@ -9,18 +9,18 @@ import {
   Quote,
   Title,
   UlReferences,
-} from '../../components/article/Common';
-import Link from '../../components/Link';
-import Code from '../../components/article/Code';
-import { Article } from '../../components/article/articleTypes';
+} from '../../components/article/Common'
+import Link from '../../components/Link'
+import Code from '../../components/article/Code'
+import { Article } from '../../components/article/articleTypes'
 
-import feelsBadMan from './feels-bad-man.png';
-import npmInstallStart from './npm-install-start.png';
-import excessiveInformation from './excessive-information.png';
-import excessiveInformationLarge from './excessive-information-large.png';
-import objectOrientedProgrammer from './object-oriented-programmer.png';
-import objectOrientedProgrammerSmall from './object-oriented-programmer-small.png';
-import ImageFloat from '../../components/image/ImageFloat';
+import feelsBadMan from './feels-bad-man.png'
+import npmInstallStart from './npm-install-start.png'
+import excessiveInformation from './excessive-information.png'
+import excessiveInformationLarge from './excessive-information-large.png'
+import objectOrientedProgrammer from './object-oriented-programmer.png'
+import objectOrientedProgrammerSmall from './object-oriented-programmer-small.png'
+import ImageFloat from '../../components/image/ImageFloat'
 
 const headings = [
   'Azure Blob Storage',
@@ -29,7 +29,7 @@ const headings = [
   'A good SDK',
   'Opinions about the Java SDK',
   'In closing',
-];
+]
 
 const js1 = `
 const {
@@ -75,7 +75,7 @@ const aborter = Aborter.timeout(300000);
 blockBlobURL.upload(aborter, body, body.length).then((response) => {
   console.log(response);
 });
-`;
+`
 
 const js2 = `
 const AWS = require('aws-sdk');
@@ -100,7 +100,7 @@ s3.upload({
   .then((response) => {
     console.log(response);
   });
-`;
+`
 
 const body = () => (
   <>
@@ -371,7 +371,7 @@ const body = () => (
       </li>
     </UlReferences>
   </>
-);
+)
 
 const article: Article = {
   thumbnail: objectOrientedProgrammerSmall,
@@ -382,6 +382,6 @@ const article: Article = {
   readingTime: 5,
   headings,
   body,
-};
+}
 
-export default article;
+export default article

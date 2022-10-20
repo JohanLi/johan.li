@@ -1,48 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import debounce from 'lodash.debounce';
+import React, { useState, useEffect } from 'react'
+import debounce from 'lodash.debounce'
 
-import { classNames, getSlug } from '../../utils';
-import Link from '../Link';
+import { classNames, getSlug } from '../../utils'
+import Link from '../Link'
 
 /*
   some hash links, when clicked, result in 0 < getBoundingClientRect().top < 1
   as opposed to always 0.
  */
-const SECTION_THRESHOLD = 1;
-const DEBOUNCE_MILLISECONDS = 100;
+const SECTION_THRESHOLD = 1
+const DEBOUNCE_MILLISECONDS = 100
 
 type Props = {
-  title: string;
-  headings: string[];
-};
+  title: string
+  headings: string[]
+}
 
 export default function InPageNavigation({ title, headings }: Props) {
   const [headingElements, setHeadingElements] = useState<HTMLHeadingElement[]>(
     [],
-  );
-  const [anchorElements, setAnchorElements] = useState<HTMLAnchorElement[]>([]);
+  )
+  const [anchorElements, setAnchorElements] = useState<HTMLAnchorElement[]>([])
 
-  const [section, setSection] = useState(0);
-  const [thumb, setThumb] = useState({ y: 0, height: 0 });
+  const [section, setSection] = useState(0)
+  const [thumb, setThumb] = useState({ y: 0, height: 0 })
 
   useEffect(() => {
-    const articleElement = document.querySelector('article');
+    const articleElement = document.querySelector('article')
 
     setHeadingElements([
       articleElement.querySelector('h1'),
       ...Array.from(articleElement.querySelectorAll('h2')),
-    ]);
+    ])
 
     setAnchorElements(
       Array.from(articleElement.querySelector('nav').querySelectorAll('a')),
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
     const updateThumb = debounce(
       () => {
         if (!headingElements.length || !anchorElements.length) {
-          return;
+          return
         }
 
         setThumb({
@@ -50,29 +50,29 @@ export default function InPageNavigation({ title, headings }: Props) {
             anchorElements[section].getBoundingClientRect().top -
             anchorElements[0].getBoundingClientRect().top,
           height: anchorElements[section].offsetHeight + 4,
-        });
+        })
       },
       DEBOUNCE_MILLISECONDS,
       { maxWait: DEBOUNCE_MILLISECONDS },
-    );
+    )
 
-    updateThumb();
+    updateThumb()
 
-    window.addEventListener('resize', updateThumb);
+    window.addEventListener('resize', updateThumb)
 
     return () => {
-      window.removeEventListener('resize', updateThumb);
-    };
-  }, [section, headingElements, anchorElements]);
+      window.removeEventListener('resize', updateThumb)
+    }
+  }, [section, headingElements, anchorElements])
 
   useEffect(() => {
     if (!(headingElements.length && anchorElements.length)) {
-      return undefined;
+      return undefined
     }
 
     const onScroll = debounce(
       () => {
-        let section = 0;
+        let section = 0
 
         for (let i = 0; i < headingElements.length; i += 1) {
           if (
@@ -83,30 +83,30 @@ export default function InPageNavigation({ title, headings }: Props) {
               SECTION_THRESHOLD
             )
           ) {
-            section = i;
-            break;
+            section = i
+            break
           }
         }
 
         const atBottom =
-          window.scrollY + window.innerHeight >= document.body.scrollHeight;
+          window.scrollY + window.innerHeight >= document.body.scrollHeight
 
         if (atBottom) {
-          setSection(headingElements.length - 1);
+          setSection(headingElements.length - 1)
         } else {
-          setSection(section);
+          setSection(section)
         }
       },
       DEBOUNCE_MILLISECONDS,
       { maxWait: DEBOUNCE_MILLISECONDS },
-    );
+    )
 
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll)
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, [headingElements, anchorElements]);
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [headingElements, anchorElements])
 
   return (
     <div className="pl-12 lg:pl-24 pt-12 hidden lg:block">
@@ -149,5 +149,5 @@ export default function InPageNavigation({ title, headings }: Props) {
         />
       </nav>
     </div>
-  );
+  )
 }

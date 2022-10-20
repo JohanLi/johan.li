@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 
-import { H2, P } from '../../components/article/Common';
-import Image from '../../components/image/Image';
-import { Article } from '../../components/article/articleTypes';
+import { H2, P } from '../../components/article/Common'
+import Image from '../../components/image/Image'
+import { Article } from '../../components/article/articleTypes'
 
-import tBarLift from './t-bar-lift.jpg';
-import tBarLiftLarge from './t-bar-lift-large.jpg';
+import tBarLift from './t-bar-lift.jpg'
+import tBarLiftLarge from './t-bar-lift-large.jpg'
 
 const headings = [
   'Skiing and I',
   'T-bar lifts',
   'The interaction',
   'The ride home',
-];
+]
 
 const body = () => (
   <>
@@ -25,10 +25,9 @@ const body = () => (
       Despite growing up in Sweden, I never learned how to ski until last
       winter. While it may sound strange, skiing has a symbolic meaning to me.
       Growing up, I felt different. I was different: a Chinese immigrant
-      speaking English, attending a Swedish school in an affluent
-      neighborhood. Every winter, my classmates went skiing while I stayed
-      home. And so, skiing came to represent the lack of belonging I
-      experienced.
+      speaking English, attending a Swedish school in an affluent neighborhood.
+      Every winter, my classmates went skiing while I stayed home. And so,
+      skiing came to represent the lack of belonging I experienced.
     </P>
     <P>
       As an adult, I’ve made a conscious effort to experience the things I
@@ -37,9 +36,9 @@ const body = () => (
     </P>
     <H2>{headings[1]}</H2>
     <P>
-      Due to strong winds, the chairlift I intended to ride was
-      non-operational. I headed towards a different area. Here, they operated
-      a T-bar, a type of lift I hadn’t used before.
+      Due to strong winds, the chairlift I intended to ride was non-operational.
+      I headed towards a different area. Here, they operated a T-bar, a type of
+      lift I hadn’t used before.
     </P>
     <Image
       src={tBarLift}
@@ -50,23 +49,22 @@ const body = () => (
     />
     <P>
       That day, I learned that T-bars work best if you ride with someone of
-      similar height. You’re supposed to place the bar underneath your butt
-      and lean against it, as it pushes you up the hill. But when riding with
-      a kid, the bar ends up knee-level, and you’ll be in for an uncomfortable
-      ride.
+      similar height. You’re supposed to place the bar underneath your butt and
+      lean against it, as it pushes you up the hill. But when riding with a kid,
+      the bar ends up knee-level, and you’ll be in for an uncomfortable ride.
     </P>
     <P>
       I also learned how inviting these lifts are to conversations. For five
-      minutes, you stand side-by-side with a stranger. Peaceful nature
-      surrounds you, and it’s impractical to fiddle with your phone.
+      minutes, you stand side-by-side with a stranger. Peaceful nature surrounds
+      you, and it’s impractical to fiddle with your phone.
     </P>
     <H2>{headings[2]}</H2>
     <P>
       Day two, while queuing, I realize a little girl will be my next lift
       companion. Judging by her appearance, she hasn’t turned ten yet. We
       receive a helping hand from the lift operator, as we lean on the T-bar.
-      Knee-level for me, right level for her. As the bar pushes us forward,
-      she turns and looks at me.
+      Knee-level for me, right level for her. As the bar pushes us forward, she
+      turns and looks at me.
     </P>
     <P>
       <strong>“Would you like it a little higher?”</strong>
@@ -75,8 +73,8 @@ const body = () => (
       I’m astonished. For one, I rarely encounter kids on lifts who interact.
       And perhaps it’s due to my lack of experience with them in general, but
       the degree of thoughtfulness she showed with just a few words surprised
-      me. Plus, the fluency in which she spoke English, reminded me of myself
-      as a child.
+      me. Plus, the fluency in which she spoke English, reminded me of myself as
+      a child.
     </P>
     <P>
       Continuing up the hill, I find out she’s here to attend a training camp.
@@ -90,24 +88,24 @@ const body = () => (
     <P>“Thanks!”</P>
     <H2>{headings[3]}</H2>
     <P>
-      A few days later, on the train back home, I thought about my progress as
-      a skier. I thought about all the proud parents who had sent their kids
-      to the training camp. I thought about how tired my legs were.
+      A few days later, on the train back home, I thought about my progress as a
+      skier. I thought about all the proud parents who had sent their kids to
+      the training camp. I thought about how tired my legs were.
     </P>
     <P>
-      But most of all, I kept thinking about that interaction. It resonated
-      with me — we need to remind ourselves to be considerate. In many
-      instances, it’s something that doesn’t require much. It’s the little
-      things, as we say.
+      But most of all, I kept thinking about that interaction. It resonated with
+      me — we need to remind ourselves to be considerate. In many instances,
+      it’s something that doesn’t require much. It’s the little things, as we
+      say.
     </P>
     <P>
       I’ll be skiing more this winter. I want to get better. Someday, when I
       have kids, I’ll teach them how to ski so they won’t feel as different
-      growing up. And as they grow up, I hope I’ll be able to raise them as
-      well as the parents of this girl have.
+      growing up. And as they grow up, I hope I’ll be able to raise them as well
+      as the parents of this girl have.
     </P>
   </>
-);
+)
 
 const article: Article = {
   thumbnail: tBarLift,
@@ -120,6 +118,6 @@ const article: Article = {
   readingTime: 3,
   headings,
   body,
-};
+}
 
-export default article;
+export default article

@@ -1,9 +1,9 @@
-import React from 'react';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
+import React from 'react'
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
-import './globals.css';
-import './prism.css';
+import './globals.css'
+import './prism.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,5 +14,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Component {...pageProps} />
     </>
-  );
+  )
 }

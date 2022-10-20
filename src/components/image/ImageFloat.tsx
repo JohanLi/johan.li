@@ -1,14 +1,14 @@
-import React from 'react';
-import { classNames } from '../../utils';
+import React from 'react'
+import { classNames } from '../../utils'
 
 type Props = {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-  left?: true;
-  right?: true;
-};
+  src: string
+  width: number
+  height: number
+  alt: string
+  left?: true
+  right?: true
+}
 
 export default function ImageFloat({
   src,
@@ -26,8 +26,14 @@ export default function ImageFloat({
         right ? 'lg:float-right lg:ml-12' : '',
       )}
     >
-      <img src={src} width={width} height={height} alt={alt} className="mx-auto" />
+      <img
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        className="mx-auto"
+      />
       <div className="text-sm text-gray-400 text-center mt-6 mx-4">{alt}</div>
     </div>
-  );
+  )
 }

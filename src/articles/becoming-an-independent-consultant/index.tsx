@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Image from '../../components/image/Image';
-import { H2, H3, P, Ul, UlReferences } from '../../components/article/Common';
-import Link from '../../components/Link';
+import Image from '../../components/image/Image'
+import { H2, H3, P, Ul, UlReferences } from '../../components/article/Common'
+import Link from '../../components/Link'
 
-import independent from './independent.jpg';
-import consultantVsContractors from './consultant-vs-contractors.jpg';
+import independent from './independent.jpg'
+import consultantVsContractors from './consultant-vs-contractors.jpg'
 
 const headings = [
   'Consulting is lucrative in Sweden',
@@ -15,7 +15,7 @@ const headings = [
   'Additional caveats',
   'Where do I see myself?',
   'How should I stand out to do category 2 work?',
-];
+]
 
 const body = () => (
   <>
@@ -227,7 +227,7 @@ const body = () => (
       </li>
     </UlReferences>
   </>
-);
+)
 
 const article = {
   thumbnail: independent,
@@ -238,6 +238,6 @@ const article = {
   readingTime: 5,
   headings,
   body,
-};
+}
 
-export default article;
+export default article
