@@ -3,8 +3,6 @@
   https://sia.codes/posts/making-google-fonts-faster/
  */
 
-import React from 'react'
-
 const fonts = [
   {
     weight: 400,

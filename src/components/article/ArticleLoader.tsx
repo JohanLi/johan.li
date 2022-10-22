@@ -1,5 +1,3 @@
-import React from 'react'
-
 import howNotToDesignAnSDK from '../../articles/how-not-to-design-an-sdk'
 import becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant'
 import theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii'
