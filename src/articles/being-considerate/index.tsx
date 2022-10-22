@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { H2, P } from '../../components/article/Common'
 import Image from '../../components/image/Image'
 import { Article } from '../../components/article/articleTypes'

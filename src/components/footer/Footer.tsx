@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Link from '../Link'
 
 import johanLi from './johan-li.jpg'

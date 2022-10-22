@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Image from '../../components/image/Image'
 import Code from '../../components/article/Code'
 import { Article } from '../../components/article/articleTypes'

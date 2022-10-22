@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Image from '../../components/image/Image'
 import { H2, H3, P, UlReferences } from '../../components/article/Common'
 import Link from '../../components/Link'
