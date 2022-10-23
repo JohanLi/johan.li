@@ -1,3 +1,5 @@
+import NextImage from 'next/future/image'
+
 import Link from './Link'
 import { unixTimestampToMonthYear } from '../utils'
 import Layout from './Layout'
@@ -22,7 +24,7 @@ export default function Home({ articles }: HomeProps) {
                 className="flex flex-col rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105"
                 key={article.slug}
               >
-                <img
+                <NextImage
                   src={article.thumbnail}
                   alt={article.title}
                   className="h-48 w-full object-cover"

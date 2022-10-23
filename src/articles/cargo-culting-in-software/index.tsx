@@ -33,9 +33,8 @@ const body = () => (
       and equipment, falling from the skies?
     </P>
     <Image
-      src={vanuatuJohnFrumDay}
+      data={vanuatuJohnFrumDay}
       width={800}
-      height={600}
       alt="Vanuatu, an island country in the Pacific Ocean, has a cargo cult that survives to this day."
     />
     <P>
@@ -79,9 +78,8 @@ const body = () => (
       too, right?
     </P>
     <Image
-      src={microservices}
+      data={microservices}
       width={800}
-      height={240}
       alt="A monolith split into microservices."
     />
     <P>
@@ -128,10 +126,9 @@ const body = () => (
       is.
     </P>
     <Image
-      src={agile}
+      data={agile}
       width={800}
-      height={285}
-      zoomSrc={agileLarge}
+      zoomData={agileLarge}
       alt="Colleagues gathering around a Scrum Board."
     />
     <P>

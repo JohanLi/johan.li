@@ -105,9 +105,8 @@ const body = () => (
       where the coming JavaScript conferences may be.
     </P>
     <Image
-      src={consultantVsContractors}
+      data={consultantVsContractors}
       width={915}
-      height={600}
       alt="An extreme example of the difference between consultant and contractor."
     />
     <P>
