@@ -39,10 +39,9 @@ const body = () => (
       lift I hadn’t used before.
     </P>
     <Image
-      src={tBarLift}
+      data={tBarLift}
       width={800}
-      height={600}
-      zoomSrc={tBarLiftLarge}
+      zoomData={tBarLiftLarge}
       alt="A T-Bar lift in Åre."
     />
     <P>

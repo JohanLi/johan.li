@@ -194,9 +194,8 @@ const body = () => (
       space.
     </P>
     <Image
-      src={angularReactVueTrends}
+      data={angularReactVueTrends}
       width={800}
-      height={230}
       alt="Google Trends for the search terms “angular js”, “react js” and “vue js”."
     />
     <P>
@@ -276,9 +275,8 @@ const body = () => (
     </P>
     <H2>{headings[2]}</H2>
     <Image
-      src={barebonesMessagingApp}
+      data={barebonesMessagingApp}
       width={410}
-      height={310}
       alt="A bare-bones chat application."
     />
     <P>

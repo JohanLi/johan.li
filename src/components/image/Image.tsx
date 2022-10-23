@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
+import NextImage, { StaticImageData } from 'next/future/image'
+
 import calculateZoom from './calculateZoom'
 import { classNames } from '../../utils'
 
@@ -10,32 +12,31 @@ import { classNames } from '../../utils'
  */
 
 type Props = {
-  src: string
+  data: StaticImageData
   width: number
-  height: number
   alt: string
-  zoomSrc?: string
+  zoomData?: StaticImageData
 }
 
-export default function Image({ src, width, height, alt, zoomSrc }: Props) {
+export default function Image({ data, width, alt, zoomData }: Props) {
   const [zoomActive, setZoomActive] = useState(false)
   const [transitionActive, setTransitionActive] = useState(false)
   const [zoomImage, setZoomImage] = useState<HTMLImageElement>()
 
-  const imageElement = useRef<HTMLImageElement>(null)
+  const [imageElement, setImageElement] = useState<HTMLImageElement>()
 
   useEffect(() => {
-    if (!zoomSrc) {
+    if (!zoomData) {
       return
     }
 
-    const image = document.createElement('img')
-    image.src = zoomSrc
-    image.onload = () => setZoomImage(image)
-    image.onerror = () => {
+    const preloadZoomImage = document.createElement('img')
+    preloadZoomImage.src = zoomData.src
+    preloadZoomImage.onload = () => setZoomImage(preloadZoomImage)
+    preloadZoomImage.onerror = () => {
       throw Error('Failed to load zoomImage')
     }
-  }, [zoomSrc])
+  }, [zoomData])
 
   useEffect(() => {
     if (!zoomActive) {
@@ -74,7 +75,7 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
     }
   }, [transitionActive])
 
-  const paddingBottom = `${(height / width) * 100}%`
+  const paddingBottom = `${(data.height / data.width) * 100}%`
 
   const image = (
     <div className="-mx-4 md:mx-0 lg:-mx-8 my-12">
@@ -83,10 +84,9 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
         className="relative max-w-full mx-auto"
       >
         <div style={{ paddingBottom }}>
-          <img
-            src={src}
+          <NextImage
+            src={data}
             width={width}
-            height={height}
             alt={alt}
             className={classNames(
               'absolute inset-0 md:hidden',
@@ -94,17 +94,15 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
               zoomActive ? 'invisible' : '',
             )}
           />
-          <img
-            src={src}
+          <NextImage
+            src={data}
             width={width}
-            height={height}
             alt={alt}
             className={classNames(
               'absolute inset-0 hidden md:block',
               zoomImage ? 'cursor-zoom-in' : '',
               zoomActive ? 'invisible' : '',
             )}
-            ref={imageElement}
             onClick={() => {
               if (!zoomImage) {
                 return
@@ -112,6 +110,7 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
 
               setZoomActive(true)
             }}
+            onLoadingComplete={(img) => setImageElement(img)}
           />
         </div>
       </div>
@@ -119,12 +118,12 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
     </div>
   )
 
-  if (!zoomImage || !imageElement.current || !zoomActive) {
+  if (!zoomImage || !imageElement || !zoomActive) {
     return image
   }
 
   const { top, left, scale, translateX, translateY } = calculateZoom(
-    imageElement.current,
+    imageElement,
     zoomImage,
   )
 
@@ -134,8 +133,8 @@ export default function Image({ src, width, height, alt, zoomSrc }: Props) {
     transform: transitionActive
       ? `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)`
       : 'none',
-    width,
-    height,
+    width: imageElement.width,
+    height: imageElement.height,
   }
 
   const imageTransition = (

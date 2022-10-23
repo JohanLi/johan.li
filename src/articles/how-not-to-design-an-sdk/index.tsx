@@ -107,13 +107,7 @@ const body = () => (
       maintained, and has a fair number of users. But frustration is about to
       set in.
     </P>
-    <ImageFloat
-      src={feelsBadMan}
-      width={300}
-      height={285}
-      alt="FeelsBadMan"
-      right
-    />
+    <ImageFloat data={feelsBadMan} width={300} alt="FeelsBadMan" right />
     <P>
       The documentation takes forever to get to the relevant parts. The code
       examples? Talk about a worse signal-to-noise ratio. And once you
@@ -141,9 +135,8 @@ const body = () => (
       it before any real action happens.
     </P>
     <ImageFloat
-      src={npmInstallStart}
+      data={npmInstallStart}
       width={370}
-      height={200}
       alt="Advanced concepts."
       right
     />
@@ -166,11 +159,10 @@ const body = () => (
     </P>
     <P>Show us concise code, and do that right out the bat.</P>
     <Image
-      src={excessiveInformation}
+      data={excessiveInformation}
       width={380}
-      height={325}
       alt="v12’s Quickstart contains even more information that feels excessive."
-      zoomSrc={excessiveInformationLarge}
+      zoomData={excessiveInformationLarge}
     />
     <H2>{headings[2]}</H2>
     <P>
@@ -199,9 +191,8 @@ const body = () => (
       <CodeInline>BlockBlobURL</CodeInline>. A famous comic springs to mind:
     </P>
     <Image
-      src={objectOrientedProgrammer}
+      data={objectOrientedProgrammer}
       width={1250}
-      height={811}
       alt={`"Object-oriented" programming.`}
     />
     <P>

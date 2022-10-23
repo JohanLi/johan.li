@@ -1,3 +1,5 @@
+import NextImage from 'next/future/image'
+
 import Link from '../Link'
 
 import johanLi from './johan-li.jpg'
@@ -58,7 +60,7 @@ export default function Footer() {
       <div className="max-w-7xl px-4 lg:px-8 mx-auto">
         <div className="max-w-2xl xl:max-w-3xl">
           <div className="sm:flex sm:space-x-8 space-y-8 sm:space-y-0">
-            <img
+            <NextImage
               src={johanLi}
               className="w-48 h-48 rounded-lg"
               alt="Johan Li"

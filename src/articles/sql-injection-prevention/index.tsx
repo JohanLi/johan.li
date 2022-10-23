@@ -107,9 +107,8 @@ const body = () => (
       using.
     </P>
     <Image
-      src={postgresqlDataInsertion}
+      data={postgresqlDataInsertion}
       width={480}
-      height={360}
       alt="PostgreSQL data insertion. (Using an ORM introduces a step between 1 and 2.)"
     />
     <H2>{headings[1]}</H2>
