@@ -1,15 +1,10 @@
 /node_modules/
 .DS_Store
 /.idea/
-
 /.next/
-/out/
-/build/
-
-/data/nginx/cert/
-
 /tsconfig.tsbuildinfo
-
 .env.prod
 .env.dev
 .env.local
+/tests/report/
+/tests/results/
