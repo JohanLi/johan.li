@@ -13,7 +13,7 @@ make sure they aren’t proxied in Cloudflare.
 Then, create an SSL certificate through:
 
 ```
-flyctl certs create johan.li
+fly certs create johan.li
 ```
 
 ## Testing locally
