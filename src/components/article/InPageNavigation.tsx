@@ -101,6 +101,8 @@ export default function InPageNavigation({ title, headings }: Props) {
       { maxWait: DEBOUNCE_MILLISECONDS },
     )
 
+    onScroll()
+
     window.addEventListener('scroll', onScroll)
 
     return () => {
