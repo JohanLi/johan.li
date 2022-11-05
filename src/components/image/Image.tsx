@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import NextImage, { StaticImageData } from 'next/future/image'
-
+import NextImage, { StaticImageData } from 'next/image'
 import calculateZoom from './calculateZoom'
 import { classNames } from '../../utils'
 

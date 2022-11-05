@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { StaticImageData } from 'next/future/image'
+import { StaticImageData } from 'next/image'
 
 export type Article = {
   thumbnail: StaticImageData

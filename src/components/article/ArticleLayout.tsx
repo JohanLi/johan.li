@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-
 import Layout from '../Layout'
 import { unixTimestampToMonthYear } from '../../utils'
 import { Article } from './articleTypes'

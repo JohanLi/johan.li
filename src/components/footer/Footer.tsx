@@ -1,5 +1,4 @@
-import NextImage from 'next/future/image'
-
+import NextImage from 'next/image'
 import Link from '../Link'
 
 import johanLi from './johan-li.jpg'

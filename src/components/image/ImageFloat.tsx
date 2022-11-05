@@ -1,5 +1,5 @@
+import NextImage, { StaticImageData } from 'next/image'
 import { classNames } from '../../utils'
-import NextImage, { StaticImageData } from 'next/future/image'
 
 type Props = {
   data: StaticImageData
