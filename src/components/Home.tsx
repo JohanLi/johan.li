@@ -1,15 +1,13 @@
-import NextImage from 'next/future/image'
-
+import { InferGetStaticPropsType } from 'next'
+import NextImage from 'next/image'
+import { getStaticProps } from '../pages'
 import Link from './Link'
 import { unixTimestampToMonthYear } from '../utils'
 import Layout from './Layout'
-import { ArticleWithSlug } from './article/articleTypes'
 
-export type HomeProps = {
-  articles: Omit<ArticleWithSlug, 'body'>[]
-}
-
-export default function Home({ articles }: HomeProps) {
+export default function Home({
+  articles,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout isHomePage>
       <div className="max-w-7xl px-4 lg:px-8 mx-auto">

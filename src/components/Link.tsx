@@ -22,8 +22,8 @@ export default function Link({ href, className, external, children }: Props) {
   }
 
   return (
-    <NextLink href={href}>
-      <a className={linkClass}>{children || href}</a>
+    <NextLink href={href} className={linkClass}>
+      {children || href}
     </NextLink>
   )
 }

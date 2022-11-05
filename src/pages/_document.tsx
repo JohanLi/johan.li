@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
 import Fonts from '../components/Fonts'
 
 const CLOUDFLARE_WEB_ANALYTICS_TOKEN =

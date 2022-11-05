@@ -1,12 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-
-import ArticleLoader, {
-  ArticleLoaderProps,
-  articles,
-} from '../components/article/ArticleLoader'
+import ArticleLoader, { articles } from '../components/article/ArticleLoader'
 import { Slug } from '../components/article/articleTypes'
 
-export const getStaticProps: GetStaticProps<ArticleLoaderProps, Slug> = async ({
+export const getStaticProps: GetStaticProps<Slug, Slug> = async ({
   params,
 }) => ({
   props: {

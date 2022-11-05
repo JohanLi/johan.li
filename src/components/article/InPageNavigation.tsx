@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import debounce from 'lodash.debounce'
-
 import { classNames, getSlug } from '../../utils'
 import Link from '../Link'
 
