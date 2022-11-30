@@ -12,7 +12,7 @@ type PropsNode = {
 export function H1({ children }: PropsString) {
   return (
     <h1
-      className="text-3xl md:text-5xl tracking-tight font-extrabold"
+      className="text-3xl font-extrabold tracking-tight md:text-5xl"
       id={getSlug(children)}
     >
       {children}
@@ -23,7 +23,7 @@ export function H1({ children }: PropsString) {
 export function H2({ children }: PropsString) {
   return (
     <h2
-      className="pt-12 mb-6 text-xl md:text-2xl font-bold"
+      className="mb-6 pt-12 text-xl font-bold md:text-2xl"
       id={getSlug(children)}
     >
       {children}
@@ -33,7 +33,7 @@ export function H2({ children }: PropsString) {
 
 export function H3({ children }: PropsString) {
   return (
-    <h3 className="mt-12 mb-6 text-base md:text-lg font-bold">{children}</h3>
+    <h3 className="mt-12 mb-6 text-base font-bold md:text-lg">{children}</h3>
   )
 }
 
@@ -42,11 +42,11 @@ export function P({ children }: PropsNode) {
 }
 
 export function Ul({ children }: PropsNode) {
-  return <ul className="mt-6 list-disc pl-8 space-y-4">{children}</ul>
+  return <ul className="mt-6 list-disc space-y-4 pl-8">{children}</ul>
 }
 
 export function UlReferences({ children }: PropsNode) {
-  return <ul className="mt-4 list-disc pl-6 space-y-2 text-xs">{children}</ul>
+  return <ul className="mt-4 list-disc space-y-2 pl-6 text-xs">{children}</ul>
 }
 
 export function CodeInline({ children }: PropsString) {
@@ -54,12 +54,12 @@ export function CodeInline({ children }: PropsString) {
 }
 
 export function Title({ children }: PropsString) {
-  return <span className="font-bold italics">{children}</span>
+  return <span className="italics font-bold">{children}</span>
 }
 
 export function Quote({ children }: PropsNode) {
   return (
-    <div className="my-12 -ml-4 pl-4 border-l-4 border-black italic">
+    <div className="my-12 -ml-4 border-l-4 border-black pl-4 italic">
       {children}
     </div>
   )

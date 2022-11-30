@@ -77,10 +77,10 @@ export default function Image({ data, width, alt, zoomData }: Props) {
   const paddingBottom = `${(data.height / data.width) * 100}%`
 
   const image = (
-    <div className="-mx-4 md:mx-0 lg:-mx-8 my-12">
+    <div className="-mx-4 my-12 md:mx-0 lg:-mx-8">
       <div
         style={{ width: `${width}px` }}
-        className="relative max-w-full mx-auto"
+        className="relative mx-auto max-w-full"
       >
         <div style={{ paddingBottom }}>
           <NextImage
@@ -113,7 +113,7 @@ export default function Image({ data, width, alt, zoomData }: Props) {
           />
         </div>
       </div>
-      <div className="text-sm text-gray-400 text-center mt-6 mx-4">{alt}</div>
+      <div className="mx-4 mt-6 text-center text-sm text-gray-400">{alt}</div>
     </div>
   )
 
@@ -140,7 +140,7 @@ export default function Image({ data, width, alt, zoomData }: Props) {
     <div>
       <div
         className={classNames(
-          'fixed inset-0 z-10 bg-white transition-opacity ease-in-out duration-300',
+          'fixed inset-0 z-10 bg-white transition-opacity duration-300 ease-in-out',
           transitionActive ? 'opacity-80' : 'opacity-0',
         )}
       />
@@ -148,7 +148,7 @@ export default function Image({ data, width, alt, zoomData }: Props) {
         src={zoomImage.src}
         alt={alt}
         style={style}
-        className="absolute z-20 transition-transform ease-in-out duration-300 cursor-zoom-out"
+        className="absolute z-20 cursor-zoom-out transition-transform duration-300 ease-in-out"
         onClick={() => setTransitionActive(false)}
         onTransitionEnd={() => {
           if (transitionActive) {

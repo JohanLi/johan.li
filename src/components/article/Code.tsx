@@ -41,11 +41,11 @@ export default function Code({ language, code, caption }: Props) {
   const html = Prism.highlight(code.trim(), Prism.languages[language], language)
 
   return (
-    <div className="-mx-4 md:mx-0 lg:-mx-8 my-12 text-sm">
+    <div className="-mx-4 my-12 text-sm md:mx-0 lg:-mx-8">
       <pre className={`language-${language}`}>
         <code dangerouslySetInnerHTML={{ __html: html }} />
       </pre>
-      <div className="text-sm text-gray-400 text-center mt-6 mx-4">
+      <div className="mx-4 mt-6 text-center text-sm text-gray-400">
         {caption}
       </div>
     </div>
