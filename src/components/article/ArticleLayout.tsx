@@ -15,11 +15,11 @@ export default function ArticleLayout({ article, children }: Props) {
 
   return (
     <Layout title={title}>
-      <article className="max-w-7xl px-4 lg:px-8 lg:flex w-full justify-between mx-auto">
+      <article className="mx-auto w-full max-w-7xl justify-between px-4 lg:flex lg:px-8">
         <div className="max-w-2xl xl:max-w-3xl">
           <div className="pt-12 pb-6">
             <H1>{title}</H1>
-            <p className="text-sm text-gray-400 mt-3">
+            <p className="mt-3 text-sm text-gray-400">
               {unixTimestampToMonthYear(published)} · {readingTime} min read
             </p>
           </div>

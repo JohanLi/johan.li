@@ -26,7 +26,7 @@ export default function Layout({
   children,
 }: Props) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Head>
         <title>
           {isHomePage
@@ -38,11 +38,11 @@ export default function Layout({
         )}
       </Head>
       <nav className="pt-12">
-        <div className="max-w-7xl px-4 lg:px-8 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <Link href="/">
             {Boolean(isHomePage) && (
               <h1
-                className="text-4xl md:text-5xl tracking-tight font-extrabold"
+                className="text-4xl font-extrabold tracking-tight md:text-5xl"
                 style={{ color: logoColor }}
               >
                 Johan Li
@@ -50,7 +50,7 @@ export default function Layout({
             )}
             {!Boolean(isHomePage) && (
               <h2
-                className="text-2xl md:text-3xl tracking-tight font-extrabold"
+                className="text-2xl font-extrabold tracking-tight md:text-3xl"
                 style={{ color: logoColor }}
               >
                 Johan Li
