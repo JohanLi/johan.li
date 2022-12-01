@@ -22,6 +22,7 @@ import 'prismjs/components/prism-c'
 import 'prismjs/components/prism-cpp'
 import 'prismjs/components/prism-markup-templating'
 import 'prismjs/components/prism-handlebars'
+import { Caption } from './Caption'
 
 /*
   If manual is not turned on, a hydration error will appear during development.
@@ -45,9 +46,7 @@ export default function Code({ language, code, caption }: Props) {
       <pre className={`language-${language}`}>
         <code dangerouslySetInnerHTML={{ __html: html }} />
       </pre>
-      <div className="mx-4 mt-6 text-center text-sm text-gray-400">
-        {caption}
-      </div>
+      <Caption>{caption}</Caption>
     </div>
   )
 }
