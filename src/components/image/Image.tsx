@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import NextImage, { StaticImageData } from 'next/image'
 import calculateZoom from './calculateZoom'
 import { classNames } from '../../utils'
+import { Caption } from '../article/Caption'
 
 /*
   If zoomSrc is provided:
@@ -113,7 +114,7 @@ export default function Image({ data, width, alt, zoomData }: Props) {
           />
         </div>
       </div>
-      <div className="mx-4 mt-6 text-center text-sm text-gray-400">{alt}</div>
+      <Caption>{alt}</Caption>
     </div>
   )
 

@@ -187,7 +187,7 @@ const body = () => (
     <Code
       language="javascript"
       code={js1}
-      caption="Taken from Adyen’s open-source Salesforce Commerce Cloud plugin in June, 2017. They fixed and simplified it not long afterwards."
+      caption="From Adyen’s open-source Salesforce Commerce Cloud plugin back in 2017."
     />
     <P>
       The code from Adyen’s plugin assumed months always have 31 days. It
