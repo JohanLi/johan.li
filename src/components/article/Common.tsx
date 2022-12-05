@@ -53,10 +53,6 @@ export function CodeInline({ children }: PropsString) {
   return <span className="bg-[#f5f2f0] p-0.5">{children}</span>
 }
 
-export function Title({ children }: PropsString) {
-  return <span className="italics font-bold">{children}</span>
-}
-
 export function Quote({ children }: PropsNode) {
   return (
     <div className="my-12 -ml-4 border-l-4 border-black pl-4 italic">
