@@ -5,7 +5,6 @@ import {
   H3,
   P,
   Quote,
-  Title,
   UlReferences,
 } from '../../components/article/Common'
 import Link from '../../components/Link'
@@ -22,11 +21,11 @@ import ImageFloat from '../../components/image/ImageFloat'
 
 const headings = [
   'Azure Blob Storage',
-  'Is it about JavaScript or the actual SDK?',
+  'About JavaScript or the actual SDK?',
   '"Object-oriented" programming',
   'A good SDK',
   'Opinions about the Java SDK',
-  'In closing',
+  'Takeaways',
 ]
 
 const js1 = `
@@ -52,6 +51,7 @@ const credentials = new SharedKeyCredential(
 );
 const pipeline = StorageURL.newPipeline(credentials);
 
+// either
 const serviceURL = new ServiceURL(
   \`https://\${STORAGE_ACCOUNT_NAME}.blob.core.windows.net\`,
   pipeline,
@@ -59,14 +59,11 @@ const serviceURL = new ServiceURL(
 const containerURL = ContainerURL.fromServiceURL(serviceURL, container);
 const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, blobName);
 
-/*
- To omit serviceURL and containerURL:
- 
- const blockBlobURL = new BlockBlobURL(
+// or
+const blockBlobURL = new BlockBlobURL(
   \`https://\${STORAGE_ACCOUNT_NAME}.blob.core.windows.net/\${container}\`,
   pipeline,
 );
- */
 
 const aborter = Aborter.timeout(300000);
 
@@ -104,14 +101,14 @@ const body = () => (
   <>
     <P>
       There’s enthusiasm in the air as we start exploring a new library. It’s
-      maintained, and has a fair number of users. But frustration is about to
-      set in.
+      maintained and has a fair number of users. But frustration is about to set
+      in.
     </P>
     <ImageFloat data={feelsBadMan} width={300} alt="FeelsBadMan" right />
     <P>
       The documentation takes forever to get to the relevant parts. The code
       examples? Talk about a worse signal-to-noise ratio. And once you
-      scrutinize the code, things aren’t looking all too great.
+      scrutinize, things aren’t looking too great.
     </P>
     <P>
       Enter the JavaScript SDK for Microsoft Azure’s Blob Storage. Particularly
@@ -122,8 +119,8 @@ const body = () => (
     <H2>{headings[0]}</H2>
     <P>
       Blob Storage, like Amazon S3, is a service used for serving static
-      websites and storing media, backups, and raw data in general. Objects you
-      upload are called Blobs, and a Blob belongs to a Container.
+      websites, storing media, and backups — data in general. Objects you upload
+      are called Blobs, and a Blob belongs to a Container.
     </P>
     <P>
       Microsoft provides SDKs in a handful of languages, wrapping the underlying
@@ -141,50 +138,46 @@ const body = () => (
       right
     />
     <P>
-      It starts by telling you how to clone a repo and manage environment
+      It starts by explaining how you clone repos and manage environment
       variables. Then, the advanced concepts of{' '}
       <CodeInline>npm install</CodeInline> and{' '}
-      <CodeInline>npm start</CodeInline> both have their own Heading 2. What
-      follows are explanations of fs and path, how variable assignment works,
-      and why a top-level async function is needed. An additional page or two
-      later, we finally begin seeing snippets demonstrating how to create a
-      Container and upload a Blob.
+      <CodeInline>npm start</CodeInline> each have their own Heading 2. Further
+      down are explanations of fs and path, how variable assignment works, and
+      why a top-level async function is needed. An additional page or two later,
+      we finally see snippets demonstrating how to create a Container and upload
+      a Blob.
     </P>
     <P>
-      I don’t want to sound ungrateful — I’d rather have this than nothing. But
-      it wouldn’t be outlandish to assume that people seeking an SDK for a
-      specific language have basic proficiency in it. It also strikes me as
-      excessive to provide a line-by-line commentary of example code, intended
-      to be simplistic in the first place.
+      It’s better than nothing. But it wouldn’t be outlandish to assume that
+      people seeking an SDK for a specific language understands its basics. It
+      also feels excessive to provide a line-by-line commentary of example code,
+      which should be simplistic in the first place.
     </P>
-    <P>Show us concise code, and do that right out the bat.</P>
     <Image
       data={excessiveInformation}
       width={380}
-      alt="v12’s Quickstart contains even more information that feels excessive."
+      alt="v12’s Quickstart contains even more excessive information."
       zoomData={excessiveInformationLarge}
     />
     <H2>{headings[2]}</H2>
     <P>
-      Here’s a task for you: design an SDK for the Blob Storage. What is your
-      ideal API for it? Remember, you want to be able to create Containers. You
-      then want to be able to upload Blobs to them. Contemplate for a minute.
+      Imagine you’re designing an SDK for Blob Storage: users want to be able to
+      create Containers and upload Blobs to them. What’s your ideal experience
+      for this?
     </P>
     <P>
-      In v10 of the JavaScript SDK, this is the minimal code for uploading a
-      Blob to a Container:
+      Here’s the minimal code for uploading a Blob to a Container using v10 of
+      the JavaScript SDK.
     </P>
     <Code
       language="javascript"
       code={js1}
       caption="Minimal code for uploading a Blob to a Container."
     />
+    <P>Where do we even begin?</P>
     <P>
-      Where do we even begin? First off, the SDK is coded in TypeScript and is
-      heavily object-oriented. Nothing inherently wrong with that.
-    </P>
-    <P>
-      But read out loud the classes provided to us:{' '}
+      The SDK’s underlying code is all-out object-oriented. There’s nothing
+      inherently wrong with that. But read out loud the classes it provides us:{' '}
       <CodeInline>SharedKeyCredential</CodeInline>,{' '}
       <CodeInline>StorageURL</CodeInline>, <CodeInline>ServiceURL</CodeInline>,{' '}
       <CodeInline>ContainerURL</CodeInline>, and{' '}
@@ -193,109 +186,96 @@ const body = () => (
     <Image
       data={objectOrientedProgrammer}
       width={1250}
-      alt={`"Object-oriented" programming.`}
+      alt={`“Object-oriented“ programming.`}
     />
     <P>
-      It’s not quite as bad. But the numerous URL classes give you the
-      impression of forming URLs for you. But, think again — their constructors
-      require you to provide the entire URLs yourself. No kidding. Additionally,{' '}
-      <CodeInline>STORAGE_ACCOUNT_NAME</CodeInline> has to be supplied both to{' '}
+      The numerous URL classes also give you the impression of forming URLs for
+      you. But no — their constructors expect you to provide the entire URLs
+      (see <CodeInline>.blob.core.windows.net</CodeInline>). Additionally,{' '}
+      <CodeInline>STORAGE_ACCOUNT_NAME</CodeInline> has to be passed both to{' '}
       <CodeInline>SharedKeyCredential</CodeInline> and{' '}
       <CodeInline>ServiceURL</CodeInline>.
     </P>
     <P>
-      Next up we’ve got <CodeInline>pipeline</CodeInline>, obtained from{' '}
-      <CodeInline>StorageURL</CodeInline>. It’s an implementation detail.
-      There’s no reason an SDK user should care about it unless it needs to be
-      manually unclogged.
+      Next in line, we’ve got <CodeInline>pipeline</CodeInline>, obtained from
+      StorageURL. It’s an implementation detail. There’s no reason an SDK user
+      should care about it unless it needs manual unclogging.
     </P>
     <P>
-      Finally, look at the upload method. An <CodeInline>Aborter</CodeInline>{' '}
-      object, of all things, is the first argument. Why is it so important?
-      Preferably, I’d want a default that I can override if necessary. Lastly,
-      content length being a required argument also feels inconvenient when, in
-      most cases, it’s something the SDK can figure out.
+      Finally, look at the upload method. Of all things, an{' '}
+      <CodeInline>Aborter</CodeInline> object is the first argument. Why’s it so
+      important? Preferably, I’d want a default that I can override if
+      necessary. And content length being a required argument feels inconvenient
+      when it’s something the SDK can figure out.
     </P>
     <P>
-      I’m being harsh. But keep in mind: this is a public SDK wrapping a REST
-      API of a widely used service. It’s in its tenth major version. How is the
-      SDK still this unpolished after being allowed so many incompatible API
-      changes?
+      I’m being harsh. For all I know, the SDK might’ve been thrown together by
+      people new to software development with no one to guide them. But keep in
+      mind: this is the official JavaScript SDK of Blob Storage. It’s on its
+      tenth major version, and all for the sake of wrapping a REST API.
     </P>
     <H2>{headings[3]}</H2>
     <P>
-      Let’s check out a good SDK for comparison’s sake. Chances are, it’s
-      similar to your design. Here’s the minimal code, using Amazon Web
-      Services’ SDK, to upload something:
+      How does a good experience look like? Here’s the minimal code to upload
+      something to S3 using AWS’s SDK:
     </P>
     <Code
       language="javascript"
       code={js2}
-      caption={`Demonstrating a better API for uploading a "Blob" to a "Container".`}
+      caption="A better API for uploading."
     />
     <P>
-      Beautiful. There’s no <CodeInline>pipeline</CodeInline>, pigeonPost, or
-      smokeSignal going on here. You don’t stitch together URLs, and everything
-      is sensibly named. Object-oriented programming done right.
+      Beautiful. There’s no pipeline, pigeonPost, or smokeSignal going on here.
+      You don’t form URLs. Everything looks sensible.
     </P>
     <H2>{headings[4]}</H2>
     <P>
-      Now, I’m not sure this counts as a data point — a certain profession
-      claims it’s all the same — but someone criticized the Java version of the
-      Blob Storage SDK. Other developers chime in, sharing the frustration. Here
-      are some highlights from that{' '}
+      Is the JavaScript SDK just an aberration? Out of curiosity, I checked out
+      the other SDKs.{' '}
       <Link href="https://github.com/Azure/azure-storage-java/issues/432">
-        GitHub issue
+        This API is useless (v10)
       </Link>
-      , titled <Title>This API is useless (v10)</Title>:
+      , lo and behold, is the top-upvoted GitHub issue in the Java SDK. It
+      starts off with a bang, with spicy statements:
     </P>
     <Quote>
-      <P>
-        The API is an unintuitive mess. Documentation is rubbish and out of sync
-        with code, and the example is useless.
-      </P>
-      <P>
-        I’ve been doing Java professional, every day, for 18 years, but never
-        seen such a poor API.
-      </P>
-      <P>
-        stop developing on the version 10 API and Kill it. KILL IT WITH FIRE!
-      </P>
+      The API is an unintuitive mess. Documentation is rubbish and out of sync
+      with code, and the example is useless.
+    </Quote>
+    <Quote>
+      I’ve been doing Java professional, every day, for 18 years, but never seen
+      such a poor API.
+    </Quote>
+    <Quote>
+      stop developing on the version 10 API and Kill it. KILL IT WITH FIRE!
     </Quote>
     <P>
-      We’re not known for beating around the bush, are we? This is quite an
-      indictment.
+      Based! The original poster is particularly riled up because v10 feels like
+      a leap backwards compared to the now deprecated v8. Further, he
+      elaborates:
     </P>
     <Quote>
-      <P>
-        The naming of BlobSASSignatureValues is really bad. It tells me
-        absolutely nothing about what its purpose is. I would think it is simply
-        a POJO class for holding some values. The name indicate it is a class of
-        values, not a class of functionality.
-      </P>
-    </Quote>
-    <P>Remember all those classes ending in URL?</P>
-    <P>Another user posts:</P>
-    <Quote>
-      <P>
-        We’ve also been using this (a team of advanced java developers) and have
-        been struggling with getting it to work correctly.
-      </P>
+      The naming of BlobSASSignatureValues is really bad. It tells me absolutely
+      nothing about what its purpose is. I would think it is simply a POJO class
+      for holding some values. The name indicate it is a class of values, not a
+      class of functionality.
     </Quote>
     <P>
-      Folks, it’s not a good sign when advanced developers have trouble using
-      your REST API wrapper.
+      This is reminiscent of the classes from the JavaScript SDK ending in URLs.
+      Later in the conversation, two other developers chime in:
     </P>
-    <P>A third developer adds:</P>
     <Quote>
-      <P>
-        I am giving serious consideration to just calling the REST endpoints
-        directly instead of using the SDK
-      </P>
+      We’ve also been using this (a team of advanced java developers) and have
+      been struggling with getting it to work correctly.
+    </Quote>
+    <Quote>
+      I am giving serious consideration to just calling the REST endpoints
+      directly instead of using the SDK
     </Quote>
     <P>
-      Finally, the original poster drops the mic explaining what he expects from
-      an SDK:
+      Folks, we’ve found two litmus tests of whether an SDK is useless. What
+      follows is the original poster explaining what they expect from an SDK,
+      dropping the mic:
     </P>
     <Quote>
       <P>
@@ -315,28 +295,30 @@ const body = () => (
         than a few lines getting started, performing simple tasks, it has
         failed.
       </P>
+      <P>
+        It need to be stable and predictable so my time invested using the SDK
+        is not wasted. Throwing an existing solution away to start from scratch
+        should be avoided if possible. It need to evolve in a way so not to many
+        breaking changes are introduced, preferable using semantic versioning.
+      </P>
     </Quote>
     <P>
       Preach brother, preach! Give this man a gold star! And he’s even thrown in
-      a subtle pigeon reference as well!
-    </P>
-    <P>
-      To be clear, I don’t think the JavaScript SDK is quite as bad — in fact,
-      it’s acceptable. But for a run-of-the-mill SDK of a proprietary service,
-      I’d expect better.
+      a subtle pigeon reference as well.
     </P>
     <H2>{headings[5]}</H2>
     <P>
-      When creating an SDK, start with the user experience. Why are people using
-      it and the service, and who are they? What would a good API be?
-      Contemplate, look at similar SDKs for inspiration, and only then should
-      you start coding yours.
+      An SDK is a product. As with any product, what’s the value-add? Why would
+      people use it, and who are they? Steve Jobs once said, “you’ve got to
+      start with the customer experience and work backward for the technology.”
+      Otherwise, you’re giving the impression that the sole purpose of your SDK
+      is so you can add a check to your sales deck.
     </P>
     <P>
-      We sometimes miss the forest for the trees. The SDK’s source code utilizes
-      many OOP concepts such as interfaces, inheritance, abstract classes,
-      factories, and private methods. Yet, it failed with the very essence of
-      OOP in terms of its API.
+      Also, we sometimes miss the forest for the trees. If you look into the
+      source code of the JavaScript SDK v10, it’s obvious there’s a lot of
+      object-oriented programming going on. Yet, it failed with one of the core
+      concepts of OOP — that of providing actual abstractions.
     </P>
     <H3>References</H3>
     <div className="text-sm">
@@ -366,7 +348,7 @@ const article: Article = {
   thumbnail: objectOrientedProgrammerSmall,
   title: 'How not to design an SDK',
   teaser:
-    'The JavaScript SDK for Azure Blob Storage contains poor documentation and "object-oriented" programming.',
+    'The JavaScript SDK v10 for Azure Blob Storage is a mess and an example of “object-oriented“ programming.',
   published: 1646125841,
   readingTime: 5,
   headings,

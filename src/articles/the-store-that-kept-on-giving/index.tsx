@@ -196,10 +196,10 @@ const body = () => (
     </P>
     <H2>{headings[3]}</H2>
     <P>
-      That fateful summer night, a customer purchased something at 23:58. This
+      That fateful summer night, a customer made a purchase at 23:58. This
       crashed the cron job as the script tried parsing 24:01 using{' '}
-      <CodeInline>dw.util.Calendar()</CodeInline>. So why were new customers
-      repeatedly getting Steam keys?
+      <CodeInline>dw.util.Calendar()</CodeInline>. But how did this cause the
+      next customers to repeatedly get Steam keys?
     </P>
     <P>
       The agency implemented the functionality of sending out keys by making
@@ -208,7 +208,7 @@ const body = () => (
       depth.
     </P>
     <P>
-      But it turned out that the same loop that processes a notification doesn’t
+      As it turned out, the same loop that processes a notification doesn’t
       remove it — all notifications are processed first. If any notification
       causes a crash, the cron job doesn’t delete any of them. Additionally, by
       not specifying a sorting order, the job looped through the newest
