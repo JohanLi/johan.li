@@ -104,7 +104,13 @@ const body = () => (
       maintained and has a fair number of users. But frustration is about to set
       in.
     </P>
-    <ImageFloat data={feelsBadMan} width={300} alt="FeelsBadMan" right />
+    <ImageFloat
+      data={feelsBadMan}
+      width={300}
+      alt="FeelsBadMan"
+      right
+      priority
+    />
     <P>
       The documentation takes forever to get to the relevant parts. The code
       examples? Talk about a worse signal-to-noise ratio. And once you

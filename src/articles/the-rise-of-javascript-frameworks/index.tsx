@@ -197,6 +197,7 @@ const body = () => (
       data={angularReactVueTrends}
       width={800}
       alt="Google Trends for the search terms “angular js”, “react js” and “vue js”."
+      priority
     />
     <P>
       While having the backing of Google and Facebook certainly helps, what

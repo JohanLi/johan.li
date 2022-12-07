@@ -8,9 +8,17 @@ type Props = {
   alt: string
   left?: true
   right?: true
+  priority?: true
 }
 
-export default function ImageFloat({ data, width, alt, left, right }: Props) {
+export default function ImageFloat({
+  data,
+  width,
+  alt,
+  left,
+  right,
+  priority,
+}: Props) {
   return (
     <div
       className={classNames(
@@ -20,7 +28,7 @@ export default function ImageFloat({ data, width, alt, left, right }: Props) {
       )}
     >
       <div style={{ maxWidth: `${width}px` }} className="mx-auto">
-        <NextImage src={data} width={width} alt={alt} />
+        <NextImage src={data} width={width} alt={alt} priority={priority} />
         <Caption>{alt}</Caption>
       </div>
     </div>

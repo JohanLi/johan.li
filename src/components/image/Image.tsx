@@ -16,9 +16,10 @@ type Props = {
   width: number
   alt: string
   zoomData?: StaticImageData
+  priority?: true
 }
 
-export default function Image({ data, width, alt, zoomData }: Props) {
+export default function Image({ data, width, alt, zoomData, priority }: Props) {
   const [zoomActive, setZoomActive] = useState(false)
   const [transitionActive, setTransitionActive] = useState(false)
   const [zoomImage, setZoomImage] = useState<HTMLImageElement>()
@@ -111,6 +112,7 @@ export default function Image({ data, width, alt, zoomData }: Props) {
               setZoomActive(true)
             }}
             onLoadingComplete={(img) => setImageElement(img)}
+            priority={priority}
           />
         </div>
       </div>
