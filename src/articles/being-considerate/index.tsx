@@ -107,10 +107,8 @@ const body = () => (
 
 const article: Article = {
   thumbnail: tBarLift,
-  teaser: `
-    Empathy is an important quality that I find lacking in software development.
-    Here’s what a kid taught me, in the unlikeliest of circumstances.
-  `,
+  teaser:
+    'Empathy is an important quality that I find lacking in software development. Here’s what a kid taught me, in the unlikeliest of circumstances.',
   title: 'Being considerate',
   published: 1580515200,
   readingTime: 3,

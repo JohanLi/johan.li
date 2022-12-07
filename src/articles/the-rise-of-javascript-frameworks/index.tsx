@@ -402,10 +402,8 @@ const body = () => (
 
 const article: Article = {
   thumbnail: angularReactVueTrends,
-  teaser: `
-    When starting a web application, we tend to — without second thought — pick from one of three frameworks.
-    But what fundamental problems are these popular frameworks solving?
-  `,
+  teaser:
+    'When starting a web application, we tend to — without second thought — pick from one of three frameworks. But what fundamental problems are these popular frameworks solving?',
   title: 'The rise of JavaScript frameworks',
   published: 1597562075,
   readingTime: 8,
