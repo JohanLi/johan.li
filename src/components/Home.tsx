@@ -16,7 +16,7 @@ export default function Home({
             Articles
           </h2>
           <div className="mt-6 grid gap-12 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article) => (
+            {articles.map((article, i) => (
               <Link
                 href={`/${article.slug}`}
                 className="flex transform flex-col overflow-hidden rounded-lg shadow-lg transition duration-200 hover:scale-105"
@@ -26,6 +26,7 @@ export default function Home({
                   src={article.thumbnail}
                   alt={article.title}
                   className="h-48 w-full object-cover"
+                  priority={i < 3}
                 />
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex-1">

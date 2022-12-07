@@ -36,6 +36,7 @@ const body = () => (
       data={vanuatuJohnFrumDay}
       width={800}
       alt="Vanuatu, an island country in the Pacific Ocean, has a cargo cult that survives to this day."
+      priority
     />
     <P>
       The troops abandoned the islands after the war. No more cargo dropped. But

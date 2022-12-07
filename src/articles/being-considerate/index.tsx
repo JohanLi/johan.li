@@ -43,6 +43,7 @@ const body = () => (
       width={800}
       zoomData={tBarLiftLarge}
       alt="A T-Bar lift in Åre."
+      priority
     />
     <P>
       That day, I learned that T-bars work best if you ride with someone of
