@@ -53,10 +53,22 @@ export function CodeInline({ children }: PropsString) {
   return <span className="bg-[#f5f2f0] p-0.5">{children}</span>
 }
 
-export function Quote({ children }: PropsNode) {
+export function BlockQuote({ children }: PropsNode) {
+  if (!Array.isArray(children)) {
+    return (
+      <blockquote className="my-12 border-l-4 border-gray-200 pl-4">
+        {children}
+      </blockquote>
+    )
+  }
+
   return (
-    <div className="my-12 -ml-4 border-l-4 border-black pl-4 italic">
-      {children}
+    <div className="my-12">
+      {children.map((child, i) => (
+        <blockquote className="my-6 border-l-4 border-gray-200 pl-4" key={i}>
+          {child}
+        </blockquote>
+      ))}
     </div>
   )
 }
