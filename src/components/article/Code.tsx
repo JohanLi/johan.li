@@ -7,7 +7,7 @@
   - Using https://github.com/mAAdhaTTah/babel-plugin-prismjs disables SWC
 
   The solution is to import plugins and languages. Dependencies of
-  dependencies (c for cpp, markup-templating for handlebars) must also be
+  dependencies (markup-templating for handlebars) must also be
   explicitly imported. https://github.com/PrismJS/prism/issues/1567#issuecomment-423611947
 
   Additionally, the Custom Class plugin doesn’t change the actual CSS
@@ -18,8 +18,6 @@ import Prism from 'prismjs'
 import 'prismjs/plugins/custom-class/prism-custom-class'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-python'
-import 'prismjs/components/prism-c'
-import 'prismjs/components/prism-cpp'
 import 'prismjs/components/prism-markup-templating'
 import 'prismjs/components/prism-handlebars'
 import { Caption } from './Caption'
@@ -33,7 +31,7 @@ Prism.manual = true
 Prism.plugins.customClass.prefix('prism-')
 
 type Props = {
-  language: 'javascript' | 'jsx' | 'python' | 'cpp' | 'html' | 'handlebars'
+  language: 'javascript' | 'jsx' | 'python' | 'html' | 'handlebars'
   code: string
   caption: string
 }

@@ -2,7 +2,6 @@ import { InferGetStaticPropsType } from 'next'
 import theStoreThatKeptOnGiving from '../../articles/the-store-that-kept-on-giving'
 import howNotToDesignAnSDK from '../../articles/how-not-to-design-an-sdk'
 import becomingAnIndependentConsultant from '../../articles/becoming-an-independent-consultant'
-import theGoldExploitOfDiabloIII from '../../articles/the-gold-exploit-of-diablo-iii'
 import theRiseOfJavascriptFrameworks from '../../articles/the-rise-of-javascript-frameworks'
 import sqlInjectionPrevention from '../../articles/sql-injection-prevention'
 import beingConsiderate from '../../articles/being-considerate'
@@ -16,7 +15,6 @@ export const articles: ArticleWithSlug[] = [
   theStoreThatKeptOnGiving,
   howNotToDesignAnSDK,
   becomingAnIndependentConsultant,
-  theGoldExploitOfDiabloIII,
   theRiseOfJavascriptFrameworks,
   sqlInjectionPrevention,
   beingConsiderate,
