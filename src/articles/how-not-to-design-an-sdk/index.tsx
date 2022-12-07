@@ -4,7 +4,7 @@ import {
   H2,
   H3,
   P,
-  Quote,
+  BlockQuote,
   UlReferences,
 } from '../../components/article/Common'
 import Link from '../../components/Link'
@@ -238,70 +238,75 @@ const body = () => (
       , lo and behold, is the top-upvoted GitHub issue in the Java SDK. It
       starts off with a bang, with spicy statements:
     </P>
-    <Quote>
-      The API is an unintuitive mess. Documentation is rubbish and out of sync
-      with code, and the example is useless.
-    </Quote>
-    <Quote>
-      I’ve been doing Java professional, every day, for 18 years, but never seen
-      such a poor API.
-    </Quote>
-    <Quote>
-      stop developing on the version 10 API and Kill it. KILL IT WITH FIRE!
-    </Quote>
+    <BlockQuote>
+      <>
+        The API is an unintuitive mess. Documentation is rubbish and out of sync
+        with code, and the example is useless.
+      </>
+      <>
+        I’ve been doing Java professional, every day, for 18 years, but never
+        seen such a poor API.
+      </>
+      <>stop developing on the version 10 API and Kill it. KILL IT WITH FIRE!</>
+    </BlockQuote>
     <P>
       Based! The original poster is particularly riled up because v10 feels like
       a leap backwards compared to the now deprecated v8. Further, he
       elaborates:
     </P>
-    <Quote>
+    <BlockQuote>
       The naming of BlobSASSignatureValues is really bad. It tells me absolutely
       nothing about what its purpose is. I would think it is simply a POJO class
       for holding some values. The name indicate it is a class of values, not a
       class of functionality.
-    </Quote>
+    </BlockQuote>
     <P>
       This is reminiscent of the classes from the JavaScript SDK ending in URLs.
       Later in the conversation, two other developers chime in:
     </P>
-    <Quote>
-      We’ve also been using this (a team of advanced java developers) and have
-      been struggling with getting it to work correctly.
-    </Quote>
-    <Quote>
-      I am giving serious consideration to just calling the REST endpoints
-      directly instead of using the SDK
-    </Quote>
+    <BlockQuote>
+      <>
+        We’ve also been using this (a team of advanced java developers) and have
+        been struggling with getting it to work correctly.
+      </>
+      <>
+        I am giving serious consideration to just calling the REST endpoints
+        directly instead of using the SDK
+      </>
+    </BlockQuote>
     <P>
       Folks, we’ve found two litmus tests of whether an SDK is useless. What
       follows is the original poster explaining what they expect from an SDK,
       dropping the mic:
     </P>
-    <Quote>
-      <P>
-        First of all it should help me save time getting my job done. If using
-        the SDK will cost me more time that going low level and e.g. call a rest
-        interface myself, the SDK has failed.
-      </P>
-      <P>
-        The SDK should hide the complexity about the service I’m using. I don’t
-        care on bit if this SDK is communicating with the Azure service using
-        REST, gRPC or rfc1149 as long as it is efficient. Using the SDK should
-        make my codebase simpler than if I have not used it and it should
-        improve maintainability.
-      </P>
-      <P>
-        The SDK should be self explanatory and intuitive. If I need to read more
-        than a few lines getting started, performing simple tasks, it has
-        failed.
-      </P>
-      <P>
-        It need to be stable and predictable so my time invested using the SDK
-        is not wasted. Throwing an existing solution away to start from scratch
-        should be avoided if possible. It need to evolve in a way so not to many
-        breaking changes are introduced, preferable using semantic versioning.
-      </P>
-    </Quote>
+    <BlockQuote>
+      <>
+        <P>
+          First of all it should help me save time getting my job done. If using
+          the SDK will cost me more time that going low level and e.g. call a
+          rest interface myself, the SDK has failed.
+        </P>
+        <P>
+          The SDK should hide the complexity about the service I’m using. I
+          don’t care on bit if this SDK is communicating with the Azure service
+          using REST, gRPC or rfc1149 as long as it is efficient. Using the SDK
+          should make my codebase simpler than if I have not used it and it
+          should improve maintainability.
+        </P>
+        <P>
+          The SDK should be self explanatory and intuitive. If I need to read
+          more than a few lines getting started, performing simple tasks, it has
+          failed.
+        </P>
+        <P>
+          It need to be stable and predictable so my time invested using the SDK
+          is not wasted. Throwing an existing solution away to start from
+          scratch should be avoided if possible. It need to evolve in a way so
+          not to many breaking changes are introduced, preferable using semantic
+          versioning.
+        </P>
+      </>
+    </BlockQuote>
     <P>
       Preach brother, preach! Give this man a gold star! And he’s even thrown in
       a subtle pigeon reference as well.
