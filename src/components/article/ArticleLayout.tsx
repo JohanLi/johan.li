@@ -11,10 +11,10 @@ type Props = {
 }
 
 export default function ArticleLayout({ article, children }: Props) {
-  const { title, published, readingTime, headings } = article
+  const { title, teaser, published, readingTime, headings } = article
 
   return (
-    <Layout title={title}>
+    <Layout title={title} metaDescription={teaser}>
       <article className="mx-auto w-full max-w-7xl justify-between px-4 lg:flex lg:px-8">
         <div className="max-w-2xl xl:max-w-3xl">
           <div className="pt-12 pb-6">

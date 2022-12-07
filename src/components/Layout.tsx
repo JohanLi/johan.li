@@ -9,20 +9,20 @@ type Props =
   | {
       title: string
       isHomePage?: false
-      metaContent?: string
+      metaDescription?: string
       children: ReactNode
     }
   | {
       title?: never
       isHomePage: true
-      metaContent?: string
+      metaDescription?: string
       children: ReactNode
     }
 
 export default function Layout({
   title,
   isHomePage,
-  metaContent,
+  metaDescription,
   children,
 }: Props) {
   return (
@@ -33,8 +33,8 @@ export default function Layout({
             ? `Johan Li - A software developer’s thoughts`
             : `${title} - Johan Li`}
         </title>
-        {Boolean(metaContent) && (
-          <meta name="description" content={metaContent} />
+        {Boolean(metaDescription) && (
+          <meta name="description" content={metaDescription} />
         )}
       </Head>
       <nav className="pt-12">
