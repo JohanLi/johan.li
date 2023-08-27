@@ -1,18 +1,18 @@
 # based on https://github.com/vercel/next.js/tree/canary/examples/with-docker
 
-FROM node:19-alpine AS deps
+FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM node:19-alpine AS builder
+FROM node:20-alpine AS builder
 ENV NEXT_TELEMETRY_DISABLED 1
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-FROM node:19-alpine AS others
+FROM node:20-alpine AS others
 ENV NEXT_TELEMETRY_DISABLED 1
 WORKDIR /app
 RUN apk add --no-cache git git-lfs
@@ -22,7 +22,7 @@ RUN cd uncharted-waters-2 && npm install && PUBLIC_PATH=/uncharted-waters-2/ npm
 RUN git clone --depth 1 https://github.com/JohanLi/fingerprint-scanner-simulator
 RUN cd fingerprint-scanner-simulator && npm install && BASE_PATH=/gta-online/fingerprint-scanner-simulator npm run build
 
-FROM node:19-alpine AS runner
+FROM node:20-alpine AS runner
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 WORKDIR /app
@@ -41,6 +41,7 @@ USER nextjs
 
 EXPOSE 3000
 
+ENV HOSTNAME "0.0.0.0"
 ENV PORT 3000
 
 CMD ["node", "server.js"]

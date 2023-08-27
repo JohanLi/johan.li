@@ -4,7 +4,6 @@ https://fly.io/dashboard
 
 ```
 fly launch
-fly deploy
 ```
 
 Create A and AAAA records using the IP addresses from `fly ips list` and
