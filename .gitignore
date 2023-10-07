@@ -8,3 +8,4 @@
 .env.local
 /tests/report/
 /tests/results/
+/scripts/google-docs-reader.json
