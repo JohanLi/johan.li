@@ -111,7 +111,7 @@ export default function Image({ data, width, alt, zoomData, priority }: Props) {
 
               setZoomActive(true)
             }}
-            onLoadingComplete={(img) => setImageElement(img)}
+            onLoad={(e) => setImageElement(e.target as HTMLImageElement)}
             priority={priority}
           />
         </div>

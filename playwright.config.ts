@@ -40,7 +40,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
   webServer: {
-    command: 'npm run build && npm run start:prod',
+    command: 'npm start',
     port: 3000,
   },
 }
