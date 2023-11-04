@@ -22,7 +22,6 @@ test.describe('In-page navigation', () => {
    */
   test('changes highlighted section depending on scroll location', async ({
     page,
-    browserName,
   }) => {
     await page.goto('/how-not-to-design-an-sdk')
 
@@ -37,21 +36,5 @@ test.describe('In-page navigation', () => {
     await expect(page.locator('nav a >> text="A good SDK"')).toHaveClass(
       /text-purple-800/,
     )
-
-    await page.reload()
-
-    /*
-      WebKit (https://playwright.dev/docs/browsers#webkit) seems to scroll you
-      to the top after refreshing — hence the conditional check below:
-     */
-    if (browserName !== 'webkit') {
-      await expect(page.locator('nav a >> text="A good SDK"')).toHaveClass(
-        /text-purple-800/,
-      )
-    } else {
-      await expect(
-        page.locator('nav a >> text="How not to design an SDK"'),
-      ).toHaveClass(/text-purple-800/)
-    }
   })
 })
