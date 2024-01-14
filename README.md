@@ -1,38 +1,50 @@
 # johan.li
 
-![](https://github.com/JohanLi/johan.li/workflows/Deployment/badge.svg)
+![](https://github.com/JohanLi/johan.li/workflows/Tests/badge.svg)
 
 ## About the stack
 
 - Next.js
-- Tailwind
-- Prism.js
-- GitHub actions
-- Ansible
-- DigitalOcean
+- GitHub Actions
+- Terraform
+- Fly.io
 - Cloudflare
 
 ## Getting started
 
-1. Install Node
-2. Install Docker
-3. `npm install`, `npm start`, and visit http://localhost:3000
+```
+pnpm install
+pnpm start
+```
 
-To serve the website through HTTPS during local development: (optional)
+Visit http://localhost:3000.
 
-1. Pick a domain and map it to localhost (e.g., 127.0.0.1 local.johan.li)
-2. Generate an SSL certificate for that domain using [mkcert](https://github.com/FiloSottile/mkcert).
-   Move the key pair inside the /data/nginx/cert/ directory (where nginx will read from).
-3. `docker-compose up -d` and visit your chosen domain through HTTPS.
+## Provisioning and deployment
 
-## Deployment
+Provisioning is done manually using the `infra/setup.sh` script:
 
-Deployments are made to `dev` on push through a GitHub Action. Deployments to
-`prod` are manually triggered through the Actions UI.
+1. Based on the Dockerfile, `flyctl` launches a new app and assigns it a shared IPv4 and a dedicated IPv6.
+2. These ip addresses are then used to create A and AAAA records in Cloudflare using Terraform.
+3. An SSL certificate is created using `flyctl certs create`.
 
-Three secrets need to be added to this repository:
+Deployments are done through `flyctl deploy`.
 
-- `DEPLOY_KEY` — the private key of a user with access to the server
-- `ENV_DEV` and `ENV_PROD` — containing the contents of `.env.example`
+## Testing Dockerfile locally
 
-To avoid unnecessary costs, both dev and prod share a server.
+```
+docker build -t johan-li-docker .
+docker run -p 3000:3000 johan-li-docker
+```
+
+## Why isn't a CMS or a database used for the articles?
+
+If I use a CMS or database, I either have to use existing content models or create/maintain my own.
+
+Since I don't publish articles frequently, the flexibility of "expressing" articles directly using JSX is
+well worth the manual overhead for publishing each article.
+
+The workflow will likely be:
+
+- Write articles in Google Docs
+- Use a script that converts it to JSX
+- Make modifications as necessary
