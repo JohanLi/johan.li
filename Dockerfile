@@ -30,7 +30,6 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
 COPY --from=others /app/uncharted-waters-2/build ./public/uncharted-waters-2
 COPY --from=others /app/fingerprint-scanner-simulator/out ./public/gta-online/fingerprint-scanner-simulator
 
