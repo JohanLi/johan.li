@@ -1,9 +1,17 @@
-import Image from '../../components/image/Image'
-import { H2, H3, P, Ul, UlReferences } from '../../components/article/Common'
-import Link from '../../components/Link'
+import Image from '../../src/components/image/Image'
+import {
+  H2,
+  H3,
+  P,
+  Ul,
+  UlReferences,
+} from '../../src/components/article/Common'
+import Link from '../../src/components/Link'
 
 import independent from './independent.jpg'
 import consultantVsContractors from './consultant-vs-contractors.jpg'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'Consulting is lucrative in Sweden',
@@ -15,7 +23,7 @@ const headings = [
   'How should I stand out to do category 2 work?',
 ]
 
-const body = () => (
+const body = (
   <>
     <P>
       As 2021 approached, I experienced burnout for the first time in my 10-year
@@ -226,7 +234,7 @@ const body = () => (
   </>
 )
 
-const article = {
+export const article = {
   thumbnail: independent,
   title: 'Becoming an independent consultant',
   teaser:
@@ -237,4 +245,11 @@ const article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

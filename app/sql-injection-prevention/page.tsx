@@ -1,9 +1,10 @@
-import Image from '../../components/image/Image'
-import Code from '../../components/article/Code'
-import { Article } from '../../components/article/articleTypes'
-import { H2, P } from '../../components/article/Common'
+import Image from '../../src/components/image/Image'
+import Code from '../../src/components/article/Code'
+import { H2, P } from '../../src/components/article/Common'
 
 import postgresqlDataInsertion from './postgresql-data-insertion.png'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'How is data moved from an application to a database?',
@@ -74,7 +75,7 @@ const safePost = <div>{text}</div>;
 const unsafePost = <div dangerouslySetInnerHTML={__html: text} />;
 `
 
-const body = () => (
+const body = (
   <>
     <P>
       Since the early days of the web, one of the most common vulnerabilities
@@ -246,7 +247,7 @@ const body = () => (
   </>
 )
 
-const article: Article = {
+export const article = {
   thumbnail: postgresqlDataInsertion,
   teaser:
     'Methods to prevent SQL injections have existed for decades. Why are they not extinct by now?',
@@ -257,4 +258,11 @@ const article: Article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

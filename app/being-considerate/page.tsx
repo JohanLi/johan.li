@@ -1,9 +1,10 @@
-import { H2, P } from '../../components/article/Common'
-import Image from '../../components/image/Image'
-import { Article } from '../../components/article/articleTypes'
+import { H2, P } from '../../src/components/article/Common'
+import Image from '../../src/components/image/Image'
 
 import tBarLift from './t-bar-lift.jpg'
 import tBarLiftLarge from './t-bar-lift-large.jpg'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'Skiing and I',
@@ -12,7 +13,7 @@ const headings = [
   'The ride home',
 ]
 
-const body = () => (
+const body = (
   <>
     <P>
       Two unusual things happened. I was riding a ski lift. And my lift
@@ -105,7 +106,7 @@ const body = () => (
   </>
 )
 
-const article: Article = {
+export const article = {
   thumbnail: tBarLift,
   teaser:
     'Empathy is an important quality that I find lacking in software development. Here’s what a kid taught me, in the unlikeliest of circumstances.',
@@ -116,4 +117,11 @@ const article: Article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

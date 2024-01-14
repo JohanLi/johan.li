@@ -7,7 +7,7 @@ module.exports = {
   output: 'standalone',
   headers: async () => [
     {
-      source: '/:all*(js|wasm|css|jpg|png|webp|ico|ogg|mp3|woff2)',
+      source: '/:all*(js|wasm|css|jpg|png|webp|ogg|mp3|woff2)',
       headers: [
         {
           key: 'Cache-Control',

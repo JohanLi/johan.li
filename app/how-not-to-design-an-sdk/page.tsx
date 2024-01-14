@@ -1,4 +1,4 @@
-import Image from '../../components/image/Image'
+import Image from '../../src/components/image/Image'
 import {
   CodeInline,
   H2,
@@ -6,10 +6,9 @@ import {
   P,
   BlockQuote,
   UlReferences,
-} from '../../components/article/Common'
-import Link from '../../components/Link'
-import Code from '../../components/article/Code'
-import { Article } from '../../components/article/articleTypes'
+} from '../../src/components/article/Common'
+import Link from '../../src/components/Link'
+import Code from '../../src/components/article/Code'
 
 import feelsBadMan from './feels-bad-man.png'
 import npmInstallStart from './npm-install-start.png'
@@ -17,7 +16,9 @@ import excessiveInformation from './excessive-information.png'
 import excessiveInformationLarge from './excessive-information-large.png'
 import objectOrientedProgrammer from './object-oriented-programmer.png'
 import objectOrientedProgrammerSmall from './object-oriented-programmer-small.png'
-import ImageFloat from '../../components/image/ImageFloat'
+import ImageFloat from '../../src/components/image/ImageFloat'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'Azure Blob Storage',
@@ -97,7 +98,7 @@ s3.upload({
   });
 `
 
-const body = () => (
+const body = (
   <>
     <P>
       There’s enthusiasm in the air as we start exploring a new library. It’s
@@ -355,7 +356,7 @@ const body = () => (
   </>
 )
 
-const article: Article = {
+export const article = {
   thumbnail: objectOrientedProgrammerSmall,
   title: 'How not to design an SDK',
   teaser:
@@ -366,4 +367,11 @@ const article: Article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}
