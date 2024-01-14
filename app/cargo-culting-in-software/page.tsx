@@ -1,16 +1,17 @@
-import Image from '../../components/image/Image'
-import { H2, H3, P, UlReferences } from '../../components/article/Common'
-import Link from '../../components/Link'
-import { Article } from '../../components/article/articleTypes'
+import Image from '../../src/components/image/Image'
+import { H2, H3, P, UlReferences } from '../../src/components/article/Common'
+import Link from '../../src/components/Link'
 
 import vanuatuJohnFrumDay from './vanuatu-john-frum-day.jpg'
 import microservices from './microservices.png'
 import agile from './agile.png'
 import agileLarge from './agile-large.png'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = ['Origin', 'In software', 'Microservices', 'Agile', 'Thoughts']
 
-const body = () => (
+const body = (
   <>
     <P>
       In everyday life, we do certain things. Decide certain things. Not always
@@ -242,7 +243,7 @@ const body = () => (
   </>
 )
 
-const article: Article = {
+export const article = {
   thumbnail: vanuatuJohnFrumDay,
   teaser:
     'The dangers of copying successful people and companies, in the hopes of achieving the same success.',
@@ -253,4 +254,11 @@ const article: Article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

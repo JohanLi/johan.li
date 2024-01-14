@@ -1,10 +1,11 @@
-import { H2, P } from '../../components/article/Common'
-import Image from '../../components/image/Image'
-import Code from '../../components/article/Code'
-import { Article } from '../../components/article/articleTypes'
+import { H2, P } from '../../src/components/article/Common'
+import Image from '../../src/components/image/Image'
+import Code from '../../src/components/article/Code'
 
 import angularReactVueTrends from './angular-react-vue-trends.png'
 import barebonesMessagingApp from './barebones-messaging-app.png'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'From pages to applications',
@@ -184,7 +185,7 @@ const Messages = ({ messages }) => (
 );
 `
 
-const body = () => (
+const body = (
   <>
     <P>
       Google released <strong>Angular</strong> in 2010. It marked the start of a
@@ -400,7 +401,7 @@ const body = () => (
   </>
 )
 
-const article: Article = {
+export const article = {
   thumbnail: angularReactVueTrends,
   teaser:
     'When starting a web application, we tend to — without second thought — pick from one of three frameworks. But what fundamental problems are these popular frameworks solving?',
@@ -411,4 +412,11 @@ const article: Article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

@@ -1,8 +1,10 @@
-import { CodeInline, H2, P, Ul } from '../../components/article/Common'
-import Code from '../../components/article/Code'
+import { CodeInline, H2, P, Ul } from '../../src/components/article/Common'
+import Code from '../../src/components/article/Code'
 import oprahMeme from './oprah-meme.jpg'
 import sfccCartoon from './salesforce-commerce-cloud-cartoon.png'
-import ImageFloat from '../../components/image/ImageFloat'
+import ImageFloat from '../../src/components/image/ImageFloat'
+import { Article } from '../../src/components/article/Article'
+import { Metadata } from 'next'
 
 const headings = [
   'A shiny brand-new store',
@@ -112,7 +114,7 @@ function processNotifications(pdict) {
 }
 `
 
-const body = () => (
+const body = (
   <>
     <P>
       Minutes before midnight, something started happening. If you purchased
@@ -260,7 +262,7 @@ const body = () => (
   </>
 )
 
-const article = {
+export const article = {
   thumbnail: oprahMeme,
   title: 'The store that kept on giving',
   teaser:
@@ -271,4 +273,11 @@ const article = {
   body,
 }
 
-export default article
+export const metadata: Metadata = {
+  title: article.title,
+  description: article.teaser,
+}
+
+export default function Page() {
+  return <Article {...article} />
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { classNames, getSlug } from '../../utils'
@@ -25,15 +27,15 @@ export default function InPageNavigation({ title, headings }: Props) {
   const [thumb, setThumb] = useState({ y: 0, height: 0 })
 
   useEffect(() => {
-    const articleElement = document.querySelector('article')
+    const articleElement = document.querySelector('article')!
 
     setHeadingElements([
-      articleElement.querySelector('h1'),
+      articleElement.querySelector('h1')!,
       ...Array.from(articleElement.querySelectorAll('h2')),
     ])
 
     setAnchorElements(
-      Array.from(articleElement.querySelector('nav').querySelectorAll('a')),
+      Array.from(articleElement.querySelector('nav')!.querySelectorAll('a')),
     )
   }, [])
 
