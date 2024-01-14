@@ -2,8 +2,8 @@
 
 FROM node:20-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 FROM node:20-alpine AS builder
 ENV NEXT_TELEMETRY_DISABLED 1

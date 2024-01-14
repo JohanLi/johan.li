@@ -6,5 +6,6 @@ node_modules
 .idea
 **/.DS_Store
 tsconfig.tsbuildinfo
-.env.example
+.env.*
+infra
 .husky
