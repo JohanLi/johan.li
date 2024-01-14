@@ -5,38 +5,36 @@ on:
 
 jobs:
   deploy:
-    runs-on: 'ubuntu-22.04'
+    runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           lfs: true
 
-      # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action
-      - name: Cache node modules
-        id: cache-npm
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
+      # https://pnpm.io/continuous-integration#github-actions
+      - uses: pnpm/action-setup@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          version: 8
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
-      - run: npm ci
-      - run: npm run tsc
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run tsc
 
       - name: Run unit tests
-        run: npm test
+        run: pnpm test
 
-      - run: npx playwright install --with-deps
+      - run: pnpm exec playwright install --with-deps
 
       - name: Run end-to-end tests
-        run: npm run test:e2e
+        run: pnpm run test:e2e
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: tests-report
+          path: ./tests/report
+          retention-days: 30

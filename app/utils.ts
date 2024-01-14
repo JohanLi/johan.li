@@ -22,7 +22,7 @@ export async function getArticles() {
 
   const articles = await Promise.all(
     slugs.map((slug) =>
-      import(`./${slug}/page`).then((m) => ({
+      import(`./${slug}/article`).then((m) => ({
         ...m.article,
         slug,
       })),
