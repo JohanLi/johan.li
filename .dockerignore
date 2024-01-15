@@ -7,3 +7,5 @@
 !tailwind.config.js
 !package.json
 !pnpm-lock.yaml
+!.env
+!.env.local
