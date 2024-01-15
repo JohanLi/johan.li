@@ -33,3 +33,9 @@ you can use a shared IPv4 for free. However, the Terraform provider does not sup
 A consequence of shared IPv4 is that it doesn't work with Cloudflare's proxying
 ("DNS only" vs. "Proxied"). It makes putting my current setup in CI/CD troublesome,
 because you need to wait for DNS propagation.
+
+## End-to-end tests
+
+```
+PRODUCTION_URL=https://dev.johan.li/ pnpm run test:e2e
+```
