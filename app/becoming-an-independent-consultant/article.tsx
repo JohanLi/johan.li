@@ -10,8 +10,6 @@ import Link from '../../src/components/Link'
 
 import independent from './independent.jpg'
 import consultantVsContractors from './consultant-vs-contractors.jpg'
-import { Article } from '../../src/components/article/Article'
-import { Metadata } from 'next'
 
 const headings = [
   'Consulting is lucrative in Sweden',
