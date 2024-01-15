@@ -3,6 +3,7 @@ import { Roboto_Flex } from 'next/font/google'
 import { Metadata } from 'next'
 import Footer from '../src/components/footer/Footer'
 import Header from './Header'
+import Script from 'next/script'
 
 import './globals.css'
 import './prism.css'
@@ -16,8 +17,11 @@ export const metadata: Metadata = {
 
 const robotoFlex = Roboto_Flex({ subsets: ['latin'], display: 'swap' })
 
-const CLOUDFLARE_WEB_ANALYTICS_TOKEN =
-  process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN
+const { CLOUDFLARE_WEB_ANALYTICS_TOKEN } = process.env
+
+if (!CLOUDFLARE_WEB_ANALYTICS_TOKEN) {
+  throw new Error('CLOUDFLARE_WEB_ANALYTICS_TOKEN is not defined')
+}
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -31,13 +35,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div>{children}</div>
         <Footer />
       </body>
-      {Boolean(CLOUDFLARE_WEB_ANALYTICS_TOKEN) && (
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={`{"token": "${CLOUDFLARE_WEB_ANALYTICS_TOKEN}"}`}
-        />
-      )}
+      <Script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${CLOUDFLARE_WEB_ANALYTICS_TOKEN}"}`}
+      />
     </html>
   )
 }
