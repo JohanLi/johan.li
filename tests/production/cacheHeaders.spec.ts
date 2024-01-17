@@ -28,9 +28,11 @@ async function expectCache(
 }
 
 test.describe('Cache headers', () => {
-  test('johan.li', async ({ page }) => {
-    const js = page.waitForResponse((response) =>
-      response.url().endsWith('.js'),
+  test('johan.li', async ({ page, baseURL }) => {
+    const js = page.waitForResponse(
+      (response) =>
+        // https://static.cloudflareinsights.com/beacon.min.js interferes, hence the baseURL check
+        response.url().endsWith('.js') && response.url().startsWith(baseURL),
     )
 
     const css = page.waitForResponse((response) =>
@@ -38,7 +40,7 @@ test.describe('Cache headers', () => {
     )
 
     const image = page.waitForResponse((response) =>
-      response.headers()['content-type'].startsWith('image/'),
+      response.headers()['content-type']?.startsWith('image/'),
     )
 
     await page.goto('/')
@@ -64,7 +66,7 @@ test.describe('Cache headers', () => {
     )
 
     const image = page.waitForResponse((response) =>
-      response.headers()['content-type'].startsWith('image/'),
+      response.headers()['content-type']?.startsWith('image/'),
     )
 
     await page.goto('/uncharted-waters-2')
@@ -77,9 +79,10 @@ test.describe('Cache headers', () => {
     ])
   })
 
-  test('Fingerprint Scanner Simulator', async ({ page }) => {
-    const js = page.waitForResponse((response) =>
-      response.url().endsWith('.js'),
+  test('Fingerprint Scanner Simulator', async ({ page, baseURL }) => {
+    const js = page.waitForResponse(
+      (response) =>
+        response.url().endsWith('.js') && response.url().startsWith(baseURL),
     )
 
     const css = page.waitForResponse((response) =>
@@ -87,7 +90,7 @@ test.describe('Cache headers', () => {
     )
 
     const image = page.waitForResponse((response) =>
-      response.headers()['content-type'].startsWith('image/'),
+      response.headers()['content-type']?.startsWith('image/'),
     )
 
     await page.goto('/gta-online/fingerprint-scanner-simulator')
