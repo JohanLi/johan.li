@@ -1,8 +1,8 @@
-import { CodeInline, H2, P, Ul } from '../../src/components/article/Common'
-import Code from '../../src/components/article/Code'
+import { CodeInline, H2, P, Ul } from '../components/article/Common'
+import Code from '../components/article/Code'
 import oprahMeme from './oprah-meme.jpg'
 import sfccCartoon from './salesforce-commerce-cloud-cartoon.png'
-import ImageFloat from '../../src/components/image/ImageFloat'
+import ImageFloat from '../components/image/ImageFloat'
 
 const headings = [
   'A shiny brand-new store',

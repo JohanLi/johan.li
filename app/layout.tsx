@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Roboto_Flex } from 'next/font/google'
 import { Metadata } from 'next'
-import Footer from '../src/components/footer/Footer'
+import Footer from './components/footer/Footer'
 import Header from './Header'
 import Script from 'next/script'
 

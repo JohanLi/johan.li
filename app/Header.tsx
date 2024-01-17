@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import Link from '../src/components/Link'
+import Link from './components/Link'
 
 export default function Header() {
   const pathname = usePathname()

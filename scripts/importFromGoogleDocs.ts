@@ -1,7 +1,8 @@
 import { docs, auth } from '@googleapis/docs'
-import { writeFile } from 'fs/promises'
+import { writeFile, readFile, mkdir } from 'fs/promises'
 import childProcess from 'child_process'
 import util from 'util'
+import { getSlug } from '../app/utils'
 
 const exec = util.promisify(childProcess.exec)
 
@@ -40,8 +41,6 @@ async function main() {
 
   const { title, body } = data
 
-  const filename = `${title.replace(/\s/g, '-').toLowerCase()}.tsx`
-
   const headings = []
   const headingLevels = new Set()
   const elements = []
@@ -70,26 +69,26 @@ async function main() {
       elements.push(`<P>${content}</P>`)
     })
 
-  const output = `
+  const articleOutput = `
     ${
       headingLevels.size > 0 &&
       `import { ${Array.from(headingLevels).join(
         ', ',
-      )} } from '../src/components/article/Common';`
+      )} } from '../components/article/Common';`
     }
-    import { P } from '../src/components/article/Common';
+    import { P } from '../components/article/Common';
     
     const headings = [
       ${headings.map((heading) => `'${heading}',`).join('\n')}
     ]
     
-    const body = () => (
+    const body = (
       <>
         ${elements.join('\n')}
       </>
     )
     
-    const article = {
+    export const article = {
       thumbnail: '',
       title: '${title}',
       teaser: '',
@@ -98,15 +97,21 @@ async function main() {
       headings,
       body,
     }
-    
-    export default article
   `
 
-  const filepath = `${__dirname}/${filename}`
+  const slug = getSlug(title)
 
-  await writeFile(filepath, output)
+  await mkdir(`${__dirname}/../app/${slug}`, { recursive: true })
 
-  await exec(`prettier ${filepath} --write`)
+  const articleFilePath = `${__dirname}/../app/${slug}/article.tsx`
+  await writeFile(articleFilePath, articleOutput)
+  await exec(`prettier ${articleFilePath} --write`)
+
+  const pageOutput = await readFile(
+    `${__dirname}/../app/cargo-culting-in-software/page.tsx`,
+    'utf8',
+  )
+  await writeFile(`${__dirname}/../app/${slug}/page.tsx`, pageOutput)
 
   process.exit()
 }

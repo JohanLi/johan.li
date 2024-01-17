@@ -1,33 +1,18 @@
-import { readdir, stat } from 'fs/promises'
-import path from 'path'
+export function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
-const ARTICLES_DIRECTORY = path.join(process.cwd(), 'app')
+export function unixTimestampToMonthYear(unixTimestamp: number) {
+  const date = new Date(unixTimestamp * 1000)
+  const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date)
+  const year = date.getFullYear()
 
-export async function getArticles() {
-  const slugs: string[] = []
+  return `${month}, ${year}`
+}
 
-  async function readDirectory(dir) {
-    const entries = await readdir(dir)
-
-    for (const entry of entries) {
-      const entryPath = path.join(dir, entry)
-
-      if ((await stat(entryPath)).isDirectory()) {
-        slugs.push(entry)
-      }
-    }
-  }
-
-  await readDirectory(ARTICLES_DIRECTORY)
-
-  const articles = await Promise.all(
-    slugs.map((slug) =>
-      import(`./${slug}/article`).then((m) => ({
-        ...m.article,
-        slug,
-      })),
-    ),
-  )
-
-  return articles.sort((a, b) => b.published - a.published)
+export function getSlug(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^0-9a-z\-]/gi, '')
 }

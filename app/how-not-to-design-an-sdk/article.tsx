@@ -1,4 +1,4 @@
-import Image from '../../src/components/image/Image'
+import Image from '../components/image/Image'
 import {
   CodeInline,
   H2,
@@ -6,9 +6,9 @@ import {
   P,
   BlockQuote,
   UlReferences,
-} from '../../src/components/article/Common'
-import Link from '../../src/components/Link'
-import Code from '../../src/components/article/Code'
+} from '../components/article/Common'
+import Link from '../components/Link'
+import Code from '../components/article/Code'
 
 import feelsBadMan from './feels-bad-man.png'
 import npmInstallStart from './npm-install-start.png'
@@ -16,7 +16,7 @@ import excessiveInformation from './excessive-information.png'
 import excessiveInformationLarge from './excessive-information-large.png'
 import objectOrientedProgrammer from './object-oriented-programmer.png'
 import objectOrientedProgrammerSmall from './object-oriented-programmer-small.png'
-import ImageFloat from '../../src/components/image/ImageFloat'
+import ImageFloat from '../components/image/ImageFloat'
 
 const headings = [
   'Azure Blob Storage',
