@@ -1,6 +1,6 @@
 import { article } from './article'
 import { Metadata } from 'next'
-import { Article } from '../../src/components/article/Article'
+import { Article } from '../components/article/Article'
 
 export const metadata: Metadata = {
   title: article.title,

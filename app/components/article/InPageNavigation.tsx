@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import debounce from 'lodash.debounce'
-import { classNames, getSlug } from '../../utils'
 import Link from '../Link'
+import { classNames, getSlug } from '../../utils'
 
 /*
   some hash links, when clicked, result in 0 < getBoundingClientRect().top < 1

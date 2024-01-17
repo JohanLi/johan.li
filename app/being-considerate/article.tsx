@@ -1,5 +1,5 @@
-import { H2, P } from '../../src/components/article/Common'
-import Image from '../../src/components/image/Image'
+import { H2, P } from '../components/article/Common'
+import Image from '../components/image/Image'
 
 import tBarLift from './t-bar-lift.jpg'
 import tBarLiftLarge from './t-bar-lift-large.jpg'

@@ -1,7 +1,7 @@
-import Link from '../src/components/Link'
+import Link from './components/Link'
 import NextImage from 'next/image'
-import { unixTimestampToMonthYear } from '../src/utils'
-import { getArticles } from './utils'
+import { unixTimestampToMonthYear } from './utils'
+import { getArticles } from './getArticles'
 
 export default async function Home() {
   const articles = await getArticles()

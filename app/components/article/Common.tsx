@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+
 import { getSlug } from '../../utils'
 
 type PropsString = {
