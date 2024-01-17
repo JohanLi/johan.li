@@ -20,7 +20,7 @@ RUN git lfs install
 RUN git clone --depth 1 https://github.com/JohanLi/uncharted-waters-2
 RUN cd uncharted-waters-2 && npm install && PUBLIC_PATH=/uncharted-waters-2/ npm run build
 RUN git clone --depth 1 https://github.com/JohanLi/fingerprint-scanner-simulator
-RUN cd fingerprint-scanner-simulator && npm install && BASE_PATH=/gta-online/fingerprint-scanner-simulator npm run build
+RUN cd fingerprint-scanner-simulator && npm install -g pnpm && pnpm install --frozen-lockfile && BASE_PATH=/gta-online/fingerprint-scanner-simulator pnpm run build
 
 FROM node:20-alpine AS runner
 ENV NODE_ENV production
@@ -31,7 +31,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=others /app/uncharted-waters-2/build ./public/uncharted-waters-2
-COPY --from=others /app/fingerprint-scanner-simulator/out ./public/gta-online/fingerprint-scanner-simulator
+COPY --from=others /app/fingerprint-scanner-simulator/dist ./public/gta-online/fingerprint-scanner-simulator
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
