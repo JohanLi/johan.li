@@ -15,3 +15,9 @@
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+
+# Using husky with git-lfs sometimes causes useless hooks to be written to the .husky folder
+# https://github.com/typicode/husky/issues/926
+# https://github.com/online-go/online-go.com/pull/2063
+/.husky/
+!/.husky/pre-commit
