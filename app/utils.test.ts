@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import { classNames, getSlug, unixTimestampToMonthYear } from './utils'
 
 test('classNames', () => {
@@ -13,17 +14,17 @@ test('unixTimestampToMonthYear', () => {
 })
 
 describe('getSlug', () => {
-  it('applies lowercase', () => {
+  test('applies lowercase', () => {
     expect(getSlug('HelloWorld')).toEqual('helloworld')
   })
 
-  it('replaces spaces with hyphens', () => {
+  test('replaces spaces with hyphens', () => {
     expect(getSlug('hello world good morning')).toEqual(
       'hello-world-good-morning',
     )
   })
 
-  it('removes non-alphanumeric characters, except hyphens', () => {
+  test('removes non-alphanumeric characters, except hyphens', () => {
     expect(getSlug('Hello, World!-')).toEqual('hello-world-')
   })
 })

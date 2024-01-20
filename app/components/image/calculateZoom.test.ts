@@ -1,10 +1,11 @@
+import { describe, beforeEach, afterEach, test, vi, expect } from 'vitest'
 import calculateZoom from './calculateZoom'
 
 describe('calculateZoom', () => {
   let documentSpy
 
   beforeEach(() => {
-    documentSpy = jest.spyOn(document, 'documentElement', 'get')
+    documentSpy = vi.spyOn(document, 'documentElement', 'get')
   })
 
   afterEach(() => {
