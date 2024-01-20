@@ -18,7 +18,7 @@ export function Article(props: Props) {
   return (
     <article className="mx-auto w-full max-w-7xl justify-between px-4 lg:flex lg:px-8">
       <div className="max-w-2xl xl:max-w-3xl">
-        <div className="pt-12 pb-6">
+        <div className="pb-6 pt-12">
           <H1>{props.title}</H1>
           <p className="mt-3 text-sm text-gray-400">
             {unixTimestampToMonthYear(props.published)} · {props.readingTime}{' '}

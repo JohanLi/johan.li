@@ -10,12 +10,12 @@ export default function Header() {
   return (
     <Link href="/">
       {isHomePage && (
-        <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl text-[#a675a2]">
+        <h1 className="text-4xl font-extrabold tracking-tight text-[#a675a2] md:text-5xl">
           Johan Li
         </h1>
       )}
       {!isHomePage && (
-        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl text-[#a675a2]">
+        <h2 className="text-2xl font-extrabold tracking-tight text-[#a675a2] md:text-3xl">
           Johan Li
         </h2>
       )}

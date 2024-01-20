@@ -26,7 +26,7 @@ if (!CLOUDFLARE_WEB_ANALYTICS_TOKEN) {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={robotoFlex.className}>
-      <body className="overflow-y-scroll flex min-h-screen flex-col">
+      <body className="flex min-h-screen flex-col overflow-y-scroll">
         <nav className="pt-12">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <Header />

@@ -113,7 +113,7 @@ export default function InPageNavigation({ title, headings }: Props) {
 
   return (
     <div className="hidden pl-12 pt-12 lg:block lg:pl-24">
-      <nav className="sticky top-12 left-0 border-l-2 border-gray-200 pl-4">
+      <nav className="sticky left-0 top-12 border-l-2 border-gray-200 pl-4">
         <Link
           href={`/${getSlug(title)}`}
           className={classNames(
@@ -125,7 +125,7 @@ export default function InPageNavigation({ title, headings }: Props) {
         >
           {title}
         </Link>
-        <ul className="mt-2 ml-2 space-y-2">
+        <ul className="ml-2 mt-2 space-y-2">
           {headings.map((heading, i) => (
             <li key={heading}>
               <Link
@@ -144,7 +144,7 @@ export default function InPageNavigation({ title, headings }: Props) {
         </ul>
         <div
           className={classNames(
-            'absolute top-0 -left-0.5 h-px w-0.5 origin-top bg-purple-800 transition-transform duration-300',
+            'absolute -left-0.5 top-0 h-px w-0.5 origin-top bg-purple-800 transition-transform duration-300',
           )}
           style={{
             transform: `translateY(${thumb.y}px) scaleY(${thumb.height})`,
