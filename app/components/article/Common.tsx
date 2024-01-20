@@ -34,7 +34,7 @@ export function H2({ children }: PropsString) {
 
 export function H3({ children }: PropsString) {
   return (
-    <h3 className="mt-12 mb-6 text-base font-bold md:text-lg">{children}</h3>
+    <h3 className="mb-6 mt-12 text-base font-bold md:text-lg">{children}</h3>
   )
 }
 
