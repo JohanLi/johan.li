@@ -19,6 +19,9 @@ pnpm start
 
 Visit http://localhost:3000.
 
+Note: git-lfs needs to be installed. `git lfs install` also needs to be run once – images will otherwise not
+be handled by Git LFS.
+
 ## Provisioning and deployment
 
 Provisioning is done manually using the `infra/setup.sh` script:

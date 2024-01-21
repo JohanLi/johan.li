@@ -48,11 +48,14 @@ async function main() {
   body.content
     .filter(({ paragraph }) => paragraph)
     .forEach(({ paragraph }) => {
-      const { content } = paragraph.elements[0].textRun
+      let { content } = paragraph.elements[0].textRun
 
       if (content === '\n') {
         return
       }
+
+      // due to react/no-unescaped-entities, single quotes are replaced with an actual apostrophe
+      content = content.replaceAll(`'`, '’')
 
       const { namedStyleType } = paragraph.paragraphStyle
       const headingMatch = namedStyleType.match(/HEADING_(\d)/)
