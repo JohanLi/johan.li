@@ -24,7 +24,7 @@ export function H1({ children }: PropsString) {
 export function H2({ children }: PropsString) {
   return (
     <h2
-      className="mb-6 pt-12 text-xl font-bold md:text-2xl"
+      className="mb-6 mt-12 text-xl font-bold md:text-2xl"
       id={getSlug(children)}
     >
       {children}
