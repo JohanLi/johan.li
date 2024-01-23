@@ -2,13 +2,15 @@ import Link from './components/Link'
 import NextImage from 'next/image'
 import { unixTimestampToMonthYear } from './utils'
 import { getArticles } from './getArticles'
+import Intro from './components/intro/Intro'
 
 export default async function Home() {
   const articles = await getArticles()
 
   return (
-    <div className="mx-auto max-w-7xl px-4 lg:px-8">
-      <div className="pb-12 pt-6 sm:pb-24 sm:pt-12">
+    <div className="mx-auto max-w-7xl space-y-12 px-4 pb-12 pt-6 sm:pb-24 sm:pt-12 lg:px-8">
+      <Intro />
+      <div>
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">
           Articles
         </h2>
