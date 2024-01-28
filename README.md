@@ -51,3 +51,12 @@ The workflow will likely be:
 - Write articles in Google Docs
 - Use a script that converts it to JSX
 - Make modifications as necessary
+
+## Notes
+
+`sharp` has been downgraded to 0.32.6 (https://github.com/vercel/next.js/issues/59346). Otherwise, the following
+happens:
+
+```
+Error: 'sharp' is required to be installed in standalone mode for the image optimization to function correctly
+```
