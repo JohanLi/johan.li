@@ -61,6 +61,7 @@ const body = (
       width={500}
       right
       alt="“Real” vs. nominal/imaginary accounts"
+      priority
     />
     <P>
       With double-entry bookkeeping, entries also contain information about how
@@ -156,4 +157,5 @@ export const article = {
   readingTime: 4,
   headings,
   body,
+  category: 'accounting',
 }

@@ -37,5 +37,13 @@ export async function getArticles() {
     ),
   )
 
-  return articles.sort((a, b) => b.published - a.published)
+  const accounting = articles
+    .filter((article) => article.category === 'accounting')
+    .sort((a, b) => a.published - b.published)
+
+  const general = articles
+    .filter((article) => article.category !== 'accounting')
+    .sort((a, b) => b.published - a.published)
+
+  return { accounting, general }
 }

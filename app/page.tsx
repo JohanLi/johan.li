@@ -1,8 +1,6 @@
-import Link from './components/Link'
-import NextImage from 'next/image'
-import { unixTimestampToMonthYear } from './utils'
 import { getArticles } from './getArticles'
 import Intro from './components/intro/Intro'
+import { ArticleCard } from './ArticleCard'
 
 export default async function Home() {
   const articles = await getArticles()
@@ -12,34 +10,28 @@ export default async function Home() {
       <Intro />
       <div>
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">
-          Articles
+          Articles (projects)
         </h2>
-        <div className="mt-6 grid gap-12 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article, i) => (
-            <Link
-              href={`/${article.slug}`}
-              className="flex transform flex-col overflow-hidden rounded-lg shadow-lg transition duration-200 hover:scale-105"
+        <div className="mt-6 max-w-4xl">
+          I became an independent developer in 2022. As part of this change, I
+          created my own accounting solution to manage my Swedish AB company.
+          These are my learnings, and how I approached my solution.
+        </div>
+        <div className="mb-12 mt-6 grid gap-12 sm:mb-24 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.accounting.map((article, i) => (
+            <ArticleCard
               key={article.slug}
-            >
-              <NextImage
-                src={article.thumbnail}
-                alt={article.title}
-                className="h-48 w-full object-cover"
-                priority={i < 3}
-              />
-              <div className="flex flex-1 flex-col p-6">
-                <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-gray-900">
-                    {article.title}
-                  </h2>
-                  <div className="mt-3 text-gray-500">{article.teaser}</div>
-                </div>
-                <div className="mt-6 text-sm text-gray-500">
-                  {unixTimestampToMonthYear(article.published)} ·{' '}
-                  {article.readingTime} min read
-                </div>
-              </div>
-            </Link>
+              thumbnailPriority={i < 3}
+              {...article}
+            />
+          ))}
+        </div>
+        <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">
+          Articles (general)
+        </h2>
+        <div className="mb-12 mt-6 grid gap-12 sm:mb-24 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.general.map((article) => (
+            <ArticleCard key={article.slug} {...article} />
           ))}
         </div>
       </div>
