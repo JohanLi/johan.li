@@ -32,6 +32,7 @@ const body = (
       width={350}
       right
       alt="Employed vs. independent"
+      priority
     />
     <P>
       In Sweden, it’s not uncommon for senior developers to go independent to

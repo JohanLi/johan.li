@@ -48,7 +48,15 @@ async function main() {
   body.content
     .filter(({ paragraph }) => paragraph)
     .forEach(({ paragraph }) => {
-      let { content } = paragraph.elements[0].textRun
+      let content = paragraph.elements
+        .map(({ textRun }) => {
+          if (textRun.textStyle.bold) {
+            return `<strong>${textRun.content}</strong>`
+          }
+
+          return textRun.content
+        })
+        .join('')
 
       if (content === '\n') {
         return
