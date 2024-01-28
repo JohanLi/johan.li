@@ -134,4 +134,5 @@ export const article = {
   readingTime: 3,
   headings,
   body,
+  category: 'accounting',
 }
