@@ -6,7 +6,7 @@ test('Homepage', async ({ page }) => {
   await expect(page).toHaveTitle(/Johan Li -/)
 
   const articleLinks = page
-    .locator('h2 >> text="Articles"')
+    .locator('h2 >> text="Articles (general)"')
     .locator('..')
     .locator('a')
 
