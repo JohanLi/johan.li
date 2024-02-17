@@ -129,7 +129,7 @@ export const article = {
   thumbnail: accounting,
   title: 'Building my own accounting solution',
   teaser:
-    'Rather than enlisting a firm or using off-the-shelf solutions, I built my own. Here’s why.',
+    'Rather than enlisting a firm or using off-the-shelf solutions, I built my own.',
   published: 1705765945,
   readingTime: 3,
   headings,
