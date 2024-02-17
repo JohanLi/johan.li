@@ -50,6 +50,10 @@ export function UlReferences({ children }: PropsNode) {
   return <ul className="mt-4 list-disc space-y-2 pl-6 text-xs">{children}</ul>
 }
 
+export function Ol({ children }: PropsNode) {
+  return <ol className="mt-6 list-decimal space-y-4 pl-8">{children}</ol>
+}
+
 export function CodeInline({ children }: PropsString) {
   return <span className="bg-[#f5f2f0] p-0.5">{children}</span>
 }
