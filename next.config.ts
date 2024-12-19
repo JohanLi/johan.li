@@ -1,8 +1,6 @@
-/**
- * @type {import('next').NextConfig}
- **/
+import type { NextConfig } from 'next'
 
-module.exports = {
+export default {
   reactStrictMode: true,
   output: 'standalone',
   headers: async () => [
@@ -26,4 +24,4 @@ module.exports = {
       destination: '/gta-online/fingerprint-scanner-simulator/index.html',
     },
   ],
-}
+} satisfies NextConfig
