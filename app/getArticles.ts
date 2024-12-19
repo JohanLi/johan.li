@@ -18,7 +18,7 @@ export async function getArticles() {
 
       try {
         await stat(path.join(entryPath, 'article.tsx'))
-      } catch (e) {
+      } catch {
         continue
       }
 
