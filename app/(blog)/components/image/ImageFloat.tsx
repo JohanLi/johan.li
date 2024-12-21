@@ -1,6 +1,7 @@
 import NextImage, { StaticImageData } from 'next/image'
-import { Caption } from '../article/Caption'
+
 import { classNames } from '../../utils'
+import { Caption } from '../article/Caption'
 
 type Props = {
   data: StaticImageData

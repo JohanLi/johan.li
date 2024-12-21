@@ -1,4 +1,4 @@
-import { test, expect, Response } from '@playwright/test'
+import { Response, expect, test } from '@playwright/test'
 
 /*
   This is being tested because, currently, this app is responsible for setting the correct

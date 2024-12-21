@@ -1,8 +1,7 @@
 import { H2, P } from '../components/article/Common'
 import Image from '../components/image/Image'
-
-import tBarLift from './t-bar-lift.jpg'
 import tBarLiftLarge from './t-bar-lift-large.jpg'
+import tBarLift from './t-bar-lift.jpg'
 
 const headings = [
   'Skiing and I',

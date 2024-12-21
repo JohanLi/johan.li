@@ -1,4 +1,5 @@
-import { describe, beforeEach, afterEach, test, vi, expect } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+
 import calculateZoom from './calculateZoom'
 
 describe('calculateZoom', () => {

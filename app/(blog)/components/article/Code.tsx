@@ -13,13 +13,13 @@
   Additionally, the Custom Class plugin doesn’t change the actual CSS
   for you. This is why a prism.css file is committed.
  */
-
 import Prism from 'prismjs'
-import 'prismjs/plugins/custom-class/prism-custom-class'
-import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-python'
-import 'prismjs/components/prism-markup-templating'
 import 'prismjs/components/prism-handlebars'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-markup-templating'
+import 'prismjs/components/prism-python'
+import 'prismjs/plugins/custom-class/prism-custom-class'
+
 import { Caption } from './Caption'
 
 /*

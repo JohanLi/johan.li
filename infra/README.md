@@ -37,5 +37,5 @@ because you need to wait for DNS propagation.
 ## End-to-end tests
 
 ```
-PRODUCTION_URL=https://dev.johan.li/ pnpm run test:e2e
+PRODUCTION_URL=https://dev.johan.li/ pnpm test:e2e
 ```

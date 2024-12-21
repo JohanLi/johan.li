@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
-import { isCorrect, shuffle } from './utils'
+
 import {
-  fingerprintElementI,
   FingerprintElementI,
   FingerprintI,
+  fingerprintElementI,
 } from './fingerprints'
+import { isCorrect, shuffle } from './utils'
 
 const FINGERPRINTS: {
   variant: FingerprintI
