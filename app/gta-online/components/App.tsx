@@ -6,7 +6,6 @@ import { reducer, initialState, modes } from '../lib/hooks'
 import About from './About'
 import { getFingerprint, load } from '../lib/fingerprints'
 import { classNames } from '../lib/utils'
-import Loading from './Loading'
 import Stats from './Stats'
 import Choices from './Choices'
 import NextImage from 'next/image'
@@ -34,7 +33,6 @@ const App = () => {
       )}
     >
       <div className="relative mx-auto max-w-2xl space-y-12">
-        {!state.fingerprintsLoaded && <Loading />}
         <div className="flex justify-between">
           <div>
             <NextImage
@@ -47,6 +45,7 @@ const App = () => {
               width="400"
               height="512"
               alt=""
+              priority
             />
           </div>
           <div className="flex flex-col justify-between">

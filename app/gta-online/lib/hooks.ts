@@ -34,7 +34,6 @@ export const modes = ['normal', 'hard'] as const
 type Mode = (typeof modes)[number]
 
 export interface State {
-  fingerprintsLoaded: boolean
   shuffledFingerprints: FingerprintI[]
   shuffledElements: FingerprintElementI[]
   selectedElements: FingerprintElementI[]
@@ -58,7 +57,6 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...initialState(),
         ...resetState(),
-        fingerprintsLoaded: true,
       }
     }
     case 'SET_MODE': {
@@ -71,7 +69,6 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...initialState(),
         ...resetState(),
-        fingerprintsLoaded: state.fingerprintsLoaded,
         mode,
       }
     }
@@ -147,7 +144,6 @@ export const reducer = (state: State, action: Action): State => {
 }
 
 export const initialState = (): State => ({
-  fingerprintsLoaded: false,
   shuffledFingerprints: FINGERPRINTS.map((f) => f.variant),
   shuffledElements: ELEMENTS,
   selectedElements: [],
