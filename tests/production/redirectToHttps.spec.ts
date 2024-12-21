@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 // this is handled by Fly.io through fly.toml
 test('responds to http but redirects to https', async ({

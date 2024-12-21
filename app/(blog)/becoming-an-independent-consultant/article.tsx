@@ -1,9 +1,8 @@
-import Image from '../components/image/Image'
-import { H2, H3, P, Ul, UlReferences } from '../components/article/Common'
 import Link from '../components/Link'
-
-import independent from './independent.jpg'
+import { H2, H3, P, Ul, UlReferences } from '../components/article/Common'
+import Image from '../components/image/Image'
 import consultantVsContractors from './consultant-vs-contractors.jpg'
+import independent from './independent.jpg'
 
 const headings = [
   'Consulting is lucrative in Sweden',

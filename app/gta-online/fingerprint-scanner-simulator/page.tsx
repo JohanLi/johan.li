@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
-import Minigame from '../Minigame'
+
 import About from '../About'
+import Minigame from '../Minigame'
 
 export const metadata: Metadata = {
   title: 'Fingerprint Scanner Simulator - GTA Online Casino Heist',

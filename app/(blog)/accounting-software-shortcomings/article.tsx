@@ -2,13 +2,12 @@ import { H2, Ol, Ul } from '../components/article/Common'
 import { P } from '../components/article/Common'
 import Image from '../components/image/Image'
 import ImageFloat from '../components/image/ImageFloat'
-
-import shortcomings from './shortcomings.jpg'
-import irrelevantFeaturesAndLists from './irrelevant-features-and-lists.jpg'
-import searchAndSelectTemplate from './search-and-select-template.jpg'
-import nonExcludedSuggestions from './non-excluded-suggestions.jpg'
-import skiingReceipt from './skiing-receipt.jpg'
 import cumbersomeToAdjust from './cumbersome-to-adjust.jpg'
+import irrelevantFeaturesAndLists from './irrelevant-features-and-lists.jpg'
+import nonExcludedSuggestions from './non-excluded-suggestions.jpg'
+import searchAndSelectTemplate from './search-and-select-template.jpg'
+import shortcomings from './shortcomings.jpg'
+import skiingReceipt from './skiing-receipt.jpg'
 import taxesConfused from './taxesConfused.jpg'
 
 const headings = [

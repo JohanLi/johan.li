@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 test.describe('In-page navigation', () => {
   test('renders sections based on H2 tags', async ({ page }) => {
