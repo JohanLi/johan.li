@@ -2,7 +2,7 @@ import { docs, auth } from '@googleapis/docs'
 import { writeFile, readFile, mkdir } from 'fs/promises'
 import childProcess from 'child_process'
 import util from 'util'
-import { getSlug } from '../app/utils'
+import { getSlug } from '../app/(blog)/utils'
 
 const exec = util.promisify(childProcess.exec)
 

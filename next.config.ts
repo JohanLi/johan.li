@@ -19,9 +19,5 @@ export default {
       source: '/uncharted-waters-2',
       destination: '/uncharted-waters-2/index.html',
     },
-    {
-      source: '/gta-online/fingerprint-scanner-simulator',
-      destination: '/gta-online/fingerprint-scanner-simulator/index.html',
-    },
   ],
 } satisfies NextConfig
