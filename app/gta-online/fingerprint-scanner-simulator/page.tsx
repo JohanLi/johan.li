@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
-import App from '../components/App'
+import Minigame from '../Minigame'
+import About from '../About'
 
 export const metadata: Metadata = {
   title: 'Fingerprint Scanner Simulator - GTA Online Casino Heist',
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <App />
+  return (
+    <Minigame>
+      <About />
+    </Minigame>
+  )
 }

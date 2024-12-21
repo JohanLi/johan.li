@@ -55,8 +55,8 @@ export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'FINGERPRINTS_LOADED': {
       return {
-        ...initialState(),
-        ...resetState(),
+        ...initialState,
+        ...shuffleGame(),
       }
     }
     case 'SET_MODE': {
@@ -67,8 +67,8 @@ export const reducer = (state: State, action: Action): State => {
       }
 
       return {
-        ...initialState(),
-        ...resetState(),
+        ...initialState,
+        ...shuffleGame(),
         mode,
       }
     }
@@ -143,7 +143,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
-export const initialState = (): State => ({
+export const initialState: State = {
   shuffledFingerprints: FINGERPRINTS.map((f) => f.variant),
   shuffledElements: ELEMENTS,
   selectedElements: [],
@@ -152,13 +152,15 @@ export const initialState = (): State => ({
   lastRun: 0,
   thisRun: 0,
   mode: 'normal',
-})
+}
 
-export const resetState = (): Partial<State> => ({
-  shuffledFingerprints: shuffle(FINGERPRINTS.map((f) => f.variant)),
-  shuffledElements: shuffle(ELEMENTS),
-  startTimestamp: performance.now(),
-})
+export function shuffleGame() {
+  return {
+    shuffledFingerprints: shuffle(FINGERPRINTS.map((f) => f.variant)),
+    shuffledElements: shuffle(ELEMENTS),
+    startTimestamp: performance.now(),
+  }
+}
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 type IntervalFunction = () => void
