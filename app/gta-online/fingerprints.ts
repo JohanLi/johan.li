@@ -1,8 +1,3 @@
-import finger1 from './assets/finger-1.webp'
-import finger2 from './assets/finger-2.webp'
-import finger3 from './assets/finger-3.webp'
-import finger4 from './assets/finger-4.webp'
-
 import finger1_1 from './assets/finger-1-1.webp'
 import finger1_2 from './assets/finger-1-2.webp'
 import finger1_3 from './assets/finger-1-3.webp'
@@ -11,7 +6,7 @@ import finger1_5 from './assets/finger-1-5.webp'
 import finger1_6 from './assets/finger-1-6.webp'
 import finger1_7 from './assets/finger-1-7.webp'
 import finger1_8 from './assets/finger-1-8.webp'
-
+import finger1 from './assets/finger-1.webp'
 import finger2_1 from './assets/finger-2-1.webp'
 import finger2_2 from './assets/finger-2-2.webp'
 import finger2_3 from './assets/finger-2-3.webp'
@@ -20,7 +15,7 @@ import finger2_5 from './assets/finger-2-5.webp'
 import finger2_6 from './assets/finger-2-6.webp'
 import finger2_7 from './assets/finger-2-7.webp'
 import finger2_8 from './assets/finger-2-8.webp'
-
+import finger2 from './assets/finger-2.webp'
 import finger3_1 from './assets/finger-3-1.webp'
 import finger3_2 from './assets/finger-3-2.webp'
 import finger3_3 from './assets/finger-3-3.webp'
@@ -29,7 +24,7 @@ import finger3_5 from './assets/finger-3-5.webp'
 import finger3_6 from './assets/finger-3-6.webp'
 import finger3_7 from './assets/finger-3-7.webp'
 import finger3_8 from './assets/finger-3-8.webp'
-
+import finger3 from './assets/finger-3.webp'
 import finger4_1 from './assets/finger-4-1.webp'
 import finger4_2 from './assets/finger-4-2.webp'
 import finger4_3 from './assets/finger-4-3.webp'
@@ -38,6 +33,7 @@ import finger4_5 from './assets/finger-4-5.webp'
 import finger4_6 from './assets/finger-4-6.webp'
 import finger4_7 from './assets/finger-4-7.webp'
 import finger4_8 from './assets/finger-4-8.webp'
+import finger4 from './assets/finger-4.webp'
 
 const fingerprintMap = {
   '1': finger1,

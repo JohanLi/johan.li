@@ -1,8 +1,9 @@
 import { StaticImageData } from 'next/image'
 import { ReactNode } from 'react'
+
+import { unixTimestampToMonthYear } from '../../utils'
 import { H1 } from './Common'
 import InPageNavigation from './InPageNavigation'
-import { unixTimestampToMonthYear } from '../../utils'
 
 type Props = {
   thumbnail: StaticImageData

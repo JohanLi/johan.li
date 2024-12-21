@@ -1,8 +1,7 @@
 import { H2 } from '../components/article/Common'
 import { P } from '../components/article/Common'
-import ImageFloat from '../components/image/ImageFloat'
 import Image from '../components/image/Image'
-
+import ImageFloat from '../components/image/ImageFloat'
 import accounting from './accounting.jpg'
 import regularVsIndependent from './regular-vs-independent.jpg'
 import timelineOfEvents from './timeline-of-events.jpg'

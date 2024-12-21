@@ -1,7 +1,12 @@
 import { H2 } from '../components/article/Common'
 import { P } from '../components/article/Common'
-import ImageFloat from '../components/image/ImageFloat'
 import Image from '../components/image/Image'
+import ImageFloat from '../components/image/ImageFloat'
+import accountCodes from './account-codes.jpg'
+import accountant from './accountant.jpg'
+import bookkeeping from './bookkeeping.jpg'
+import doubleEntryBookeeping from './double-entry-bookkeeping.jpg'
+import naiveBookkeeping from './naive-bookkeeping.jpg'
 
 const headings = [
   'Ledger – a log of all transactions',
@@ -9,12 +14,6 @@ const headings = [
   'What problems do accounting firms and software solutions solve?',
   'BAS-kontoplan and SIE',
 ]
-
-import bookkeeping from './bookkeeping.jpg'
-import naiveBookkeeping from './naive-bookkeeping.jpg'
-import accountCodes from './account-codes.jpg'
-import doubleEntryBookeeping from './double-entry-bookkeeping.jpg'
-import accountant from './accountant.jpg'
 
 const body = (
   <>

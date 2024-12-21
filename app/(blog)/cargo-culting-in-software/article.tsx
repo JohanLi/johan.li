@@ -1,11 +1,10 @@
-import Image from '../components/image/Image'
-import { H2, H3, P, UlReferences } from '../components/article/Common'
 import Link from '../components/Link'
-
-import vanuatuJohnFrumDay from './vanuatu-john-frum-day.jpg'
-import microservices from './microservices.png'
-import agile from './agile.png'
+import { H2, H3, P, UlReferences } from '../components/article/Common'
+import Image from '../components/image/Image'
 import agileLarge from './agile-large.png'
+import agile from './agile.png'
+import microservices from './microservices.png'
+import vanuatuJohnFrumDay from './vanuatu-john-frum-day.jpg'
 
 const headings = ['Origin', 'In software', 'Microservices', 'Agile', 'Thoughts']
 

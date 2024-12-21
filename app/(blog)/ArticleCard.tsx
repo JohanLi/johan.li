@@ -1,6 +1,7 @@
 import NextImage, { StaticImageData } from 'next/image'
-import { unixTimestampToMonthYear } from './utils'
+
 import Link from './components/Link'
+import { unixTimestampToMonthYear } from './utils'
 
 type ArticleCardProps = {
   slug: string

@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import NextImage, { StaticImageData } from 'next/image'
-import calculateZoom from './calculateZoom'
-import { Caption } from '../article/Caption'
+import { useEffect, useState } from 'react'
+
 import { classNames } from '../../utils'
+import { Caption } from '../article/Caption'
+import calculateZoom from './calculateZoom'
 
 /*
   If zoomSrc is provided:

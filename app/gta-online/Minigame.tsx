@@ -1,13 +1,13 @@
 'use client'
 
-import { useReducer, useEffect, ReactNode } from 'react'
-
-import { reducer, initialState, modes } from './hooks'
-import { getFingerprint, load } from './fingerprints'
-import { classNames } from './utils'
-import Stats from './Stats'
-import Choices from './Choices'
 import NextImage from 'next/image'
+import { ReactNode, useEffect, useReducer } from 'react'
+
+import Choices from './Choices'
+import Stats from './Stats'
+import { getFingerprint, load } from './fingerprints'
+import { initialState, modes, reducer } from './hooks'
+import { classNames } from './utils'
 
 export default function Minigame({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState)

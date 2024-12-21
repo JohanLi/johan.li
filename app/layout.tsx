@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react'
 import { Roboto_Flex } from 'next/font/google'
 import Script from 'next/script'
+import React, { ReactNode } from 'react'
 
 import './globals.css'
 

@@ -1,7 +1,6 @@
+import Code from '../components/article/Code'
 import { H2, P } from '../components/article/Common'
 import Image from '../components/image/Image'
-import Code from '../components/article/Code'
-
 import angularReactVueTrends from './angular-react-vue-trends.png'
 import barebonesMessagingApp from './barebones-messaging-app.png'
 

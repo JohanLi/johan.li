@@ -1,5 +1,6 @@
-import { expect, test, vi, beforeEach, describe } from 'vitest'
-import { reducer, initialState, State } from './hooks'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
+
+import { State, initialState, reducer } from './hooks'
 import * as utils from './utils'
 
 vi.spyOn(utils, 'shuffle').mockImplementation(

@@ -14,7 +14,7 @@
 
 ```
 pnpm install
-pnpm start
+pnpm dev
 ```
 
 Visit http://localhost:3000.

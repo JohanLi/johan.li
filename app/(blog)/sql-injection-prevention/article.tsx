@@ -1,7 +1,6 @@
-import Image from '../components/image/Image'
 import Code from '../components/article/Code'
 import { H2, P } from '../components/article/Common'
-
+import Image from '../components/image/Image'
 import postgresqlDataInsertion from './postgresql-data-insertion.png'
 
 const headings = [

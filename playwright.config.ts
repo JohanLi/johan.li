@@ -3,7 +3,7 @@ import { devices } from '@playwright/test'
 
 let baseURL = 'http://localhost:3000'
 let webServer = {
-  command: 'pnpm start',
+  command: 'pnpm dev',
   port: 3000,
   stdout: 'ignore',
   stderr: 'pipe',

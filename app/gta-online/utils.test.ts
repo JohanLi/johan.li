@@ -1,4 +1,5 @@
-import { expect, test, describe } from 'vitest'
+import { describe, expect, test } from 'vitest'
+
 import { formatTimestamp, isCorrect } from './utils'
 
 describe('formatTimestamp', () => {

@@ -1,13 +1,12 @@
 import { CodeInline, H2, H3, Ul } from '../components/article/Common'
 import { P } from '../components/article/Common'
 import Image from '../components/image/Image'
-
-import receiptHell from './receipt-hell.jpg'
-import bankReceipt from './bank-receipts.jpg'
-import googleWorkspacesReceipt from './google-workspaces-receipt.jpg'
-import bankIdLogin from './bank-id-login.jpg'
-import customChromeExtension from './custom-chrome-extension.jpg'
 import ImageFloat from '../components/image/ImageFloat'
+import bankIdLogin from './bank-id-login.jpg'
+import bankReceipt from './bank-receipts.jpg'
+import customChromeExtension from './custom-chrome-extension.jpg'
+import googleWorkspacesReceipt from './google-workspaces-receipt.jpg'
+import receiptHell from './receipt-hell.jpg'
 
 const headings = [
   'Inconsistent user experience',
