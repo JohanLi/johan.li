@@ -1,7 +1,7 @@
 import { readdir, stat } from 'fs/promises'
 import path from 'path'
 
-const ARTICLES_DIRECTORY = path.join(process.cwd(), 'app')
+const ARTICLES_DIRECTORY = path.join(process.cwd(), 'app', '(blog)')
 
 export async function getArticles() {
   const slugs: string[] = []
