@@ -18,11 +18,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <div className="flex min-h-screen flex-col">{children}</div>
       </body>
-      <Script
-        defer
-        src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon={`{"token": "${CLOUDFLARE_WEB_ANALYTICS_TOKEN}"}`}
-      />
+      {process.env.NODE_ENV !== 'development' && (
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": "${CLOUDFLARE_WEB_ANALYTICS_TOKEN}"}`}
+        />
+      )}
     </html>
   )
 }
