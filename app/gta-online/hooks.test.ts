@@ -1,4 +1,4 @@
-import { expect, test, vi, beforeEach } from 'vitest'
+import { expect, test, vi, beforeEach, describe } from 'vitest'
 import { reducer, initialState, State } from './hooks'
 import * as utils from './utils'
 
@@ -10,16 +10,28 @@ beforeEach(() => {
   vi.clearAllMocks()
 })
 
-test('changing mode resets state', () => {
-  const mode = 'hard'
+describe('the stats are reset and the game shuffle when', () => {
+  test('images have finished loading', () => {
+    const state = reducer(initialState, { type: 'FINGERPRINTS_LOADED' })
 
-  const state = reducer({} as State, { type: 'SET_MODE', mode })
+    expect(state).toMatchObject({
+      lastRun: 0,
+      thisRun: 0,
+    })
+    expect(utils.shuffle).toHaveBeenCalledTimes(2)
+  })
 
-  expect(state.mode).toEqual(mode)
-  // ideally, this should check that initialState was called
-  expect(state).toMatchObject({
-    lastRun: 0,
-    thisRun: 0,
+  test('changing mode', () => {
+    const mode = 'hard'
+
+    const state = reducer(initialState, { type: 'SET_MODE', mode })
+
+    expect(state).toMatchObject({
+      lastRun: 0,
+      thisRun: 0,
+    })
+    expect(utils.shuffle).toHaveBeenCalledTimes(2)
+    expect(state.mode).toEqual(mode)
   })
 })
 
@@ -34,7 +46,7 @@ test('adding an element', () => {
   const number = 7
 
   const state = {
-    ...initialState(),
+    ...initialState,
     selectedElements: [3],
   }
 
@@ -46,7 +58,7 @@ test('adding an element', () => {
 
 test('removing an element', () => {
   const state = {
-    ...initialState(),
+    ...initialState,
     selectedElements: [1, 2, 3],
   }
 
@@ -58,7 +70,7 @@ test('removing an element', () => {
 
 test('stop flashing', () => {
   const state = {
-    ...initialState(),
+    ...initialState,
     wrongFlash: true,
   }
 
@@ -70,7 +82,7 @@ test('stop flashing', () => {
 
 test('checking a wrong solution', () => {
   const state = {
-    ...initialState(),
+    ...initialState,
     selectedElements: [6, 1, 4],
   }
 
@@ -83,7 +95,7 @@ test('checking a wrong solution', () => {
 
 test('checking a correct solution', () => {
   const state = {
-    ...initialState(),
+    ...initialState,
     selectedElements: [1, 6, 4],
   }
 
@@ -101,7 +113,7 @@ test('completing a run', () => {
   const completedTimestamp = 60000
 
   const state: State = {
-    ...initialState(),
+    ...initialState,
     shuffledFingerprints: [1],
     selectedElements: [7, 1, 6],
     startTimestamp,

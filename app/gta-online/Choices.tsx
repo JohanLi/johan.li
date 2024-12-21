@@ -1,8 +1,8 @@
 import { Dispatch } from 'react'
 
-import { State, Action } from '../lib/hooks'
-import { getFingerprintElement } from '../lib/fingerprints'
-import { classNames } from '../lib/utils'
+import { State, Action } from './hooks'
+import { getFingerprintElement } from './fingerprints'
+import { classNames } from './utils'
 import NextImage from 'next/image'
 
 interface Props {

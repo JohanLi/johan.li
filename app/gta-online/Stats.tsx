@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { State, useInterval } from '../lib/hooks'
-import { formatTimestamp, random } from '../lib/utils'
+import { State, useInterval } from './hooks'
+import { formatTimestamp, random } from './utils'
 
 interface Props {
   state: State
