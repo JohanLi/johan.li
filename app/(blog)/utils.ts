@@ -16,3 +16,8 @@ export function getSlug(text: string) {
     .replace(/\s+/g, '-')
     .replace(/[^0-9a-z\-]/gi, '')
 }
+
+export async function getArticle(slug: string) {
+  const m = await import(`./${slug}/article`)
+  return m.article
+}

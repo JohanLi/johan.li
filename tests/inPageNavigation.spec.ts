@@ -23,17 +23,17 @@ test.describe('In-page navigation', () => {
   test('changes highlighted section depending on scroll location', async ({
     page,
   }) => {
-    await page.goto('/how-not-to-design-an-sdk')
+    await page.goto('/being-considerate')
 
     await expect(
-      page.locator('nav a >> text="How not to design an SDK"'),
+      page.locator('nav a >> text="Skiing and I"'),
     ).toHaveClass(/text-purple-800/)
 
     await page
-      .locator('h2 >> text="Opinions about the Java SDK"')
+      .locator('h2 >> text="The interaction"')
       .scrollIntoViewIfNeeded()
 
-    await expect(page.locator('nav a >> text="A good SDK"')).toHaveClass(
+    await expect(page.locator('nav a >> text="The interaction"')).toHaveClass(
       /text-purple-800/,
     )
   })
