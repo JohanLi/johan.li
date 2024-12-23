@@ -1,5 +1,6 @@
-import { readdir, stat } from 'fs/promises'
-import path from 'path'
+import { readdir, stat } from 'node:fs/promises'
+import path from 'node:path'
+import { getArticle } from './utils'
 
 const ARTICLES_DIRECTORY = path.join(process.cwd(), 'app', '(blog)')
 
@@ -28,22 +29,14 @@ export async function getArticles() {
 
   await readDirectory(ARTICLES_DIRECTORY)
 
-  const articles = await Promise.all(
-    slugs.map((slug) =>
-      import(`./${slug}/article`).then((m) => ({
-        ...m.article,
-        slug,
-      })),
-    ),
-  )
-
-  const accounting = articles
-    .filter((article) => article.category === 'accounting')
-    .sort((a, b) => a.published - b.published)
-
-  const general = articles
-    .filter((article) => article.category !== 'accounting')
-    .sort((a, b) => b.published - a.published)
-
-  return { accounting, general }
+  return (
+    await Promise.all(
+      slugs.map((slug) =>
+        getArticle(slug).then((article) => ({
+          ...article,
+          slug,
+        })),
+      ),
+    )
+  ).sort((a, b) => b.published - a.published)
 }
