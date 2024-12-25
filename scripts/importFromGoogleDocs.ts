@@ -1,5 +1,5 @@
 import { docs, auth } from '@googleapis/docs'
-import { writeFile, readFile, mkdir } from 'fs/promises'
+import { writeFile, mkdir } from 'fs/promises'
 import childProcess from 'child_process'
 import util from 'util'
 import { getSlug } from '../app/(blog)/utils'
@@ -48,7 +48,7 @@ async function main() {
   body.content
     .filter(({ paragraph }) => paragraph)
     .forEach(({ paragraph }) => {
-      let content = paragraph.elements
+      const content = paragraph.elements
         .map(({ textRun }) => {
           if (textRun.textStyle.bold) {
             return `<strong>${textRun.content}</strong>`
@@ -61,9 +61,6 @@ async function main() {
       if (content === '\n') {
         return
       }
-
-      // due to react/no-unescaped-entities, single quotes are replaced with an actual apostrophe
-      content = content.replaceAll(`'`, '’')
 
       const { namedStyleType } = paragraph.paragraphStyle
       const headingMatch = namedStyleType.match(/HEADING_(\d)/)
@@ -112,17 +109,11 @@ async function main() {
 
   const slug = getSlug(title)
 
-  await mkdir(`${__dirname}/../app/${slug}`, { recursive: true })
+  await mkdir(`${__dirname}/../app/(blog)/${slug}`, { recursive: true })
 
-  const articleFilePath = `${__dirname}/../app/${slug}/article.tsx`
+  const articleFilePath = `${__dirname}/../app/(blog)/${slug}/article.tsx`
   await writeFile(articleFilePath, articleOutput)
-  await exec(`prettier ${articleFilePath} --write`)
-
-  const pageOutput = await readFile(
-    `${__dirname}/../app/cargo-culting-in-software/page.tsx`,
-    'utf8',
-  )
-  await writeFile(`${__dirname}/../app/${slug}/page.tsx`, pageOutput)
+  await exec(`prettier "${articleFilePath}" --write`)
 
   process.exit()
 }
