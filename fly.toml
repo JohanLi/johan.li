@@ -1,44 +1,47 @@
-# fly.toml app configuration file generated for dev-johan-li on 2024-01-14T14:19:31+01:00
+# fly.toml app configuration file generated for johan-li on 2025-01-03T20:14:13+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "johan-li"
-primary_region = "lhr"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
+app = 'johan-li'
+primary_region = 'lhr'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
 
 [experimental]
   auto_rollback = true
 
 [build]
-  build-target = "runner"
+  build-target = 'runner'
 
 [[services]]
-  protocol = "tcp"
+  protocol = 'tcp'
   internal_port = 3000
-  processes = ["app"]
+  processes = ['app']
 
   [[services.ports]]
     port = 443
-    handlers = ["tls", "http"]
+    handlers = ['tls', 'http']
 
   [[services.ports]]
     port = 80
-    handlers = ["http"]
-    force_https = true
+    handlers = ['http']
+    # https://community.fly.io/t/cloudflare-525-error-randomly-occurs/1798/44
+    # https://community.fly.io/t/cloudflare-525-error-randomly-occurs/1798/45
+    # It has to do with fly.io's shared IPv4 and proxying the traffic through Cloudflare
+    force_https = false
 
   [services.concurrency]
-    type = "connections"
+    type = 'connections'
     hard_limit = 25
     soft_limit = 20
 
   [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
+    interval = '15s'
+    timeout = '2s'
+    grace_period = '1s'
 
 [[vm]]
-  cpu_kind = "shared"
+  cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
