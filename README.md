@@ -27,8 +27,8 @@ be handled by Git LFS.
 Provisioning is done manually using the `infra/setup.sh` script:
 
 1. Based on the Dockerfile, `flyctl` launches a new app and assigns it a shared IPv4 and a dedicated IPv6.
-2. These ip addresses are then used to create A and AAAA records in Cloudflare using Terraform.
-3. An SSL certificate is created using `flyctl certs create`.
+2. These ip addresses are then used to create a proxied AAAA record in Cloudflare using Terraform.
+   - Cloudflare automatically proxies the A record as well — explicitly proxying the A record won't work well with the shared IPv4.
 
 Deployments are done through `flyctl deploy`.
 
