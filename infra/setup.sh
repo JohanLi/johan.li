@@ -7,13 +7,11 @@ domain=dev.johan.li
 name=$(echo "$domain" | tr '.' '-')
 
 #flyctl apps destroy "$name"
-flyctl --name "$name" launch --copy-config --yes
+flyctl --name "$name" launch --copy-config --yes --ha=false
 
 ips=$(flyctl ips list --app "$name")
-ipv4=$(echo "$ips" | awk '$1 == "v4" { print $2 }')
 ipv6=$(echo "$ips" | awk '$1 == "v6" { print $2 }')
 
-export TF_VAR_ipv4=$ipv4
 export TF_VAR_ipv6=$ipv6
 export TF_VAR_domain=$domain
 export TF_VAR_CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN
