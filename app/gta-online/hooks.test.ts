@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, expect, test, vi } from 'vitest'
 
 import { State, initialState, reducer } from './hooks'
 import * as utils from './utils'
@@ -11,29 +11,33 @@ beforeEach(() => {
   vi.clearAllMocks()
 })
 
-describe('the stats are reset and the game shuffle when', () => {
-  test('images have finished loading', () => {
-    const state = reducer(initialState, { type: 'FINGERPRINTS_LOADED' })
+test('set the clock only once all fingerprints have loaded', () => {
+  const startTimestamp = 123
 
-    expect(state).toMatchObject({
-      lastRun: 0,
-      thisRun: 0,
-    })
-    expect(utils.shuffle).toHaveBeenCalledTimes(2)
+  vi.stubGlobal('performance', {
+    now: vi.fn().mockReturnValueOnce(startTimestamp),
   })
 
-  test('changing mode', () => {
-    const mode = 'hard'
+  const state = reducer(initialState, { type: 'FINGERPRINTS_LOADED' })
 
-    const state = reducer(initialState, { type: 'SET_MODE', mode })
-
-    expect(state).toMatchObject({
-      lastRun: 0,
-      thisRun: 0,
-    })
-    expect(utils.shuffle).toHaveBeenCalledTimes(2)
-    expect(state.mode).toEqual(mode)
+  expect(state).toMatchObject({
+    lastRun: 0,
+    thisRun: 0,
+    startTimestamp,
   })
+})
+
+test('the stats are reset and the fingerprints shuffled when changing mode', () => {
+  const mode = 'hard'
+
+  const state = reducer(initialState, { type: 'SET_MODE', mode })
+
+  expect(state).toMatchObject({
+    lastRun: 0,
+    thisRun: 0,
+  })
+  expect(utils.shuffle).toHaveBeenCalledTimes(2)
+  expect(state.mode).toEqual(mode)
 })
 
 test('nothing happens when setting mode to existing one', () => {
