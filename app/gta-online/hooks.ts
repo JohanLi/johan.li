@@ -57,7 +57,7 @@ export const reducer = (state: State, action: Action): State => {
     case 'FINGERPRINTS_LOADED': {
       return {
         ...initialState,
-        ...shuffleGame(),
+        startTimestamp: performance.now(),
       }
     }
     case 'SET_MODE': {
@@ -69,7 +69,9 @@ export const reducer = (state: State, action: Action): State => {
 
       return {
         ...initialState,
-        ...shuffleGame(),
+        shuffledFingerprints: shuffle(FINGERPRINTS.map((f) => f.variant)),
+        shuffledElements: shuffle(ELEMENTS),
+        startTimestamp: performance.now(),
         mode,
       }
     }
@@ -145,6 +147,12 @@ export const reducer = (state: State, action: Action): State => {
 }
 
 export const initialState: State = {
+  /*
+    Every user will initially get the same fingerprint and elements.
+    This is a deliberate choice:
+    - no issues with client and server mismatch
+    - the same cached HTML is served to everyone, including preloading the initial images
+   */
   shuffledFingerprints: FINGERPRINTS.map((f) => f.variant),
   shuffledElements: ELEMENTS,
   selectedElements: [],
@@ -153,14 +161,6 @@ export const initialState: State = {
   lastRun: 0,
   thisRun: 0,
   mode: 'normal',
-}
-
-export function shuffleGame() {
-  return {
-    shuffledFingerprints: shuffle(FINGERPRINTS.map((f) => f.variant)),
-    shuffledElements: shuffle(ELEMENTS),
-    startTimestamp: performance.now(),
-  }
 }
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
