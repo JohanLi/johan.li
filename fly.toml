@@ -22,6 +22,9 @@ kill_timeout = '5s'
   [[services.ports]]
     port = 443
     handlers = ['tls', 'http']
+    # https://fly.io/docs/reference/configuration/#services-ports-http_options-response-pristine
+    # This removes a few unnecessary Fly headers
+    http_options = { response = { pristine = true } }
 
   [[services.ports]]
     port = 80
@@ -30,6 +33,7 @@ kill_timeout = '5s'
     # https://community.fly.io/t/cloudflare-525-error-randomly-occurs/1798/45
     # It has to do with fly.io's shared IPv4 and proxying the traffic through Cloudflare
     force_https = false
+    http_options = { response = { pristine = true } }
 
   [services.concurrency]
     type = 'connections'

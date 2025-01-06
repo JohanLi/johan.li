@@ -20,4 +20,5 @@ export default {
       destination: '/uncharted-waters-2/index.html',
     },
   ],
+  poweredByHeader: false,
 } satisfies NextConfig
