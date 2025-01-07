@@ -21,4 +21,13 @@ export default {
     },
   ],
   poweredByHeader: false,
+  /*
+   For pages that Next.js deems static, an s-maxage of 1 year and ETag are set. However, I've been unable to
+   get ETags to properly work with Cloudflare in front.
+
+   As a workaround, I'm overriding s-maxage to 1 hour by exporting `revalidate = 1800`.
+   Next.js also sets a stale-while-revalidate of 1 year, but to my best knowledge, Cloudflare doesn't respect this/or
+   it serves stale content already by default.
+   */
+  generateEtags: false,
 } satisfies NextConfig

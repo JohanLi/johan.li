@@ -2,6 +2,8 @@ import { ArticleCard } from './ArticleCard'
 import Intro from './components/intro/Intro'
 import { getArticles } from './getArticles'
 
+export const revalidate = 3600
+
 export default async function Home() {
   const articles = await getArticles()
 
