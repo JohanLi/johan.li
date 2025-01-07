@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     'Practice the Fingerprint Scanner hack of the GTA Online Casino Heist using this simulator.',
 }
 
+export const revalidate = 3600
+
 export default function Page() {
   return (
     <Minigame>
