@@ -10,7 +10,7 @@ interface Props {
   dispatch: Dispatch<Action>
 }
 
-const Choices = (props: Props) => {
+export default function Choices(props: Props) {
   const { shuffledElements, shuffledFingerprints, selectedElements } =
     props.state
 
@@ -40,5 +40,3 @@ const Choices = (props: Props) => {
 
   return <div className="grid grid-cols-4 gap-4">{choicesJsx}</div>
 }
-
-export default Choices

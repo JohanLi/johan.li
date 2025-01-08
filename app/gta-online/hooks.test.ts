@@ -11,6 +11,22 @@ beforeEach(() => {
   vi.clearAllMocks()
 })
 
+test('startTimestamp is set as soon as the minigame starts', () => {
+  const startTimestamp = 123
+
+  vi.stubGlobal('performance', {
+    now: vi.fn().mockReturnValueOnce(startTimestamp),
+  })
+
+  const state = reducer(initialState, { type: 'START' })
+
+  expect(state).toMatchObject({
+    lastRun: 0,
+    thisRun: 0,
+    startTimestamp,
+  })
+})
+
 test('the stats are reset and the fingerprints shuffled when changing mode', () => {
   const mode = 'hard'
 

@@ -13,6 +13,10 @@ export default function Minigame({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
+    dispatch({ type: 'START' })
+  }, [])
+
+  useEffect(() => {
     if (state.wrongFlash) {
       setTimeout(() => dispatch({ type: 'STOP_WRONG_FLASH' }), 100)
     }
