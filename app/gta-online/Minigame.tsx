@@ -5,16 +5,12 @@ import { ReactNode, useEffect, useReducer } from 'react'
 
 import Choices from './Choices'
 import Stats from './Stats'
-import { getFingerprint, load } from './fingerprints'
+import { getFingerprint } from './fingerprints'
 import { initialState, modes, reducer } from './hooks'
 import { classNames } from './utils'
 
 export default function Minigame({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState)
-
-  useEffect(() => {
-    load().then(() => dispatch({ type: 'FINGERPRINTS_LOADED' }))
-  }, [])
 
   useEffect(() => {
     if (state.wrongFlash) {
@@ -43,6 +39,7 @@ export default function Minigame({ children }: { children: ReactNode }) {
               height="512"
               alt=""
               priority
+              quality={1}
             />
           </div>
           <div className="flex flex-col justify-between">
