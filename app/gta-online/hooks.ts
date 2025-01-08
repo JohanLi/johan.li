@@ -46,6 +46,7 @@ export interface State {
 }
 
 export type Action =
+  | { type: 'START' }
   | { type: 'SET_MODE'; mode: Mode }
   | { type: 'ADD_ELEMENT'; number: number }
   | { type: 'REMOVE_ELEMENT'; number: number }
@@ -53,6 +54,12 @@ export type Action =
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case 'START': {
+      return {
+        ...initialState,
+        startTimestamp: performance.now(),
+      }
+    }
     case 'SET_MODE': {
       const { mode } = action
 
