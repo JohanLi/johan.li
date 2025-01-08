@@ -1,39 +1,39 @@
-import finger1_1 from './assets/finger-1-1.webp'
-import finger1_2 from './assets/finger-1-2.webp'
-import finger1_3 from './assets/finger-1-3.webp'
-import finger1_4 from './assets/finger-1-4.webp'
-import finger1_5 from './assets/finger-1-5.webp'
-import finger1_6 from './assets/finger-1-6.webp'
-import finger1_7 from './assets/finger-1-7.webp'
-import finger1_8 from './assets/finger-1-8.webp'
-import finger1 from './assets/finger-1.webp'
-import finger2_1 from './assets/finger-2-1.webp'
-import finger2_2 from './assets/finger-2-2.webp'
-import finger2_3 from './assets/finger-2-3.webp'
-import finger2_4 from './assets/finger-2-4.webp'
-import finger2_5 from './assets/finger-2-5.webp'
-import finger2_6 from './assets/finger-2-6.webp'
-import finger2_7 from './assets/finger-2-7.webp'
-import finger2_8 from './assets/finger-2-8.webp'
-import finger2 from './assets/finger-2.webp'
-import finger3_1 from './assets/finger-3-1.webp'
-import finger3_2 from './assets/finger-3-2.webp'
-import finger3_3 from './assets/finger-3-3.webp'
-import finger3_4 from './assets/finger-3-4.webp'
-import finger3_5 from './assets/finger-3-5.webp'
-import finger3_6 from './assets/finger-3-6.webp'
-import finger3_7 from './assets/finger-3-7.webp'
-import finger3_8 from './assets/finger-3-8.webp'
-import finger3 from './assets/finger-3.webp'
-import finger4_1 from './assets/finger-4-1.webp'
-import finger4_2 from './assets/finger-4-2.webp'
-import finger4_3 from './assets/finger-4-3.webp'
-import finger4_4 from './assets/finger-4-4.webp'
-import finger4_5 from './assets/finger-4-5.webp'
-import finger4_6 from './assets/finger-4-6.webp'
-import finger4_7 from './assets/finger-4-7.webp'
-import finger4_8 from './assets/finger-4-8.webp'
-import finger4 from './assets/finger-4.webp'
+import finger1_1 from './assets/finger-1-1.png'
+import finger1_2 from './assets/finger-1-2.png'
+import finger1_3 from './assets/finger-1-3.png'
+import finger1_4 from './assets/finger-1-4.png'
+import finger1_5 from './assets/finger-1-5.png'
+import finger1_6 from './assets/finger-1-6.png'
+import finger1_7 from './assets/finger-1-7.png'
+import finger1_8 from './assets/finger-1-8.png'
+import finger1 from './assets/finger-1.png'
+import finger2_1 from './assets/finger-2-1.png'
+import finger2_2 from './assets/finger-2-2.png'
+import finger2_3 from './assets/finger-2-3.png'
+import finger2_4 from './assets/finger-2-4.png'
+import finger2_5 from './assets/finger-2-5.png'
+import finger2_6 from './assets/finger-2-6.png'
+import finger2_7 from './assets/finger-2-7.png'
+import finger2_8 from './assets/finger-2-8.png'
+import finger2 from './assets/finger-2.png'
+import finger3_1 from './assets/finger-3-1.png'
+import finger3_2 from './assets/finger-3-2.png'
+import finger3_3 from './assets/finger-3-3.png'
+import finger3_4 from './assets/finger-3-4.png'
+import finger3_5 from './assets/finger-3-5.png'
+import finger3_6 from './assets/finger-3-6.png'
+import finger3_7 from './assets/finger-3-7.png'
+import finger3_8 from './assets/finger-3-8.png'
+import finger3 from './assets/finger-3.png'
+import finger4_1 from './assets/finger-4-1.png'
+import finger4_2 from './assets/finger-4-2.png'
+import finger4_3 from './assets/finger-4-3.png'
+import finger4_4 from './assets/finger-4-4.png'
+import finger4_5 from './assets/finger-4-5.png'
+import finger4_6 from './assets/finger-4-6.png'
+import finger4_7 from './assets/finger-4-7.png'
+import finger4_8 from './assets/finger-4-8.png'
+import finger4 from './assets/finger-4.png'
 
 const fingerprintMap = {
   '1': finger1,
@@ -78,26 +78,6 @@ export type FingerprintI = 1 | 2 | 3 | 4
 
 export const fingerprintElementI = [1, 2, 3, 4, 5, 6, 7, 8]
 export type FingerprintElementI = (typeof fingerprintElementI)[number]
-
-/*
-  The minigame and its timer shouldn't begin before all the images are loaded, because seeing what's in
-  an image is essential to this minigame. You could reduce the waiting time by making separate loads
-  for each fingerprint.
-
-  While the elements are derived from the fingerprints, they aren't actual slices.
- */
-export const load = () => {
-  const promises = Object.values(fingerprintMap).map(
-    (imageData) =>
-      new Promise<void>((resolve) => {
-        const img = new Image()
-        img.src = imageData.src
-        img.onload = () => resolve()
-      }),
-  )
-
-  return Promise.all(promises)
-}
 
 export const getFingerprint = (i: FingerprintI) => fingerprintMap[i]
 

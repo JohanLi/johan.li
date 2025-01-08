@@ -32,6 +32,7 @@ const Choices = (props: Props) => {
           width="128"
           height="128"
           alt=""
+          quality={1}
         />
       </div>
     )
