@@ -1,5 +1,6 @@
 *
 !/app/
+!public/
 !next.config.ts
 !tsconfig.json
 !postcss.config.mjs

@@ -32,6 +32,7 @@ COPY --from=others /app/uncharted-waters-2/build ./public/uncharted-waters-2
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
 
