@@ -54,6 +54,10 @@ async function main() {
             return `<strong>${textRun.content}</strong>`
           }
 
+          if (textRun.textStyle.italic) {
+            return `<i>${textRun.content}</i>`
+          }
+
           return textRun.content
         })
         .join('')
@@ -87,7 +91,7 @@ async function main() {
     import { P } from '../components/article/Common';
     
     const headings = [
-      ${headings.map((heading) => `'${heading}',`).join('\n')}
+      ${headings.map((heading) => JSON.stringify(heading) + ',').join('\n')}
     ]
     
     const body = (
