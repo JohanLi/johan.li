@@ -13,7 +13,12 @@ export function Video() {
     if (!video) return
 
     video.play()
-    setHasStarted(true)
+      .then(() => {
+        setHasStarted(true)
+      })
+      .catch((e) => {
+        console.error('Video play failed:', e)
+      })
   }
 
   return (
