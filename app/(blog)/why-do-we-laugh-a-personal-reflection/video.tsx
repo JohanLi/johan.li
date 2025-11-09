@@ -24,7 +24,7 @@ export function Video() {
   return (
     <div className="-mx-4 my-12 md:mx-0 lg:-mx-8">
       <div
-        className="relative w-full aspect-[1920/784] cursor-pointer"
+        className="relative w-full aspect-1920/784 cursor-pointer"
         onClick={handlePlay}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
