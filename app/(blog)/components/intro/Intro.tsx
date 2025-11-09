@@ -21,7 +21,7 @@ export default function Intro() {
           software.
         </p>
       </div>
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         <NextImage
           src={johanLi}
           className="h-48 w-48 rounded-lg"

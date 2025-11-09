@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import React, { ReactNode } from 'react'
 
-const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 break-words'
+const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 wrap-break-word'
 
 type Props = {
   href: string
