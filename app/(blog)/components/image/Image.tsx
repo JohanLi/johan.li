@@ -43,14 +43,6 @@ export default function Image({ data, width, alt, zoomData, priority }: Props) {
   }, [zoomData])
 
   useEffect(() => {
-    if (!zoomActive) {
-      return
-    }
-
-    setTransitionActive(true)
-  }, [zoomActive])
-
-  useEffect(() => {
     if (!transitionActive) {
       return
     }
@@ -113,6 +105,10 @@ export default function Image({ data, width, alt, zoomData, priority }: Props) {
               }
 
               setZoomActive(true)
+
+              requestAnimationFrame(() => {
+                setTransitionActive(true)
+              })
             }}
             onLoad={(e) => setImageElement(e.target as HTMLImageElement)}
             priority={priority}
