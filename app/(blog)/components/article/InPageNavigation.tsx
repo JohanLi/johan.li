@@ -1,17 +1,14 @@
 'use client'
 
 import debounce from 'lodash.debounce'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { classNames, getSlug } from '../../utils'
 import Link from '../Link'
 
-/*
-  some hash links, when clicked, result in 0 < getBoundingClientRect().top < 1
-  as opposed to always 0.
- */
-const SECTION_THRESHOLD = 1
-const DEBOUNCE_MILLISECONDS = 100
+// without this, checks can fail by fractions of a pixel
+const SCROLL_POSITION_THRESHOLD_PX = 2
+const DEBOUNCE_MS = 100
 
 type Props = {
   title: string
@@ -19,10 +16,8 @@ type Props = {
 }
 
 export default function InPageNavigation({ title, headings }: Props) {
-  const [headingElements, setHeadingElements] = useState<HTMLHeadingElement[]>(
-    [],
-  )
-  const [anchorElements, setAnchorElements] = useState<HTMLAnchorElement[]>([])
+  const headingRefs = useRef<HTMLElement[]>([])
+  const anchorRefs = useRef<HTMLAnchorElement[]>([])
 
   const [section, setSection] = useState(0)
   const [thumb, setThumb] = useState({ y: 0, height: 0 })
@@ -30,32 +25,40 @@ export default function InPageNavigation({ title, headings }: Props) {
   useEffect(() => {
     const articleElement = document.querySelector('article')!
 
-    setHeadingElements([
-      articleElement.querySelector('h1')!,
-      ...Array.from(articleElement.querySelectorAll('h2')),
-    ])
+    if (!articleElement) {
+      console.error('<article> not found')
+      return
+    }
 
-    setAnchorElements(
-      Array.from(articleElement.querySelector('nav')!.querySelectorAll('a')),
-    )
+    const h1 = articleElement.querySelector('h1')
+
+    if (!h1) {
+      console.error('<h1> not found')
+      return
+    }
+
+    headingRefs.current = [
+      h1,
+      ...Array.from(articleElement.querySelectorAll('h2')),
+    ]
   }, [])
 
   useEffect(() => {
+    if (!headingRefs.current.length || !anchorRefs.current.length) {
+      return
+    }
+
     const updateThumb = debounce(
       () => {
-        if (!headingElements.length || !anchorElements.length) {
-          return
-        }
-
         setThumb({
           y:
-            anchorElements[section].getBoundingClientRect().top -
-            anchorElements[0].getBoundingClientRect().top,
-          height: anchorElements[section].offsetHeight + 4,
+            anchorRefs.current[section].getBoundingClientRect().top -
+            anchorRefs.current[0].getBoundingClientRect().top,
+          height: anchorRefs.current[section].offsetHeight + 4,
         })
       },
-      DEBOUNCE_MILLISECONDS,
-      { maxWait: DEBOUNCE_MILLISECONDS },
+      DEBOUNCE_MS,
+      { maxWait: DEBOUNCE_MS },
     )
 
     updateThumb()
@@ -65,24 +68,24 @@ export default function InPageNavigation({ title, headings }: Props) {
     return () => {
       window.removeEventListener('resize', updateThumb)
     }
-  }, [section, headingElements, anchorElements])
+  }, [section])
 
   useEffect(() => {
-    if (!(headingElements.length && anchorElements.length)) {
-      return undefined
-    }
-
     const onScroll = debounce(
       () => {
+        if (!headingRefs.current.length || !anchorRefs.current.length) {
+          return
+        }
+
         let section = 0
 
-        for (let i = 0; i < headingElements.length; i += 1) {
+        for (let i = 0; i < headingRefs.current.length; i += 1) {
           if (
-            headingElements[i].getBoundingClientRect().top <=
-              SECTION_THRESHOLD &&
+            headingRefs.current[i].getBoundingClientRect().top <=
+              SCROLL_POSITION_THRESHOLD_PX &&
             !(
-              headingElements[i + 1]?.getBoundingClientRect().top <=
-              SECTION_THRESHOLD
+              headingRefs.current[i + 1]?.getBoundingClientRect().top <=
+              SCROLL_POSITION_THRESHOLD_PX
             )
           ) {
             section = i
@@ -91,31 +94,35 @@ export default function InPageNavigation({ title, headings }: Props) {
         }
 
         const atBottom =
-          window.scrollY + window.innerHeight >= document.body.scrollHeight
+          window.scrollY + window.innerHeight >=
+          document.body.scrollHeight - SCROLL_POSITION_THRESHOLD_PX
 
         if (atBottom) {
-          setSection(headingElements.length - 1)
+          setSection(headingRefs.current.length - 1)
         } else {
           setSection(section)
         }
       },
-      DEBOUNCE_MILLISECONDS,
-      { maxWait: DEBOUNCE_MILLISECONDS },
+      DEBOUNCE_MS,
+      { maxWait: DEBOUNCE_MS },
     )
 
     onScroll()
 
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [headingElements, anchorElements])
+  }, [])
 
   return (
     <div className="hidden pl-12 pt-12 lg:block lg:pl-24">
       <nav className="sticky left-0 top-12 border-l-2 border-gray-200 pl-4">
         <Link
+          ref={(element) => {
+            anchorRefs.current[0] = element
+          }}
           href={`/${getSlug(title)}`}
           className={classNames(
             'font-medium transition-colors duration-300',
@@ -130,6 +137,9 @@ export default function InPageNavigation({ title, headings }: Props) {
           {headings.map((heading, i) => (
             <li key={heading}>
               <Link
+                ref={(element) => {
+                  anchorRefs.current[i + 1] = element
+                }}
                 href={`#${getSlug(heading)}`}
                 className={classNames(
                   'text-sm transition-colors duration-300',

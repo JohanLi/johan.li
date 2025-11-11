@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, forwardRef } from 'react'
 
 const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 wrap-break-word'
 
@@ -10,20 +10,26 @@ type Props = {
   children?: ReactNode
 }
 
-export default function Link({ href, className, external, children }: Props) {
-  const linkClass = className !== undefined ? className : defaultLinkClass
+const Link = forwardRef<HTMLAnchorElement, Props>(
+  ({ href, className, external, children }, ref) => {
+    const linkClass = className !== undefined ? className : defaultLinkClass
 
-  if (external) {
+    if (external) {
+      return (
+        <a href={href} className={linkClass} ref={ref}>
+          {children || href}
+        </a>
+      )
+    }
+
     return (
-      <a href={href} className={linkClass}>
+      <NextLink href={href} className={linkClass} ref={ref}>
         {children || href}
-      </a>
+      </NextLink>
     )
-  }
+  },
+)
 
-  return (
-    <NextLink href={href} className={linkClass}>
-      {children || href}
-    </NextLink>
-  )
-}
+Link.displayName = 'Link'
+
+export default Link
