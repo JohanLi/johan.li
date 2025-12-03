@@ -18,6 +18,6 @@ export function getSlug(text: string) {
 }
 
 export async function getArticle(slug: string) {
-  const m = await import(`./${slug}/article`)
+  const m = await import(`./${slug}/article.tsx`)
   return m.article
 }
