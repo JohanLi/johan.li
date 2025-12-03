@@ -26,11 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const slug = (await params).slug
 
-  try {
-    const article = await getArticle(slug)
+  let article
 
-    return <Article {...article} />
+  try {
+    article = await getArticle(slug)
   } catch {
     notFound()
   }
+
+  return <Article {...article} />
 }

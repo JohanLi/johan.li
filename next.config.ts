@@ -30,4 +30,7 @@ export default {
    it serves stale content already by default.
    */
   generateEtags: false,
+  images: {
+    qualities: [1, 75],
+  },
 } satisfies NextConfig
