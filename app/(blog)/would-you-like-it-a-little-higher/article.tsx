@@ -1,0 +1,79 @@
+import { P } from '../components/article/Common';
+import Image from '../components/image/Image';
+import tBarLiftLarge from './t-bar-lift-large.jpg';
+import tBarLift from './t-bar-lift.jpg';
+
+const headings = []
+
+const body = (
+  <>
+    <P>
+      Two unusual things happened that day. I was riding a ski lift, and a kid
+      said something that stuck with me.
+    </P>
+    <P>
+      Despite growing up in Sweden, I didn’t learn how to ski until last winter.
+      I was a Chinese immigrant, speaking English, trying to find my place in a
+      Swedish school. Every winter, my classmates left for ski trips while I
+      stayed behind.
+    </P>
+    <P>
+      As an adult, I’ve started going back for the things I missed. After the
+      first heavy snowfall in November, I went to Åre, a ski resort in northern
+      Sweden.
+    </P>
+    <P>
+      The chairlifts were shut down due to strong winds, and I ended up on a
+      T-bar—something I hadn’t used before. You ride it standing, sharing a bar
+      with another skier as it pulls you uphill, tucked under your hips. It
+      works best if you’re about the same height.
+    </P>
+    <Image
+      data={tBarLift}
+      width={800}
+      zoomData={tBarLiftLarge}
+      alt="A T-Bar lift in Åre."
+      priority
+    />
+    <P>
+      A few runs in, I was paired with a young girl, no older than ten. The bar
+      sat comfortably for her, but pressed low against my knees.
+    </P>
+    <P>As we started moving, she turned to me and asked:</P>
+    <P>
+      <strong>“Would you like it a little higher?”</strong>
+    </P>
+    <P>It caught me off guard—coming from someone her age.</P>
+    <P>
+      I told her it was fine, but that I appreciated her asking. We spoke a
+      little on the way up. She started in English, then switched to Swedish
+      when she realized I spoke it.
+    </P>
+    <P>At the top, we went our separate ways. That was it.</P>
+    <P>
+      On the train home, I thought about how much I had learned that week: how
+      to turn more cleanly, how to control my speed, how my legs ached in ways
+      they hadn’t before.
+    </P>
+    <P>But I kept coming back to that moment on the lift.</P>
+    <P>It was a small thing. Almost nothing.</P>
+    <P>But she noticed—and said something when most people wouldn’t have.</P>
+    <P>
+      I’ll keep skiing this winter. I want to get better. And maybe one day,
+      I’ll teach my own kids, so they won’t feel like they missed out on
+      something.
+    </P>
+    <P>But more than that, I hope I can teach them to notice.</P>
+    <P>And to ask.</P>
+  </>
+)
+
+export const article = {
+  thumbnail: tBarLift,
+  title: 'Would You Like It a Little Higher?',
+  teaser: 'On a ski lift, a simple question from a child stayed with me.',
+  published: 1580515200,
+  readingTime: 2,
+  headings,
+  body,
+}
