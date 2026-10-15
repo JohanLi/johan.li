@@ -8,8 +8,19 @@ const config = {
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   plugins: [
-    'prettier-plugin-tailwindcss',
+    'prettier-plugin-astro',
     '@trivago/prettier-plugin-sort-imports',
+    // must come last
+    'prettier-plugin-tailwindcss',
+  ],
+  tailwindStylesheet: './src/styles/global.css',
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
   ],
 }
 

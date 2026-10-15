@@ -1,0 +1,41 @@
+---
+import { getImage } from 'astro:assets'
+
+import About from '../../gta-online/About'
+import Minigame from '../../gta-online/Minigame'
+import { fingerprintImages } from '../../gta-online/fingerprintImages'
+import type { FingerprintImages } from '../../gta-online/fingerprints'
+import Base from '../../layouts/Base.astro'
+
+/*
+  The images are optimized at build time, and their URLs are passed to the
+  Minigame island. The quality of 1 is deliberate, see commit 8f3a93f.
+ */
+const images: FingerprintImages = Object.fromEntries(
+  await Promise.all(
+    Object.entries(fingerprintImages).map(async ([key, src]) => {
+      const isElement = key.includes('-')
+      const width = isElement ? 128 : 400
+      const height = isElement ? 128 : 512
+      const image = await getImage({
+        src,
+        width,
+        height,
+        densities: [1, 2],
+        quality: 1,
+      })
+
+      return [key, { src: image.src, srcSet: image.srcSet.attribute }]
+    }),
+  ),
+)
+---
+
+<Base
+  title="Fingerprint Scanner Simulator - GTA Online Casino Heist"
+  description="Practice the Fingerprint Scanner hack of the GTA Online Casino Heist using this simulator."
+>
+  <Minigame client:load images={images}>
+    <About />
+  </Minigame>
+</Base>

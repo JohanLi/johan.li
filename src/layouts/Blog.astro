@@ -1,0 +1,32 @@
+---
+import Header from '../components/Header.astro'
+import '../styles/prism.css'
+import Base from './Base.astro'
+
+type Props = {
+  title?: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+const isHomePage = Astro.url.pathname === '/'
+---
+
+<Base
+  title={
+    title ? `${title} - Johan Li` : 'Johan Li - A software developer’s thoughts'
+  }
+  description={
+    description ||
+    'The reflections of a software developer in the fast-changing field of web development'
+  }
+>
+  <nav class="pt-12">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Header isHomePage={isHomePage} />
+    </div>
+  </nav>
+  <div>
+    <slot />
+  </div>
+</Base>

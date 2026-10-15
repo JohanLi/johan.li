@@ -1,0 +1,40 @@
+---
+import { CLOUDFLARE_WEB_ANALYTICS_TOKEN } from 'astro:env/server'
+import { Font } from 'astro:assets'
+
+import favicon from '../assets/favicon.ico?url'
+import '../styles/global.css'
+
+type Props = {
+  title: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href={favicon} sizes="16x16" type="image/x-icon" />
+    <Font cssVariable="--font-roboto-flex" preload />
+  </head>
+  <body>
+    <div class="flex min-h-screen flex-col">
+      <slot />
+    </div>
+    {import.meta.env.PROD && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({
+          token: CLOUDFLARE_WEB_ANALYTICS_TOKEN,
+        })}
+      />
+    )}
+  </body>
+</html>

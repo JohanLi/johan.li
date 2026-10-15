@@ -15,26 +15,25 @@ test.describe('In-page navigation', () => {
     expect(h2List).toEqual(sections)
   })
 
-  /*
-    At least in Chrome and Firefox, refreshing a page will preserve the
-    scroll location. (However, when Next.js is run using `next dev`,
-    refreshes actually scroll you to the top.)
-   */
   test('changes highlighted section depending on scroll location', async ({
     page,
   }) => {
-    await page.goto('/being-considerate')
+    await page.goto('/cargo-culting-in-software')
 
     await expect(
-      page.locator('nav a >> text="Skiing and I"'),
+      page.locator('nav a >> text="Cargo culting in software"'),
     ).toHaveClass(/text-purple-800/)
 
+    // a section is highlighted once its heading reaches the top of the viewport
     await page
-      .locator('h2 >> text="The interaction"')
-      .scrollIntoViewIfNeeded()
+      .locator('h2 >> text="Microservices"')
+      .evaluate((heading) => heading.scrollIntoView({ block: 'start' }))
 
-    await expect(page.locator('nav a >> text="The interaction"')).toHaveClass(
+    await expect(page.locator('nav a >> text="Microservices"')).toHaveClass(
       /text-purple-800/,
     )
+    await expect(
+      page.locator('nav a >> text="Cargo culting in software"'),
+    ).not.toHaveClass(/text-purple-800/)
   })
 })

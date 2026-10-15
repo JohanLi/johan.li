@@ -1,0 +1,41 @@
+---
+/*
+  Highlighting happens at build time, so there's no client-side JS and no
+  layout shift.
+
+  loadLanguages() is for Node and doesn't play well with bundlers:
+  https://github.com/PrismJS/prism/issues/1515#issuecomment-410119879
+  Languages and plugins are therefore imported explicitly. Dependencies of
+  dependencies (markup-templating for handlebars) must also be explicitly
+  imported. https://github.com/PrismJS/prism/issues/1567#issuecomment-423611947
+
+  Additionally, the Custom Class plugin doesn’t change the actual CSS
+  for you. This is why a prism.css file is committed.
+ */
+import Prism from 'prismjs'
+import 'prismjs/components/prism-handlebars'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-markup-templating'
+import 'prismjs/components/prism-python'
+import 'prismjs/plugins/custom-class/prism-custom-class'
+
+import Caption from './Caption.astro'
+
+Prism.manual = true
+Prism.plugins.customClass.prefix('prism-')
+
+type Props = {
+  language: 'javascript' | 'jsx' | 'python' | 'html' | 'handlebars'
+  code: string
+  caption: string
+}
+
+const { language, code, caption } = Astro.props
+
+const html = Prism.highlight(code.trim(), Prism.languages[language], language)
+---
+
+<div class="-mx-4 my-12 text-sm md:mx-0 lg:-mx-8">
+  <pre class={`language-${language}`}><code set:html={html} /></pre>
+  <Caption>{caption}</Caption>
+</div>

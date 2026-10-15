@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+import { classNames } from '../../utils'
+import Caption from '../article/Caption.astro'
+
+type Props = {
+  data: ImageMetadata
+  width: number
+  alt: string
+  left?: true
+  right?: true
+  priority?: true
+}
+
+const { data, width, alt, left, right, priority } = Astro.props
+---
+
+<div
+  class={classNames(
+    '-mx-4 my-6 md:mx-0 lg:-mx-8',
+    left ? 'lg:float-left lg:mr-12' : '',
+    right ? 'lg:float-right lg:ml-12' : '',
+  )}
+>
+  <div style={{ maxWidth: `${width}px` }} class="mx-auto">
+    <Image
+      src={data}
+      width={width}
+      densities={[1, 2]}
+      alt={alt}
+      priority={priority}
+    />
+    <Caption>{alt}</Caption>
+  </div>
+</div>

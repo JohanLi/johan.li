@@ -1,0 +1,12 @@
+---
+import { getSlug, htmlToText } from '../../utils'
+
+const html = await Astro.slots.render('default')
+---
+
+<h1
+  class="text-3xl font-extrabold tracking-tight md:text-5xl"
+  id={getSlug(htmlToText(html))}
+>
+  <Fragment set:html={html} />
+</h1>

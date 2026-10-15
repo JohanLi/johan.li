@@ -1,6 +1,9 @@
 import { expect, test } from '@playwright/test'
 
-// this is handled by Fly.io through fly.toml
+/*
+  This requires Cloudflare's "Always Use HTTPS" setting to be enabled for the
+  johan.li zone (SSL/TLS → Edge Certificates).
+ */
 test('responds to http but redirects to https', async ({
   request,
   baseURL,

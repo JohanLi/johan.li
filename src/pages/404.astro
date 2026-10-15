@@ -1,0 +1,21 @@
+---
+import Link from '../components/Link.astro'
+import { H1, Ul } from '../components/article/Common'
+import Blog from '../layouts/Blog.astro'
+---
+
+<Blog title="Page not found">
+  <div class="mx-auto max-w-7xl space-y-12 px-4 pt-6 pb-12 sm:pt-12 sm:pb-24 lg:px-8">
+    <div class="pt-4 pb-2">
+      <H1>This page could not be found</H1>
+    </div>
+    Did you perhaps mean to visit:
+    <Ul>
+      <li>
+        <Link href="/gta-online/fingerprint-scanner-simulator">
+          Fingerprint Scanner Simulator for GTA Online
+        </Link>
+      </li>
+    </Ul>
+  </div>
+</Blog>

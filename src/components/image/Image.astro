@@ -1,0 +1,57 @@
+---
+import type { ImageMetadata } from 'astro'
+import { getImage } from 'astro:assets'
+
+import Caption from '../article/Caption.astro'
+import ZoomableImage from './ZoomableImage'
+
+/*
+  If zoomData is provided, the image can be clicked to zoom it. See ZoomableImage.tsx.
+  Otherwise, no JavaScript is shipped for the image.
+ */
+
+type Props = {
+  data: ImageMetadata
+  width: number
+  alt: string
+  zoomData?: ImageMetadata
+  priority?: true
+}
+
+const { data, width, alt, zoomData, priority } = Astro.props
+
+const image = await getImage({ src: data, width, densities: [1, 2] })
+const height = Math.round((data.height / data.width) * width)
+---
+
+{zoomData ? (
+  <ZoomableImage
+    client:idle
+    src={image.src}
+    srcSet={image.srcSet.attribute}
+    width={width}
+    height={height}
+    alt={alt}
+    zoomSrc={zoomData.src}
+    priority={priority}
+  />
+) : (
+  <div class="-mx-4 my-12 md:mx-0 lg:-mx-8">
+    <div style={{ width: `${width}px` }} class="relative mx-auto max-w-full">
+      <div style={{ paddingBottom: `${(data.height / data.width) * 100}%` }}>
+        <img
+          src={image.src}
+          srcset={image.srcSet.attribute}
+          width={width}
+          height={height}
+          alt={alt}
+          class="absolute inset-0"
+          loading={priority ? 'eager' : 'lazy'}
+          decoding={priority ? 'sync' : 'async'}
+          fetchpriority={priority ? 'high' : 'auto'}
+        />
+      </div>
+    </div>
+    <Caption>{alt}</Caption>
+  </div>
+)}

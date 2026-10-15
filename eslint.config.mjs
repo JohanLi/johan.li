@@ -1,25 +1,25 @@
-import nextVitals from 'eslint-config-next/core-web-vitals'
-import nextTs from 'eslint-config-next/typescript'
+import js from '@eslint/js'
 import prettier from 'eslint-config-prettier/flat'
+import astro from 'eslint-plugin-astro'
+import reactHooks from 'eslint-plugin-react-hooks'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import tseslint from 'typescript-eslint'
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  prettier,
-  {
-    rules: {
-      '@next/next/no-img-element': 'off',
-    },
-  },
-  // Override default ignores of eslint-config-next.
+export default defineConfig([
   globalIgnores([
-    // Default ignores of eslint-config-next:
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
+    'dist/',
+    '.astro/',
+    '.cache/',
+    '.wrangler/',
+    'tests/report/',
+    'tests/results/',
   ]),
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  astro.configs.recommended,
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [reactHooks.configs.flat.recommended],
+  },
+  prettier,
 ])
-
-export default eslintConfig

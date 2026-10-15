@@ -1,0 +1,27 @@
+---
+import { getArticles } from '../articles/getArticles'
+import Article from '../components/article/Article.astro'
+import Blog from '../layouts/Blog.astro'
+
+export function getStaticPaths() {
+  return getArticles().map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }))
+}
+
+const { article } = Astro.props
+const { Body } = article
+---
+
+<Blog title={article.title} description={article.teaser}>
+  <Article
+    slug={article.slug}
+    title={article.title}
+    published={article.published}
+    readingTime={article.readingTime}
+    headings={article.headings}
+  >
+    <Body />
+  </Article>
+</Blog>

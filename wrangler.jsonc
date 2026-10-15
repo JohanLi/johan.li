@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "johan-li",
+  "compatibility_date": "2026-10-01",
+  /*
+    The site is fully static: there's no Worker script, only the assets built
+    by `astro build` (plus Uncharted Waters 2, see scripts/build-uncharted-waters-2.sh).
+    Cache headers are set in public/_headers.
+   */
+  "assets": {
+    "directory": "./dist",
+    // /foo serves foo.html or foo/index.html, /foo/ redirects to /foo
+    "html_handling": "drop-trailing-slash",
+    // serves dist/404.html with a 404 status
+    "not_found_handling": "404-page"
+  },
+  /*
+    The site is only served at johan.li: no johan-li.<account>.workers.dev,
+    and no preview URLs. Both must be set explicitly, as disabling them in the
+    dashboard alone is undone by the next deploy.
+   */
+  "workers_dev": false,
+  "preview_urls": false,
+  // also manages the DNS record for johan.li, replacing what infra/main.tf used to do
+  "routes": [{ "pattern": "johan.li", "custom_domain": true }]
+}

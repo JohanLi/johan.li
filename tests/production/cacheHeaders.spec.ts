@@ -1,4 +1,4 @@
-import { Response, expect, test } from '@playwright/test'
+import { type Response, expect, test } from '@playwright/test'
 
 /*
   This is being tested because, currently, this app is responsible for setting the correct
@@ -13,30 +13,25 @@ async function expectCache(
 ) {
   const response = await responsePromise
 
-  /*
-    NextImage seems to ignore your own overrides and always sets "public, max-age=315360000, immutable"
-    Note the max-age being 10 years rather than 1 year
-    */
   expect(response.headers()['cache-control']).toContain(
     'public, max-age=31536000',
   )
 
   if (compression) {
-    // one of the Next.js chunks appears to be served with Brotli
-    expect(response.headers()['content-encoding']).toMatch(/^gzip|br$/)
+    // Cloudflare serves zstd to browsers that support it, e.g. Chromium and Firefox
+    expect(response.headers()['content-encoding']).toMatch(/^(gzip|br|zstd)$/)
   }
 }
 
 test.describe('Cache headers', () => {
-  test('johan.li', async ({ page, baseURL }) => {
-    const js = page.waitForResponse(
-      (response) =>
-        // https://static.cloudflareinsights.com/beacon.min.js interferes, hence the baseURL check
-        response.url().endsWith('.js') && response.url().startsWith(baseURL),
-    )
-
+  // the homepage has no interactive components, and therefore no JS
+  test('johan.li', async ({ page }) => {
     const css = page.waitForResponse((response) =>
       response.url().endsWith('.css'),
+    )
+
+    const font = page.waitForResponse((response) =>
+      response.url().endsWith('.woff2'),
     )
 
     const image = page.waitForResponse((response) =>
@@ -46,10 +41,22 @@ test.describe('Cache headers', () => {
     await page.goto('/')
 
     await Promise.all([
-      expectCache(js),
       expectCache(css),
+      expectCache(font, { compression: false }),
       expectCache(image, { compression: false }),
     ])
+  })
+
+  test('Article', async ({ page, baseURL }) => {
+    const js = page.waitForResponse(
+      (response) =>
+        // https://static.cloudflareinsights.com/beacon.min.js interferes, hence the baseURL check
+        response.url().endsWith('.js') && response.url().startsWith(baseURL),
+    )
+
+    await page.goto('/cargo-culting-in-software')
+
+    await expectCache(js)
   })
 
   test('Uncharted Waters 2', async ({ page }) => {

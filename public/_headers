@@ -1,0 +1,12 @@
+# https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# Everything else gets Cloudflare's default of "public, max-age=0, must-revalidate"
+# along with an ETag, which is what we want for HTML.
+
+# Astro's build output: JS, CSS, optimized images and fonts, all with hashed file names
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Vite's build output for Uncharted Waters 2, also with hashed file names
+/uncharted-waters-2/assets/*
+  Cache-Control: public, max-age=31536000, immutable

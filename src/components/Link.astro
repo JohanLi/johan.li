@@ -1,0 +1,20 @@
+---
+const defaultLinkClass = 'text-indigo-600 hover:text-indigo-900 wrap-break-word'
+
+type Props = {
+  href: string
+  class?: string
+  /*
+    Kept so articles can still mark links as external. With Astro, every
+    link is a plain <a>, so it no longer changes anything.
+   */
+  external?: true
+}
+
+const { href, class: className } = Astro.props
+const linkClass = className !== undefined ? className : defaultLinkClass
+---
+
+<a href={href} class={linkClass}>
+  {Astro.slots.has('default') ? <slot /> : href}
+</a>

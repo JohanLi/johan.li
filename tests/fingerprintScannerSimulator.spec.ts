@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test.only('Fingerprint Scanner Simulator', async ({ page }) => {
+test('Fingerprint Scanner Simulator', async ({ page }) => {
   await page.goto('/gta-online/fingerprint-scanner-simulator')
 
   await expect(page).toHaveTitle(

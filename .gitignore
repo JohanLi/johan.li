@@ -1,20 +1,17 @@
 /node_modules/
 .DS_Store
 /.idea/
-/.next/
-/tsconfig.tsbuildinfo
+/dist/
+/.astro/
+/.wrangler/
+# Uncharted Waters 2 is cloned and built here, see scripts/build-uncharted-waters-2.sh
+/.cache/
 .env.prod
 .env.dev
 .env.local
 /tests/report/
 /tests/results/
 /scripts/google-docs-reader.json
-
-# Terraform
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-.terraform.lock.hcl
 
 # Using husky with git-lfs sometimes causes useless hooks to be written to the .husky folder
 # https://github.com/typicode/husky/issues/926

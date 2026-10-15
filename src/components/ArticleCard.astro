@@ -1,0 +1,39 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+import { unixTimestampToMonthYear } from '../utils'
+
+type Props = {
+  slug: string
+  thumbnail: ImageMetadata
+  title: string
+  teaser: string
+  published: number
+  readingTime: number
+}
+
+const { slug, thumbnail, title, teaser, published, readingTime } = Astro.props
+---
+
+<a
+  href={`/${slug}`}
+  class="flex transform flex-col overflow-hidden rounded-lg shadow-lg transition duration-200 hover:scale-105"
+>
+  <Image
+    src={thumbnail}
+    alt={title}
+    class="h-48 w-full object-cover"
+    widths={[480, 960]}
+    sizes="(min-width: 1280px) 400px, (min-width: 640px) 50vw, 100vw"
+  />
+  <div class="flex flex-1 flex-col p-6">
+    <div class="flex-1">
+      <h2 class="text-xl font-semibold text-gray-900">{title}</h2>
+      <div class="mt-3 text-gray-500">{teaser}</div>
+    </div>
+    <div class="mt-6 text-sm text-gray-500">
+      {unixTimestampToMonthYear(published)} · {readingTime} min read
+    </div>
+  </div>
+</a>

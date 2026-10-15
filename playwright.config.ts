@@ -1,10 +1,15 @@
-import type { PlaywrightTestConfig } from '@playwright/test'
-import { devices } from '@playwright/test'
+import { type PlaywrightTestConfig, devices } from '@playwright/test'
 
-let baseURL = 'http://localhost:3000'
+/*
+  Runs against the production build, served by wrangler the same way
+  Cloudflare Workers would (see wrangler.jsonc and public/_headers).
+ */
+let baseURL = 'http://localhost:8787'
 let webServer = {
-  command: 'pnpm dev',
-  port: 3000,
+  command: 'pnpm build && pnpm preview',
+  url: baseURL,
+  reuseExistingServer: !process.env.CI,
+  timeout: 120000,
   stdout: 'ignore',
   stderr: 'pipe',
 } as const

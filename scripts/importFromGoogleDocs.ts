@@ -1,8 +1,9 @@
-import { docs, auth } from '@googleapis/docs'
-import { writeFile, mkdir } from 'fs/promises'
+import { auth, docs } from '@googleapis/docs'
 import childProcess from 'child_process'
+import { mkdir, writeFile } from 'fs/promises'
 import util from 'util'
-import { getSlug } from '../app/(blog)/utils'
+
+import { getSlug } from '../src/utils'
 
 const exec = util.promisify(childProcess.exec)
 
@@ -19,12 +20,15 @@ const exec = util.promisify(childProcess.exec)
 
   Google Docs covers 90% of my articles. The remaining 10% is
   manual work, but allows me to add arbitrary HTML.
+
+  The output is src/articles/<slug>/meta.ts and Body.astro. A thumbnail
+  still needs to be added to meta.ts.
  */
 
 const client = docs({
   version: 'v1',
   auth: new auth.GoogleAuth({
-    keyFilename: `${__dirname}/google-docs-reader.json`,
+    keyFilename: `${import.meta.dirname}/google-docs-reader.json`,
     scopes: ['https://www.googleapis.com/auth/documents'],
   }),
 })
@@ -81,43 +85,40 @@ async function main() {
       elements.push(`<P>${content}</P>`)
     })
 
-  const articleOutput = `
-    ${
-      headingLevels.size > 0 &&
-      `import { ${Array.from(headingLevels).join(
-        ', ',
-      )} } from '../components/article/Common';`
-    }
-    import { P } from '../components/article/Common';
-    
-    const headings = [
-      ${headings.map((heading) => JSON.stringify(heading) + ',').join('\n')}
-    ]
-    
-    const body = (
-      <>
-        ${elements.join('\n')}
-      </>
-    )
-    
-    export const article = {
-      thumbnail: '',
-      title: '${title}',
+  const commonComponents = ['P', ...Array.from(headingLevels)].sort()
+
+  const metaOutput = `
+    import type { ArticleMeta } from '../types'
+
+    export const article: ArticleMeta = {
+      thumbnail: undefined,
+      title: ${JSON.stringify(title)},
       teaser: '',
       published: ${Math.floor(Date.now() / 1000)},
       readingTime: 0,
-      headings,
-      body,
+      headings: [
+        ${headings.map((heading) => JSON.stringify(heading) + ',').join('\n')}
+      ],
     }
   `
 
+  const bodyOutput = `---
+import { ${commonComponents.join(', ')} } from '../../components/article/Common'
+---
+
+${elements.join('\n')}
+`
+
   const slug = getSlug(title)
+  const articleDirectory = `${import.meta.dirname}/../src/articles/${slug}`
 
-  await mkdir(`${__dirname}/../app/(blog)/${slug}`, { recursive: true })
+  await mkdir(articleDirectory, { recursive: true })
 
-  const articleFilePath = `${__dirname}/../app/(blog)/${slug}/article.tsx`
-  await writeFile(articleFilePath, articleOutput)
-  await exec(`prettier "${articleFilePath}" --write`)
+  const metaFilePath = `${articleDirectory}/meta.ts`
+  const bodyFilePath = `${articleDirectory}/Body.astro`
+  await writeFile(metaFilePath, metaOutput)
+  await writeFile(bodyFilePath, bodyOutput)
+  await exec(`prettier "${metaFilePath}" "${bodyFilePath}" --write`)
 
   process.exit()
 }
