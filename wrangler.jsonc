@@ -22,5 +22,12 @@
   "workers_dev": false,
   "preview_urls": false,
   // also manages the DNS record for johan.li, replacing what infra/main.tf used to do
-  "routes": [{ "pattern": "johan.li", "custom_domain": true }]
+  "routes": [{ "pattern": "johan.li", "custom_domain": true }],
+  /*
+    Workers Logs, viewable in the dashboard. As there's no Worker script, requests
+    are served directly from static assets, which may not be logged as invocations.
+   */
+  "observability": {
+    "enabled": true
+  }
 }
