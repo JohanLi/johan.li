@@ -17,9 +17,6 @@ pnpm dev
 
 Visit http://localhost:4321.
 
-Note: git-lfs needs to be installed. `git lfs install` also needs to be run once – images will otherwise not
-be handled by Git LFS.
-
 ## How it's built
 
 The site is fully static. `astro build` outputs HTML, along with optimized images, fonts, CSS and JS, to `dist/`.
@@ -43,7 +40,8 @@ Each article is a directory in `src/articles/`, named after its slug:
 
 `/uncharted-waters-2` is the build output of https://github.com/JohanLi/uncharted-waters-2.
 `scripts/build-uncharted-waters-2.sh` clones and builds it in `.cache/`, then copies the output into
-`dist/uncharted-waters-2`. It's only rebuilt when there are new commits.
+`dist/uncharted-waters-2`. It's only rebuilt when there are new commits. git-lfs needs to be installed,
+as that repository uses Git LFS for its assets.
 
 ## Deployment
 
