@@ -30,7 +30,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@eslint/js": "^10.0.1",
-    "@googleapis/docs": "^8.1.1",
     "@playwright/test": "^1.56.1",
     "@tailwindcss/vite": "^4.3.3",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",

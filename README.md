@@ -100,9 +100,3 @@ If I use a CMS or database, I either have to use existing content models or crea
 
 Since I don't publish articles frequently, the flexibility of "expressing" articles directly using JSX-like
 Astro components is well worth the manual overhead for publishing each article.
-
-The workflow will likely be:
-
-- Write articles in Google Docs
-- Use a script (`scripts/importFromGoogleDocs.ts`) that converts it to `meta.ts` and `Body.astro`
-- Make modifications as necessary
