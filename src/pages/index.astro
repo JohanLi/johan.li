@@ -4,7 +4,7 @@ import ArticleCard from '../components/ArticleCard.astro'
 import Intro from '../components/intro/Intro.astro'
 import Blog from '../layouts/Blog.astro'
 
-const articles = getArticles()
+const articles = await getArticles()
 ---
 
 <Blog>
@@ -16,7 +16,7 @@ const articles = getArticles()
       </h2>
       <div class="mt-6 mb-12 grid gap-12 sm:mt-12 sm:mb-24 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => (
-          <ArticleCard {...article} />
+          <ArticleCard slug={article.id} {...article.data} />
         ))}
       </div>
     </div>

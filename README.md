@@ -31,10 +31,14 @@ Interactive components are Preact islands, e.g. `<InPageNavigation client:load /
 
 ### Articles
 
-Each article is a directory in `src/articles/`, named after its slug:
+Each article is a directory in `src/articles/`, named after its slug, containing `index.mdx` and its images.
+The frontmatter holds the title, teaser, thumbnail, etc., and is validated by the schema in
+`src/content.config.ts`.
 
-- `meta.ts` – title, teaser, thumbnail, etc.
-- `Body.astro` – the article itself
+The body is Markdown. Paragraphs, headings and links are rendered using the components in
+`src/components/article/` — see `src/pages/[slug].astro`. The in-page navigation is generated from the `##`
+headings. Anything Markdown can't express, such as an image that can be zoomed or a video, is a component
+used directly in the MDX, e.g. `<Image data={agile} width={800} zoomData={agileLarge} alt="…" />`.
 
 ### Videos
 
@@ -98,5 +102,5 @@ PRODUCTION_URL=https://johan.li/ pnpm test:e2e
 
 If I use a CMS or database, I either have to use existing content models or create/maintain my own.
 
-Since I don't publish articles frequently, the flexibility of "expressing" articles directly using JSX-like
-Astro components is well worth the manual overhead for publishing each article.
+Since I don't publish articles frequently, the flexibility of "expressing" articles directly using MDX —
+Markdown, with components wherever needed — is well worth the manual overhead for publishing each article.

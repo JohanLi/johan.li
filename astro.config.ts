@@ -1,3 +1,4 @@
+import mdx from '@astrojs/mdx'
 import preact from '@astrojs/preact'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField, fontProviders } from 'astro/config'
@@ -11,7 +12,7 @@ export default defineConfig({
   build: {
     format: 'file',
   },
-  integrations: [preact()],
+  integrations: [mdx(), preact()],
   vite: {
     plugins: [tailwindcss()],
   },

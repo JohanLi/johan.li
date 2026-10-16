@@ -1,19 +1,22 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
 
 import { unixTimestampToMonthYear } from '../utils'
 
-type Props = {
+// an article's frontmatter, see src/content.config.ts
+type Props = CollectionEntry<'articles'>['data'] & {
   slug: string
-  thumbnail: ImageMetadata
-  title: string
-  teaser: string
-  published: number
-  readingTime: number
 }
 
 const { slug, thumbnail, title, teaser, published, readingTime } = Astro.props
+
+/*
+  image() in the collection schema always provides a format, but Astro's types
+  infer it as optional, which <Image> doesn't accept.
+ */
+const thumbnailImage = thumbnail as ImageMetadata
 ---
 
 <a
@@ -21,7 +24,7 @@ const { slug, thumbnail, title, teaser, published, readingTime } = Astro.props
   class="flex transform flex-col overflow-hidden rounded-lg shadow-lg transition duration-200 hover:scale-105"
 >
   <Image
-    src={thumbnail}
+    src={thumbnailImage}
     alt={title}
     class="h-48 w-full object-cover"
     widths={[480, 960]}

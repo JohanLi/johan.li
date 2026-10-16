@@ -1,27 +1,35 @@
 ---
+import { render } from 'astro:content'
+
 import { getArticles } from '../articles/getArticles'
+import Link from '../components/Link.astro'
 import Article from '../components/article/Article.astro'
+import { H2, H3, P } from '../components/article/Common'
 import Blog from '../layouts/Blog.astro'
 
-export function getStaticPaths() {
-  return getArticles().map((article) => ({
-    params: { slug: article.slug },
+export async function getStaticPaths() {
+  const articles = await getArticles()
+
+  return articles.map((article) => ({
+    params: { slug: article.id },
     props: { article },
   }))
 }
 
 const { article } = Astro.props
-const { Body } = article
+const { Content, headings } = await render(article)
 ---
 
-<Blog title={article.title} description={article.teaser}>
+<Blog title={article.data.title} description={article.data.teaser}>
   <Article
-    slug={article.slug}
-    title={article.title}
-    published={article.published}
-    readingTime={article.readingTime}
-    headings={article.headings}
+    slug={article.id}
+    title={article.data.title}
+    published={article.data.published}
+    readingTime={article.data.readingTime}
+    headings={headings
+      .filter((heading) => heading.depth === 2)
+      .map((heading) => heading.text)}
   >
-    <Body />
+    <Content components={{ p: P, h2: H2, h3: H3, a: Link }} />
   </Article>
 </Blog>
