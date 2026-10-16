@@ -13,6 +13,7 @@ export default defineConfig([
     '.wrangler/',
     'tests/report/',
     'tests/results/',
+    'worker/worker-configuration.d.ts',
   ]),
   js.configs.recommended,
   tseslint.configs.recommended,

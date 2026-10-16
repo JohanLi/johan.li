@@ -5,7 +5,7 @@
 ## About the stack
 
 - Astro, with Preact for the interactive parts
-- Cloudflare Workers (static assets)
+- Cloudflare Workers (static assets), with R2 for videos
 - GitHub Actions
 
 ## Getting started
@@ -19,8 +19,8 @@ Visit http://localhost:4321.
 
 ## How it's built
 
-The site is fully static. `astro build` outputs HTML, along with optimized images, fonts, CSS and JS, to `dist/`.
-There's no Worker script — Cloudflare Workers serves `dist/` as static assets:
+The site is static. `astro build` outputs HTML, along with optimized images, fonts, CSS and JS, to `dist/`.
+Cloudflare Workers serves `dist/` as static assets:
 
 - `wrangler.jsonc` configures URLs to have no trailing slash, and `dist/404.html` to be served for pages that
   don't exist.
@@ -36,6 +36,20 @@ Each article is a directory in `src/articles/`, named after its slug:
 - `meta.ts` – title, teaser, thumbnail, etc.
 - `Body.astro` – the article itself
 
+### Videos
+
+Workers static assets don't support Range requests, which browsers need in order to seek in a video. Videos are
+therefore stored in R2 instead:
+
+- The source files are in `videos/`, e.g. `videos/rush-hour.mp4` is served at `/videos/rush-hour.mp4`.
+- `scripts/upload-videos.sh` uploads them to the `johan-li` bucket. `pnpm preview` and `pnpm run deploy`
+  run it, uploading to a local bucket and the actual one respectively.
+- `worker/index.ts` serves them, with support for Range requests. It's the only Worker code, and only runs
+  for `/videos/*`.
+
+After changing the R2 binding (or anything else in `wrangler.jsonc`), regenerate the Worker's types with
+`pnpm types`.
+
 ### Uncharted Waters 2
 
 `/uncharted-waters-2` is the build output of https://github.com/JohanLi/uncharted-waters-2.
@@ -50,8 +64,15 @@ pnpm wrangler login
 pnpm run deploy
 ```
 
-This builds the site and Uncharted Waters 2, and deploys them using `wrangler deploy`. The `routes` in
-`wrangler.jsonc` make the Worker serve `johan.li` as a custom domain, which also manages its DNS record.
+This builds the site and Uncharted Waters 2, uploads the videos to R2, and deploys everything using
+`wrangler deploy`. The R2 bucket has to be created once, before the first deploy:
+
+```
+pnpm wrangler r2 bucket create johan-li
+```
+
+The `routes` in `wrangler.jsonc` make the Worker serve `johan.li` as a custom domain, which also manages
+its DNS record.
 
 `johan.li` is the only place the site is served. The `workers.dev` URL and preview URLs are disabled in
 `wrangler.jsonc`, so there's no public copy of the site elsewhere. To test a build before deploying it, use

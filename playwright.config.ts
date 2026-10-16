@@ -13,12 +13,13 @@ let webServer = {
   stdout: 'ignore',
   stderr: 'pipe',
 } as const
-let testMatch = 'tests/*.spec.ts'
+let testMatch: string | string[] = 'tests/*.spec.ts'
 
 if (process.env.PRODUCTION_URL) {
   baseURL = process.env.PRODUCTION_URL
   webServer = undefined
-  testMatch = 'tests/production/*.spec.ts'
+  // videos are served from R2 in production, so they're worth testing there too
+  testMatch = ['tests/production/*.spec.ts', 'tests/videoRanges.spec.ts']
 }
 
 const config: PlaywrightTestConfig = {
