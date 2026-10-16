@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'preact/hooks'
 
 import {
   type FingerprintElementI,
@@ -170,16 +170,16 @@ export const useInterval = (
   callback: IntervalFunction,
   delay: number,
 ): void => {
-  const savedCallback = useRef<IntervalFunction>(null)
+  const savedCallbackRef = useRef<IntervalFunction>(null)
 
   useEffect(() => {
-    savedCallback.current = callback
+    savedCallbackRef.current = callback
   }, [callback])
 
   useEffect(() => {
     const tick = () => {
-      if (savedCallback.current) {
-        savedCallback.current()
+      if (savedCallbackRef.current) {
+        savedCallbackRef.current()
       }
     }
 

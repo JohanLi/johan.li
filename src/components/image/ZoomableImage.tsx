@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'preact/hooks'
 
 import { classNames } from '../../utils'
-import { CaptionReact } from '../article/CaptionReact'
+import { CaptionPreact } from '../article/CaptionPreact'
 import calculateZoom from './calculateZoom'
 
 /*
@@ -133,7 +133,7 @@ export default function ZoomableImage({
           />
         </div>
       </div>
-      <CaptionReact>{alt}</CaptionReact>
+      <CaptionPreact>{alt}</CaptionPreact>
     </div>
   )
 

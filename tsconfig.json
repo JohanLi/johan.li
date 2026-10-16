@@ -4,6 +4,6 @@
   "exclude": ["dist", ".cache", "tests/report", "tests/results"],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "preact"
   }
 }

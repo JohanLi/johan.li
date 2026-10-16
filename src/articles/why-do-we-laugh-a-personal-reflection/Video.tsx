@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useRef, useState } from 'preact/hooks'
 
-import { CaptionReact } from '../../components/article/CaptionReact'
+import { CaptionPreact } from '../../components/article/CaptionPreact'
 
 export function Video() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -75,10 +75,10 @@ export function Video() {
           Your browser does not support the video tag.
         </video>
       </div>
-      <CaptionReact>
+      <CaptionPreact>
         “Do you understand the words that are coming out of my mouth?”—yes, that
         scene from Rush Hour (1998)
-      </CaptionReact>
+      </CaptionPreact>
     </div>
   )
 }

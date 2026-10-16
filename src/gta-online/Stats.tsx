@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'preact/hooks'
 
 import { type State, useInterval } from './hooks'
 import { formatTimestamp, random } from './utils'

@@ -1,4 +1,5 @@
-import { type ReactNode, useEffect, useReducer } from 'react'
+import type { ComponentChildren } from 'preact'
+import { useEffect, useReducer } from 'preact/hooks'
 
 import Choices from './Choices'
 import Stats from './Stats'
@@ -8,7 +9,7 @@ import { classNames } from './utils'
 
 type Props = {
   images: FingerprintImages
-  children: ReactNode
+  children: ComponentChildren
 }
 
 export default function Minigame({ images, children }: Props) {

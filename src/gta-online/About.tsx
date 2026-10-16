@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
+import type { ComponentChildren } from 'preact'
 
-function H2({ children }: { children: ReactNode }) {
+function H2({ children }: { children: ComponentChildren }) {
   return (
     <h2 className="mt-12 text-xl font-medium text-green-500 first:mt-0">
       {children}
@@ -8,7 +8,7 @@ function H2({ children }: { children: ReactNode }) {
   )
 }
 
-function P({ children }: { children: ReactNode }) {
+function P({ children }: { children: ComponentChildren }) {
   return <p className="mt-4">{children}</p>
 }
 

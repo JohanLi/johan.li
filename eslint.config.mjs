@@ -17,6 +17,7 @@ export default defineConfig([
   js.configs.recommended,
   tseslint.configs.recommended,
   astro.configs.recommended,
+  // also applies to Preact's hooks, which follow the same rules
   {
     files: ['**/*.{ts,tsx}'],
     extends: [reactHooks.configs.flat.recommended],

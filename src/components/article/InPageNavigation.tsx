@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'preact/hooks'
 
 import { classNames, getSlug } from '../../utils'
 
@@ -14,8 +14,8 @@ type Props = {
 }
 
 export default function InPageNavigation({ slug, title, headings }: Props) {
-  const headingRefs = useRef<HTMLElement[]>([])
-  const anchorRefs = useRef<HTMLAnchorElement[]>([])
+  const headingsRef = useRef<HTMLElement[]>([])
+  const anchorsRef = useRef<HTMLAnchorElement[]>([])
 
   const [section, setSection] = useState(0)
   const [thumb, setThumb] = useState({ y: 0, height: 0 })
@@ -35,14 +35,14 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
       return
     }
 
-    headingRefs.current = [
+    headingsRef.current = [
       h1,
       ...Array.from(articleElement.querySelectorAll('h2')),
     ]
   }, [])
 
   useEffect(() => {
-    if (!headingRefs.current.length || !anchorRefs.current.length) {
+    if (!headingsRef.current.length || !anchorsRef.current.length) {
       return
     }
 
@@ -50,9 +50,9 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
       () => {
         setThumb({
           y:
-            anchorRefs.current[section].getBoundingClientRect().top -
-            anchorRefs.current[0].getBoundingClientRect().top,
-          height: anchorRefs.current[section].offsetHeight + 4,
+            anchorsRef.current[section].getBoundingClientRect().top -
+            anchorsRef.current[0].getBoundingClientRect().top,
+          height: anchorsRef.current[section].offsetHeight + 4,
         })
       },
       DEBOUNCE_MS,
@@ -71,18 +71,18 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
   useEffect(() => {
     const onScroll = debounce(
       () => {
-        if (!headingRefs.current.length || !anchorRefs.current.length) {
+        if (!headingsRef.current.length || !anchorsRef.current.length) {
           return
         }
 
         let section = 0
 
-        for (let i = 0; i < headingRefs.current.length; i += 1) {
+        for (let i = 0; i < headingsRef.current.length; i += 1) {
           if (
-            headingRefs.current[i].getBoundingClientRect().top <=
+            headingsRef.current[i].getBoundingClientRect().top <=
               SCROLL_POSITION_THRESHOLD_PX &&
             !(
-              headingRefs.current[i + 1]?.getBoundingClientRect().top <=
+              headingsRef.current[i + 1]?.getBoundingClientRect().top <=
               SCROLL_POSITION_THRESHOLD_PX
             )
           ) {
@@ -96,7 +96,7 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
           document.body.scrollHeight - SCROLL_POSITION_THRESHOLD_PX
 
         if (atBottom) {
-          setSection(headingRefs.current.length - 1)
+          setSection(headingsRef.current.length - 1)
         } else {
           setSection(section)
         }
@@ -119,7 +119,7 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
       <nav className="sticky top-12 left-0 border-l-2 border-gray-200 pl-4">
         <a
           ref={(element) => {
-            anchorRefs.current[0] = element
+            anchorsRef.current[0] = element
           }}
           href={`/${slug}`}
           className={classNames(
@@ -136,7 +136,7 @@ export default function InPageNavigation({ slug, title, headings }: Props) {
             <li key={heading}>
               <a
                 ref={(element) => {
-                  anchorRefs.current[i + 1] = element
+                  anchorsRef.current[i + 1] = element
                 }}
                 href={`#${getSlug(heading)}`}
                 className={classNames(

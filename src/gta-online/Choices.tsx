@@ -1,5 +1,3 @@
-import type { Dispatch } from 'react'
-
 import { type FingerprintImages, getFingerprintElement } from './fingerprints'
 import type { Action, State } from './hooks'
 import { classNames } from './utils'
@@ -7,7 +5,7 @@ import { classNames } from './utils'
 interface Props {
   images: FingerprintImages
   state: State
-  dispatch: Dispatch<Action>
+  dispatch: (action: Action) => void
 }
 
 export default function Choices(props: Props) {

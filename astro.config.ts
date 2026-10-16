@@ -1,4 +1,4 @@
-import react from '@astrojs/react'
+import preact from '@astrojs/preact'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField, fontProviders } from 'astro/config'
 
@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     format: 'file',
   },
-  integrations: [react()],
+  integrations: [preact()],
   vite: {
     plugins: [tailwindcss()],
   },

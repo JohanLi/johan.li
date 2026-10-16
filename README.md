@@ -4,7 +4,7 @@
 
 ## About the stack
 
-- Astro, with React for the interactive parts
+- Astro, with Preact for the interactive parts
 - Cloudflare Workers (static assets)
 - GitHub Actions
 
@@ -27,7 +27,7 @@ There's no Worker script — Cloudflare Workers serves `dist/` as static assets:
 - `public/_headers` sets the cache headers. Astro's output has hashed file names and is cached for a year.
   HTML is revalidated using ETags.
 
-Interactive components are React islands, e.g. `<InPageNavigation client:load />`. Everything else ships no JS.
+Interactive components are Preact islands, e.g. `<InPageNavigation client:load />`. Everything else ships no JS.
 
 ### Articles
 
