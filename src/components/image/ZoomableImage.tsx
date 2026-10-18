@@ -146,14 +146,15 @@ export default function ZoomableImage({
     zoomImage,
   )
 
+  // Preact 11 no longer adds px to numbers, which browsers then ignore
   const style = {
-    top,
-    left,
+    top: `${top}px`,
+    left: `${left}px`,
     transform: transitionActive
       ? `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)`
       : 'none',
-    width: imageElement.width,
-    height: imageElement.height,
+    width: `${imageElement.width}px`,
+    height: `${imageElement.height}px`,
   }
 
   const imageTransition = (
