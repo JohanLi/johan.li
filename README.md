@@ -54,6 +54,9 @@ therefore stored in R2 instead:
 After changing the R2 binding (or anything else in `wrangler.jsonc`), regenerate the Worker's types with
 `pnpm types`.
 
+Source material that the encoded videos are made from, such as screen recordings, editor projects and
+masters, goes in `raw/`. It's gitignored, so it isn't backed up by git either.
+
 ### Uncharted Waters 2
 
 `/uncharted-waters-2` is the build output of https://github.com/JohanLi/uncharted-waters-2.

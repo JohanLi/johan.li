@@ -11,3 +11,5 @@
 .env.local
 /tests/report/
 /tests/results/
+# local source material, e.g. screen recordings and video masters, see README.md
+/raw/
