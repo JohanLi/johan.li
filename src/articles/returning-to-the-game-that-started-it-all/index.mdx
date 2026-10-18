@@ -1,0 +1,108 @@
+---
+title: Returning to the Game That Started It All
+teaser: I'm using AI to take apart a game from my childhood—and build a spiritual successor.
+published: 1792353765
+readingTime: 4
+thumbnail: './fleet-at-sea.png'
+---
+
+import Image from '../../components/image/Image.astro'
+import ImageFloat from '../../components/image/ImageFloat.astro'
+import Video from '../../components/video/Video.astro'
+import characterPortraits from './character-portraits.png'
+import firstVoyage from './first-voyage.png'
+import navigationGraph from './navigation-graph.png'
+import pokemonFansite from './pokemon-fansite-2011.png'
+import unchartedWatersPoster from './uncharted-waters-new-horizons-poster.png'
+
+When I was a kid, my family couldn't afford a computer, so on some weekends I'd tag along to my dad's office to use his. Somehow, a game called _Uncharted Waters: New Horizons_ had found its way onto it.
+
+The game was barely known in the West, but it was a big hit in East Asia. Set in the Age of Discovery, it puts you at the helm of a fleet, trading goods from port to port and venturing into the unknown to find things like the Rosetta Stone, the Moai and the dodo.
+
+<Video
+  sources={[
+    {
+      file: 'uncharted-waters-new-horizons.av1.mp4',
+      type: 'video/mp4; codecs="av01.0.08M.08"',
+    },
+    { file: 'uncharted-waters-new-horizons.mp4', type: 'video/mp4' },
+  ]}
+  poster={unchartedWatersPoster}
+  label="Gameplay from Uncharted Waters: New Horizons"
+  caption="Sailing, trading, discovering the Moai, a naval battle and a duel"
+  clip
+/>
+
+<ImageFloat
+  data={firstVoyage}
+  width={264}
+  right
+  alt="My first voyage, ended by a lack of food, water and geography"
+  pixelArt
+/>
+
+My first attempt at playing it ended in disaster. I started in Lisbon and knew next to nothing about geography. Instead of sailing toward the Mediterranean or north along the European coast, I headed straight west into the Atlantic. Before long, I'd run out of food and water, and that was the end of my voyage.
+
+Eventually, I figured things out. I became obsessed with finding profitable trade routes and slowly building up my fleet, buying bigger and bigger ships. Meanwhile, rival fleets sailed the same seas, trading and fighting alongside me.
+
+Thirty years later, I'm taking the game apart with AI to understand how it works, then to use what I learn to build a spiritual successor. I've given myself two months to see how far I can get. I have little experience with either reverse engineering or game development, so I don't know how much I'll manage to pull off.
+
+## How I got here
+
+Games are also how I learned to program. Building a guild page on Neopets taught me my first HTML. Later came a Pokémon fan site, where I learned PHP, set up a forum and used MySQL to keep track of every Pokémon. I've always learned best by picking something I want to build and figuring out what I need along the way. Eventually, that hobby became my career.
+
+<Image
+  data={pokemonFansite}
+  width={400}
+  alt="My Pokémon fan site as it looked in 2011"
+/>
+
+When it came to AI, though, I wasn't an early believer. Four years ago, a friend kept sending me videos from [Two Minute Papers](https://www.youtube.com/@TwoMinutePapers), a YouTube channel covering the latest AI research. I'd react with a surprised-face emoji and text back "damn," mostly out of politeness. I thought AI was just regurgitating things that already existed. Sure, it could make a snake game or a todo app, but there were thousands of those online to copy from.
+
+My most recent consulting assignment ended this week, after four years at the same large company. When I started there, ChatGPT hadn't even launched. By the end, I was using LLMs every day. What gradually changed my mind was how well they could make sense of large, complicated codebases. Over time, I found myself needing to explain less. Even when I was imprecise about what I needed, AI could often fill in the gaps.
+
+I still understood how to do the work myself; AI could just do it much faster. But much of our time went into deciding which changes or new features were worth building in the first place. We needed to understand their business value and agree on what to prioritize. Faster coding didn't help much with that part of the job.
+
+So instead of rushing into the next gig, I decided to take a short break and learn more about AI by working on a game, where I make every decision myself.
+
+I'd already started digging into the game a few weeks earlier, and that changed my expectations again. I couldn't read the assembly code, but I watched AI try different approaches and work through failed attempts until it decoded artwork and other assets that had eluded previous reverse-engineering efforts. Watching it do something I didn't know how to do myself felt like magic.
+
+With its help, I also began to understand why the seas grow quieter as the game goes on. The computer-controlled fleets start scattered across the world, but as they return to their home ports in Europe, fewer are allowed to set sail again. I'll dig into how the fleets work in a future post.
+
+<Image
+  data={navigationGraph}
+  width={800}
+  zoomData={navigationGraph}
+  alt="The waypoints computer-controlled fleets navigate by. There’s no direct route across the Atlantic, so fleets bound for the Americas detour via Greenland or Antarctica"
+/>
+
+## What I want to build
+
+The long-term goal is a game that is to _Uncharted Waters: New Horizons_ what _Stardew Valley_ is to _Harvest Moon_. For these two months, I'm aiming for a browser remake of the original, a guide to its mechanics and an early prototype of the successor.
+
+### 1. Reverse engineering the original
+
+I'm taking apart the MS-DOS version with AI, using what I learn to build a remake that runs in the browser. If it behaves just like the original, that will show the reverse engineering succeeded. I'm also curious to see how its developers fit so much into the memory and disk space they had.
+
+<Image
+  data={characterPortraits}
+  width={800}
+  alt="Some of the game’s many character portraits, all drawn using the same eight colors"
+  pixelArt
+/>
+
+I'd like to make the remake available to fans, though whether I can keep a version using the original assets online is a separate question.
+
+### 2. Building a guide to the game
+
+I'll turn what I learn into a guide for players. I want it to answer the questions I had while playing: how to build wealth, improve your stats and progress through the story.
+
+AI can help assemble the site and its contents. I'll need to decide what's useful, what to leave out and how to make the answers easy to find.
+
+### 3. Starting on a spiritual successor
+
+Then I'll start building a prototype of my own game. I want to work out which parts of the original still hold up for me and which I'd change. I'll use AI to help with code, artwork, computer-controlled opponents and simulations to test the balance.
+
+I might also draw on other games I love, like the trade and logistics of _Anno 1404_ and the naval battles of _Assassin's Creed IV: Black Flag_.
+
+I'll write about what I learn as I go. For now, I'm enjoying getting to work on a game I've spent so much time playing.
