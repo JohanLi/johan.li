@@ -6,7 +6,11 @@
   wrangler.jsonc. Everything else is served directly from static assets.
  */
 
-const CACHE_CONTROL = 'public, max-age=0, must-revalidate'
+/*
+  Videos have a hash of their contents in their names (see
+  scripts/upload-videos.sh), so a name always refers to the same file.
+ */
+const CACHE_CONTROL = 'public, max-age=31536000, immutable'
 
 export default {
   async fetch(request, env) {
@@ -17,7 +21,7 @@ export default {
       })
     }
 
-    // e.g. /videos/rush-hour.mp4 is stored as videos/rush-hour.mp4
+    // e.g. /videos/rush-hour.1a2b3c4d.mp4 is stored as videos/rush-hour.1a2b3c4d.mp4
     const key = decodeURIComponent(new URL(request.url).pathname.slice(1))
 
     if (request.method === 'HEAD') {

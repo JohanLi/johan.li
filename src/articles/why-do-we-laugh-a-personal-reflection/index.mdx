@@ -6,7 +6,10 @@ readingTime: 5
 thumbnail: './fresh-prince.jpg'
 ---
 
-import { Video } from './Video'
+import Video from '../../components/video/Video.astro'
+import rushHourPoster from './rush-hour-poster.jpg'
+// no-inline, as Vite would otherwise inline a file this small as a data: URL
+import rushHourSubtitles from './rush-hour.vtt?url&no-inline'
 
 Humor has always been part of who I am. After school, I'd race home for _The
 Fresh Prince of Bel-Air_. I'd rewatch _Rush Hour_ endlessly and sneak episodes
@@ -40,7 +43,16 @@ same way: Jackie Chan's reserved Hong Kong cop pairs with Chris Tucker's
 rule-breaking American detective. East meets West. Order meets chaos. It
 shouldn't work, and that's exactly why it does.
 
-<Video client:visible />
+<Video
+  sources={[
+    { file: 'rush-hour.av1.mp4', type: 'video/mp4; codecs="av01.0.08M.10"' },
+    { file: 'rush-hour.mp4', type: 'video/mp4' },
+  ]}
+  poster={rushHourPoster}
+  subtitles={rushHourSubtitles}
+  label="Clip from Rush Hour (1998)"
+  caption="“Do you understand the words that are coming out of my mouth?”—yes, that scene from Rush Hour (1998)"
+/>
 
 ## At least I'm not that guy
 

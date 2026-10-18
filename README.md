@@ -45,11 +45,15 @@ used directly in the MDX, e.g. `<Image data={agile} width={800} zoomData={agileL
 Workers static assets don't support Range requests, which browsers need in order to seek in a video. Videos are
 therefore stored in R2 instead:
 
-- The source files are in `videos/`, e.g. `videos/rush-hour.mp4` is served at `/videos/rush-hour.mp4`.
-- `scripts/upload-videos.sh` uploads them to the `johan-li` bucket. `pnpm preview` and `pnpm run deploy`
-  run it, uploading to a local bucket and the actual one respectively.
+- The source files are in `videos/`. Each is served with a hash of its contents in its name, e.g.
+  `videos/rush-hour.mp4` at `/videos/rush-hour.1a2b3c4d.mp4`, so that browsers can cache it forever.
+- `scripts/upload-videos.sh` uploads them to the `johan-li` bucket under those names. `pnpm preview` and
+  `pnpm run deploy` run it, uploading to a local bucket and the actual one respectively. Old versions stay
+  in the bucket until they're deleted.
 - `worker/index.ts` serves them, with support for Range requests. It's the only Worker code, and only runs
   for `/videos/*`.
+- Articles show them using `src/components/video/Video.astro`, which works out the hashed names. It's
+  either a clip, which is muted and loops like a GIF, or a video with sound and the browser's controls.
 
 After changing the R2 binding (or anything else in `wrangler.jsonc`), regenerate the Worker's types with
 `pnpm types`.

@@ -1,0 +1,58 @@
+---
+import type { ImageMetadata } from 'astro'
+import { getImage } from 'astro:assets'
+
+import Caption from '../article/Caption.astro'
+import VideoPlayer from './VideoPlayer'
+import { getVideoUrl } from './getVideoUrl'
+
+/*
+  A video from videos/, served from R2 (see worker/index.ts), e.g.
+
+    <Video
+      sources={[
+        { file: 'uncharted-waters-new-horizons.av1.mp4', type: 'video/mp4; codecs="av01.0.08M.08"' },
+        { file: 'uncharted-waters-new-horizons.mp4', type: 'video/mp4' },
+      ]}
+      poster={unchartedWatersPoster}
+      label="…"
+      clip
+    />
+
+  sources are in order of preference, as the browser picks the first one it
+  supports. The poster has to be the same size as the video, as it sets the
+  video's aspect ratio. See VideoPlayer.tsx for what clip does.
+ */
+
+type Props = {
+  sources: { file: string; type: string }[]
+  poster: ImageMetadata
+  label: string
+  clip?: boolean
+  subtitles?: string
+  caption?: string
+}
+
+const { sources, poster, label, clip, subtitles, caption } = Astro.props
+
+// as in ArticleCard.astro, PNGs are usually pixel art, which WebP makes blurrier and larger
+const posterSrc =
+  poster.format === 'png' ? poster.src : (await getImage({ src: poster })).src
+---
+
+<div class="-mx-4 my-12 md:mx-0 lg:-mx-8">
+  <VideoPlayer
+    client:visible
+    sources={sources.map(({ file, type }) => ({
+      src: getVideoUrl(file),
+      type,
+    }))}
+    poster={posterSrc}
+    width={poster.width}
+    height={poster.height}
+    label={label}
+    clip={clip}
+    subtitles={subtitles}
+  />
+  {caption && <Caption>{caption}</Caption>}
+</div>

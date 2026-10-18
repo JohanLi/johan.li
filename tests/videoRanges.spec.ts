@@ -1,11 +1,15 @@
 import { expect, test } from '@playwright/test'
 
+import { getVideoUrl } from '../src/components/video/getVideoUrl'
+
 // Browsers need Range requests to seek in a video. See worker/index.ts.
 test.describe('Videos', () => {
+  const url = getVideoUrl('rush-hour.mp4')
+
   test('respond to Range requests with partial content', async ({
     request,
   }) => {
-    const response = await request.get('/videos/rush-hour.mp4', {
+    const response = await request.get(url, {
       headers: { Range: 'bytes=100-199' },
     })
 
@@ -16,10 +20,19 @@ test.describe('Videos', () => {
   })
 
   test('respond to requests without a Range in full', async ({ request }) => {
-    const response = await request.head('/videos/rush-hour.mp4')
+    const response = await request.head(url)
 
     expect(response.status()).toEqual(200)
     expect(response.headers()['accept-ranges']).toEqual('bytes')
+  })
+
+  // their names contain a hash of their contents, see scripts/upload-videos.sh
+  test('are cached forever', async ({ request }) => {
+    const response = await request.head(url)
+
+    expect(response.headers()['cache-control']).toEqual(
+      'public, max-age=31536000, immutable',
+    )
   })
 
   test('that don’t exist get the 404 page', async ({ request }) => {
