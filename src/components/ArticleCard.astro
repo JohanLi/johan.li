@@ -17,6 +17,14 @@ const { slug, thumbnail, title, teaser, published, readingTime } = Astro.props
   infer it as optional, which <Image> doesn't accept.
  */
 const thumbnailImage = thumbnail as ImageMetadata
+
+/*
+  PNG thumbnails are usually pixel art with few colors, which compresses well
+  as-is. Converting to WebP or resizing blends pixels into new colors, which
+  makes the image both blurrier and several times larger, so PNGs are served at
+  their original size.
+ */
+const isPng = thumbnailImage.format === 'png'
 ---
 
 <a
@@ -27,7 +35,8 @@ const thumbnailImage = thumbnail as ImageMetadata
     src={thumbnailImage}
     alt={title}
     class="h-48 w-full object-cover"
-    widths={[480, 960]}
+    format={isPng ? 'png' : 'webp'}
+    widths={isPng ? [thumbnailImage.width] : [480, 960, 1280]}
     sizes="(min-width: 1280px) 400px, (min-width: 640px) 50vw, 100vw"
   />
   <div class="flex flex-1 flex-col p-6">
