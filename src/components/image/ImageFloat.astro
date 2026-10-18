@@ -5,6 +5,7 @@ import { Image } from 'astro:assets'
 import { classNames } from '../../utils'
 import Caption from '../article/Caption.astro'
 
+// pixelArt images are used as they are, see Image.astro
 type Props = {
   data: ImageMetadata
   width: number
@@ -12,9 +13,10 @@ type Props = {
   left?: true
   right?: true
   priority?: true
+  pixelArt?: true
 }
 
-const { data, width, alt, left, right, priority } = Astro.props
+const { data, width, alt, left, right, priority, pixelArt } = Astro.props
 ---
 
 <div
@@ -25,13 +27,24 @@ const { data, width, alt, left, right, priority } = Astro.props
   )}
 >
   <div style={{ maxWidth: `${width}px` }} class="mx-auto">
-    <Image
-      src={data}
-      width={width}
-      densities={[1, 2]}
-      alt={alt}
-      priority={priority}
-    />
+    {pixelArt ? (
+      <img
+        src={data.src}
+        width={width}
+        height={Math.round((data.height / data.width) * width)}
+        alt={alt}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding={priority ? 'sync' : 'async'}
+      />
+    ) : (
+      <Image
+        src={data}
+        width={width}
+        densities={[1, 2]}
+        alt={alt}
+        priority={priority}
+      />
+    )}
     <Caption>{alt}</Caption>
   </div>
 </div>

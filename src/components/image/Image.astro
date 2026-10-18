@@ -8,6 +8,10 @@ import ZoomableImage from './ZoomableImage'
 /*
   If zoomData is provided, the image can be clicked to zoom it. See ZoomableImage.tsx.
   Otherwise, no JavaScript is shipped for the image.
+
+  pixelArt images are used as they are, as resizing them or converting them to
+  WebP makes them blurrier and larger. Scale them up beforehand using
+  nearest-neighbor, e.g. 4x, so that browsers only ever scale them down.
  */
 
 type Props = {
@@ -16,11 +20,17 @@ type Props = {
   alt: string
   zoomData?: ImageMetadata
   priority?: true
+  pixelArt?: true
 }
 
-const { data, width, alt, zoomData, priority } = Astro.props
+const { data, width, alt, zoomData, priority, pixelArt } = Astro.props
 
-const image = await getImage({ src: data, width, densities: [1, 2] })
+const image = pixelArt
+  ? { src: data.src, srcset: undefined }
+  : await getImage({ src: data, width, densities: [1, 2] }).then((image) => ({
+      src: image.src,
+      srcset: image.srcSet.attribute,
+    }))
 const height = Math.round((data.height / data.width) * width)
 ---
 
@@ -28,7 +38,7 @@ const height = Math.round((data.height / data.width) * width)
   <ZoomableImage
     client:idle
     src={image.src}
-    srcSet={image.srcSet.attribute}
+    srcSet={image.srcset}
     width={width}
     height={height}
     alt={alt}
@@ -41,7 +51,7 @@ const height = Math.round((data.height / data.width) * width)
       <div style={{ paddingBottom: `${(data.height / data.width) * 100}%` }}>
         <img
           src={image.src}
-          srcset={image.srcSet.attribute}
+          srcset={image.srcset}
           width={width}
           height={height}
           alt={alt}

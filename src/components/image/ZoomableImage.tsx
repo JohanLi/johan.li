@@ -13,7 +13,7 @@ import calculateZoom from './calculateZoom'
 
 type Props = {
   src: string
-  srcSet: string
+  srcSet?: string
   width: number
   height: number
   alt: string
