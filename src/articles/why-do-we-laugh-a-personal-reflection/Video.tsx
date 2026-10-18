@@ -64,6 +64,10 @@ export function Video() {
           poster="/rush-hour-poster.jpg"
           aria-label="Clip from Rush Hour (1998)"
         >
+          <source
+            src="/videos/rush-hour.av1.mp4"
+            type='video/mp4; codecs="av01.0.08M.10"'
+          />
           <source src="/videos/rush-hour.mp4" type="video/mp4" />
           <track
             src="/rush-hour.vtt"
