@@ -1,0 +1,169 @@
+---
+title: 'Reverse Engineering Uncharted Waters: New Horizons with AI'
+teaser: AI read the game's code; I played the game. Here's how we took my childhood game apart.
+published: 1792594086
+readingTime: 8
+thumbnail: './ship-thumbnail.png'
+---
+
+import Image from '../../components/image/Image.astro'
+import Video from '../../components/video/Video.astro'
+import generatedFacesFixed from './generated-faces-fixed.png'
+import generatedFacesWrong from './generated-faces-wrong.png'
+import tiaraPoster from './joao-receives-a-tiara-poster.png'
+import navalBattlePoster from './naval-battle-poster.png'
+import portTiles from './port-tiles.png'
+import shipDecoding from './ship-decoding.png'
+
+In [my last post](/returning-to-the-game-that-started-it-all), I wrote about returning to _Uncharted Waters: New Horizons_, the game that started it all for me. I wanted to understand how it worked well enough to rebuild it in the browser, then use what I learned to make a game of my own.
+
+I'd tried building a remake before. My 2022 version let you walk through ports, enter buildings and set sail. In screenshots, it looked much like the original. But it was missing the storylines of the six playable characters, the computer-controlled fleets and the naval battles.
+
+This time, I had help. AI read the game's code; I played the game and directed the investigation. I fed it screenshots, save files and what I remembered, and checked its findings against the original. We now have a browser remake with all the missing pieces in place.
+
+## The first attempt
+
+The idea started years earlier, while I was a software developer at Paradox Interactive, a games company. I worked on the services around the games rather than the games themselves. At a JavaScript conference, a speaker demonstrated [Phaser](https://phaser.io), a 2D game engine for the web. It made me wonder whether I could recreate parts of my childhood game in a browser.
+
+{/* TODO: link drkkdriller's resources and botxp's forum posts */}
+Other people had already made that possible. A user called drkkdriller had assembled resources explaining how to unpack the game's compressed files and extract artwork, including character portraits and port maps. Later, posts by botxp on a Chinese forum helped me understand how to extract the world map.
+
+<Image
+  data={portTiles}
+  width={800}
+  zoomData={portTiles}
+  alt="A port's tilesheet beside the reconstructed port, showing how the tilemap arranges the tiles"
+  pixelArt
+/>
+
+But some artwork remained out of reach. I looked through files in hex editors and made guesses based on the images' dimensions and colors. I even found where some images started, but couldn't work out how to read them. For the remake, I simply captured some of the missing art from screenshots instead.
+
+I put the project on hold once it dawned on me that even a simple-looking 2D game needs an enormous amount of code, much of it imperative, especially when you write it all from scratch. I'd spent most of my career in web development, where the browser, the database and frameworks like React handle most of the imperative work, and I mostly wrote declarative code.
+
+## A ship finally appears
+
+This summer, after seeing how useful AI had become at work, I gave Codex my extraction scripts, the game files and screenshots of the ships. Before long, a ship appeared on my screen. It was distorted, but unmistakably a ship. I'm not proud of what happened next: I jumped out of my seat and did a silly little celebratory dance over a broken image.
+
+The ship data in the game's files was much smaller than a full image would need, so I suggested the game kept only the ship and drew it over a shared sea background. That sent us looking for backgrounds and overlays that didn't exist. It took many rounds of back and forth, with me pointing out what still looked wrong, before all 25 ships matched my hand-captured images pixel for pixel.
+
+<Image
+  data={shipDecoding}
+  width={800}
+  alt="The first, distorted ship beside the correctly decoded one"
+  pixelArt
+/>
+
+The answer also explained why the ships had eluded me for so long. Portraits are stored pixel by pixel, so an image's size and colors gave me a recognizable pattern to look for. The ships are stored differently, as instructions for drawing them: start a new strip of pixels, reuse a stored strip, or copy one from earlier in the image. That's why the data was so small, and why, until you know those commands, the bytes don't look like an image. The same approach unlocked nearly all the remaining artwork.
+
+I had long since extracted the hand-drawn character portraits, but the game also has sailors whose faces are generated, assembled from a bank of parts: upper and lower face, eyes, nose and mouth. While we were at it, Codex cracked those too, though working out how the parts fit together took the same kind of effort.
+
+I'd given it the size of each face part, measured from Mac screenshots, which a Retina screen saves at double size, and assumed every feature was the same height. When the numbers didn't add up, the AI went down a rabbit hole, inventing layers of face parts that don't exist to explain the gap.
+
+<Image
+  data={generatedFacesWrong}
+  width={672}
+  alt="Generated sailors while the AI was down the rabbit hole, with missing noses, floating mustaches and black holes for mouths"
+  pixelArt
+/>
+
+It only got unstuck when I asked it to read the code that assembles the faces.
+
+<Image
+  data={generatedFacesFixed}
+  width={536}
+  alt="The same sailors, step by step, until they matched the game"
+  pixelArt
+/>
+
+## Building a save editor
+
+Next, I turned to the storylines. Each of the six playable characters has their own, and your progress through it changes what happens when you enter a building or sail the seas. A vendor may say something different, another character may appear, a duel may begin, or a fleet may come after you at sea. At several points in a storyline, you need to earn more Fame, through trade, piracy or adventure, before you can continue. But Fame alone is rarely enough: many events also depend on where you are, the time of day, or what you've done before. The game never tells you which step of the storyline you're on, or what it takes to reach the next one.
+
+I began by describing story events and supplying save files from before and after them. But repeatedly sailing somewhere and earning enough Fame to reach the next story event would have made the investigation painfully slow. I needed a save editor so I could put myself in a particular situation and test it in the game.
+
+The editor let me change my location, my Fame and other parts of the game state. I could save where I expected a story event to happen, play it out, save afterward and have Codex compare what changed.
+
+## Cracking the storylines
+
+The storylines were by far the hardest part to crack, and where I spent most of my time. In one ten-day stretch alone, most of it spent on a beach holiday in Croatia, I worked through about a hundred save files.
+
+Early on, one story event caused a lot of frustration. It was supposed to start when I entered a Pub, but sometimes it did and sometimes it didn't. I suggested one explanation after another, and Codex agreed with each before taking it back. The answer came from my own memory. On the attempt that worked, I'd arrived before the Pub opened and killed time by visiting the Harbor. On the others, I'd gone straight to the Pub. The event required a visit to any Harbor before the Pub.
+
+Eventually, I stopped trying to force the storylines and changed approach. Many story events lean on the game's ordinary mechanics, and we needed to understand those first:
+
+- How does the game keep time, and when is each building open?
+- Which nation do you serve, and how do the nations get along?
+- How do computer-controlled fleets work, and what happens when one is sent after you?
+
+For example, one script checks whether a value is at least 66. Because the game's clock counts in 20-minute steps, that turns out to mean 22:00 or later.
+
+I built a knowledge base of the game, returning to the scripts as their dependencies made sense. I started from existing guides and my own memory, and had Codex check each claim against the game's code, which overruled the guides more than once. Throughout, I kept play-testing to check what our reading of the code predicted.
+
+Each storyline turned out to be a story script: a small program in a separate file, run by an interpreter inside the main executable. Each character has one, with another shared by ordinary quests and royal missions.
+
+When you enter a building, or as each day at sea ends, the game checks where you are in your storyline for a matching story event. The script can test flags, check Fame, show dialogue, change the music or modify the world.
+
+<Video
+  sources={[
+    {
+      file: 'joao-receives-a-tiara.av1.mp4',
+      type: 'video/mp4; codecs="av01.0.08M.08"',
+    },
+    { file: 'joao-receives-a-tiara.mp4', type: 'video/mp4' },
+  ]}
+  poster={tiaraPoster}
+  label="Late at night, João's mother gives him a tiara"
+  caption="Behind this scene, the story script checks whether the event is available, whether it has already happened and whether it's late enough. It then presents the conversation, gives João the tiara and records that the event is complete."
+  clip
+/>
+
+## An audit, then a remake
+
+Until then, I'd had to manage my usage carefully, rationing my subscription's limits and saving the stronger models for the hardest problems. When Opus 5.5 came out, I decided to try it and got a Claude Max subscription.
+
+My first request was an audit: did our tools and documentation agree with each other, with the game's code and with the original game? Claude found about ten bugs that our tests hadn't caught. In one, an invented mapping had swapped England and Italy, so Otto, the English protagonist, was treated as a foreigner in London.
+
+The way we worked changed too. Prepared saves and advance predictions became routine. Instead of asking me to set up a situation and report back, Claude would usually hand me a save file right before something critical or quirky was about to happen, along with what it expected. My job was to load it, play it out, and report whether the game agreed. When it predicted that surrendering leaves you two-thirds of your gold, not one-third as the game claims, I loaded its save, surrendered, and kept exactly two-thirds. Claude now prepared most of the test saves itself, the job I'd built the save editor for.
+
+Seeing how well it understood the game, I asked Claude to build a new browser remake from the research. After about an hour and a half, the first version had ports, buildings, story scripts and saving. Sailing, the computer-controlled fleets and naval battles followed that evening.
+
+Naval battles impressed me most. I'd given almost no observations about them, and certainly hadn't explained how enemy ships decide where to move, whether to board or fire, or which ship to target. Claude found those rules in the original code and implemented them. It even put land on the battlefield when a fight starts near the coast.
+
+<Video
+  sources={[
+    { file: 'naval-battle.av1.mp4', type: 'video/mp4; codecs="av01.0.08M.08"' },
+    { file: 'naval-battle.mp4', type: 'video/mp4' },
+  ]}
+  poster={navalBattlePoster}
+  label="A naval battle in the browser remake"
+  caption="A naval battle in the browser remake"
+  clip
+/>
+
+## Matching the original
+
+The first version ran, but it didn't feel like the original yet. Over the following week, I played the remake, and whenever something seemed off from memory, I checked it against the original before telling Claude.
+
+The cursor that waits for a key press, for example, blinked six times too fast. Menus highlighted on hover, while the original only highlights while you hold the button and chooses when you let go. Another difference was a classic off-by-one: the remake counted gun types from zero while the original counts from one, so it mistook a long-range cannon for a short-range one.
+
+Each difference sent Claude back to the original's code to find out what it actually did.
+
+By then, it felt like the reverse engineering had largely succeeded.
+
+## What I'd do differently
+
+If I started again, I'd prepare the tools first. Reading the game's code relied on Capstone, a disassembler, but it was only ever installed temporarily, so each new Codex session started without it. Rather than asking me to install it again, Codex would often fall back on guessing from the data, or ask me for more experiments when the answer was already in the code. Next time, I'd have the disassembler available from the start, and ask the AI to confirm an explanation in the code before presenting it. If it couldn't settle something, I'd want it to say what remained unknown so we could decide how to proceed.
+
+I'd also set rules for the knowledge base from the start. Codex treated it like a lab notebook, describing particular save files and play sessions when I wanted general rules. Worse, when new evidence overturned something we'd written down as fact, it would add a correction explaining what we used to believe and why it was wrong. I didn't need the history. I needed the current answer and where in the code it came from.
+
+Finally, I'd pay for a higher-tier subscription from the start. I suspect rationing the stronger models cost me time testing wrong explanations, though by the time I upgraded, a stronger model had come out in Opus 5.5, and we had much more research to work from.
+
+## What comes next
+
+Making a game of my own is still the goal, but a few things come first.
+
+I'll turn the research into a player wiki. The knowledge base is full of facts and mechanics, but they don't all matter equally to a new player, and deciding what to show first is the hard part. Above all, players want strategy: how to build wealth, win naval battles, level up quickly and move through their storyline.
+
+I also intend to put the remake online, with the original game's assets, which Koei still owns. Another option I'm considering is having players supply their own copy of the game files.
+
+In the next post, I'll write about the surprising things we found inside the game: the mechanics I misunderstood for years, the quirks and bugs, and why the seas grow quiet. After that, I want to look at _Uncharted Waters: New Horizons_ from a game design perspective. Why do I still find it fun, and how has its design aged in the 30 years since?
