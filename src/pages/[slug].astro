@@ -4,7 +4,7 @@ import { render } from 'astro:content'
 import { getArticles } from '../articles/getArticles'
 import Link from '../components/Link.astro'
 import Article from '../components/article/Article.astro'
-import { H2, H3, P } from '../components/article/Common'
+import { H2, H3, Ol, P, Ul } from '../components/article/Common'
 import Blog from '../layouts/Blog.astro'
 
 export async function getStaticPaths() {
@@ -30,6 +30,6 @@ const { Content, headings } = await render(article)
       .filter((heading) => heading.depth === 2)
       .map((heading) => heading.text)}
   >
-    <Content components={{ p: P, h2: H2, h3: H3, a: Link }} />
+    <Content components={{ p: P, h2: H2, h3: H3, a: Link, ul: Ul, ol: Ol }} />
   </Article>
 </Blog>
